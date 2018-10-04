@@ -3,6 +3,7 @@ project(GAMEENGINE)
 
 if(MSVC)
   include_directories(
+    src
     contrib/msvc-windows-x86/glew/include
     contrib/msvc-windows-x86/SDL2/include
   )

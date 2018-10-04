@@ -12,17 +12,18 @@ class Keyboard;
 class Component
 {
 public:
+	virtual ~Component();
 	std::shared_ptr<Entity> GetEntity();
 	std::shared_ptr<Core> GetCore();
 	std::shared_ptr<Keyboard> GetKeyboard();
 	std::shared_ptr<Environment> GetEnvironment();
 
+	virtual void OnTick();
 private:
 	std::weak_ptr<Entity> entity;
 
 	void OnInit();
 	void OnBegin();
-	void OnTick();
 	void OnDisplay();
 };
 

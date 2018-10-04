@@ -39,3 +39,8 @@ void Component::OnDisplay()
 {
 
 }
+
+Component::~Component()
+{
+
+}
