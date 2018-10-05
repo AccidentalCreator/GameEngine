@@ -1,7 +1,8 @@
+#pragma once
+
 #ifndef CORE_H
 #define CORE_H
 
-#pragma once
 
 #include <vector>
 #include <memory>

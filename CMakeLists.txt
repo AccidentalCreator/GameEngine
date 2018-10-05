@@ -6,11 +6,13 @@ if(MSVC)
     src
     contrib/msvc-windows-x86/glew/include
     contrib/msvc-windows-x86/SDL2/include
+    contrib/msvc-windows-x86/GLM
   )
 
   link_directories(
     ${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/SDL2/lib
     ${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/glew/lib
+    ${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/GLM
   )
 endif()
 
@@ -29,12 +31,26 @@ add_library(GameEngine
 	src/GameEngine/Entity.h
 	src/GameEngine/Keyboard.h
 	src/GameEngine/Component.h
+	src/GameEngine/GameEngine.h
+	src/GameEngine/Screen.h
+
+	src/GameEngine/VertexBuffer.h
+	src/GameEngine/VertexArray.h
+	src/GameEngine/ShaderProgram.h
+	src/GameEngine/TriangleRenderer.h
 
 	src/GameEngine/Core.cpp
 	src/GameEngine/Environment.cpp
 	src/GameEngine/Entity.cpp
 	src/GameEngine/Keyboard.cpp
 	src/GameEngine/Component.cpp
+	src/GameEngine/GameEngine.cpp
+	src/GameEngine/Screen.cpp
+
+	src/GameEngine/TriangleRenderer.cpp
+	src/GameEngine/VertexBuffer.cpp
+	src/GameEngine/VertexArray.cpp
+	src/GameEngine/ShaderProgram.cpp
 )
 	
 target_link_libraries(game GameEngine)

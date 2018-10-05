@@ -1,0 +1,20 @@
+const GLchar *vertexShaderSrc =
+"attribute vec3 in_Position; 		" \
+" 					" \
+"void main() 				" \
+"{ 					" \
+" gl_Position = vec4(in_Position, 1.0); " \
+"}
+					";
+// Create a new vertex shader, attach source code, compile it and
+// check for errors.
+
+GLuint vertexShaderId = glCreateShader(GL_VERTEX_SHADER);
+glShaderSource(vertexShaderId, 1, &vertexShaderSrc, NULL);
+glCompileShader(vertexShaderId);
+GLint success = 0;
+glGetShaderiv(vertexShaderId, GL_COMPILE_STATUS, &success);
+if(!success)
+{
+   throw std::exception();
+}
