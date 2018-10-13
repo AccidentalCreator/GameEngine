@@ -1,15 +1,33 @@
 #include "Entity.h"
-#include "Component.h"
 
-void Entity::Tick()
+#include <iostream>
+
+std::shared_ptr<Core> Entity::GetCore()
 {
-	for (auto it = components.begin(); it != components.end(); it++)
+	return core.lock();
+}
+
+void Entity::Update()
+{
+	for (std::vector<std::shared_ptr<Component> >::iterator it = components.begin();
+		it != components.end(); it++)
 	{
-		(*it)->OnTick();
+		if (!(*it)->ranOnce)
+		{
+			(*it)->Awake();
+			(*it)->ranOnce = true;
+		}
+
+		(*it)->Update();
+
 	}
 }
 
 void Entity::Display()
 {
-
+	for (std::vector<std::shared_ptr<Component> >::iterator it = components.begin();
+		it != components.end(); it++)
+	{
+		(*it)->Display();
+	}
 }

@@ -1,13 +1,14 @@
 #include "Component.h"
+#include "Entity.h"
 
 std::shared_ptr<Entity> Component::GetEntity()
 {
-	return std::shared_ptr<Entity>();
+	return entity.lock();
 }
 
 std::shared_ptr<Core> Component::GetCore()
 {
-	return std::shared_ptr<Core>();
+	return GetEntity()->GetCore();
 }
 
 std::shared_ptr<Keyboard> Component::GetKeyboard()
@@ -20,24 +21,24 @@ std::shared_ptr<Environment> Component::GetEnvironment()
 	return std::shared_ptr<Environment>();
 }
 
-void Component::OnInit()
+void Component::Awake()
 {
 
 }
 
-void Component::OnBegin()
+void Component::Start()
 {
 
 }
 
-void Component::OnTick()
+void Component::Update()
 {
 
 }
 
-void Component::OnDisplay()
+void Component::Display()
 {
-
+	
 }
 
 Component::~Component()

@@ -5,6 +5,7 @@
 
 #include <string>
 #include <GL\glew.h>
+#include <memory>
 #include <vector>
 
 class VertexBuffer;
@@ -15,13 +16,13 @@ public:
 	VertexArray();
 	~VertexArray();
 
-	void SetBuffer(std::string _attribute, VertexBuffer *_buffer); // Should use a smart pointer???
+	void SetBuffer(std::string _attribute, std::weak_ptr<VertexBuffer> _buffer);
 	int GetVertexCount();
-	GLuint GetId();
+	GLuint GetID();
 
 private:
 	GLuint id;
-	std::vector<VertexBuffer*> buffers;
+	std::vector<std::shared_ptr<VertexBuffer>> buffers;
 	bool dirty;
 };
 

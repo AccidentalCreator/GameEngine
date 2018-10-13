@@ -1,6 +1,7 @@
-#include <GameEngine/Core.h>
-#include <GameEngine/Component.h>
-#include <GameEngine/Entity.h>
+//#include <GameEngine/Core.h>
+//#include <GameEngine/Component.h>
+//#include <GameEngine/Entity.h>
+#include <GameEngine\GameEngine.h>
 // Include game engine
 
 #include <iostream>
@@ -19,14 +20,13 @@ int main()
 {
 
 	std::shared_ptr<Core> core = std::make_shared<Core>(); // Gets core from engine
+	core->Initialize();
 
-	std::shared_ptr<Entity> player = core->AddEntity();
-	player->AddComponent<Player>();
+	std::shared_ptr<Entity> triangle = core->AddEntity();
+	std::shared_ptr<MeshRenderer> meshRenderer = triangle->AddComponent<MeshRenderer>();
 
 	core->Start();
 
-	std::cout << "Hello World" << std::endl;
 
-	system("PAUSE");
 	return 0;
 }

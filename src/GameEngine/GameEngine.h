@@ -12,6 +12,7 @@
 #include "ShaderProgram.h"
 #include "VertexArray.h"
 #include "VertexBuffer.h"
+#include "MeshRenderer.h"
 
 class GameObject
 {

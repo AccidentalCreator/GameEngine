@@ -6,11 +6,13 @@ if(MSVC)
     src
     contrib/msvc-windows-x86/glew/include
     contrib/msvc-windows-x86/SDL2/include
+    contrib/msvc-windows-x86/SDL2_image/include
     contrib/msvc-windows-x86/GLM
   )
 
   link_directories(
     ${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/SDL2/lib
+   ${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/SDL2_image/lib
     ${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/glew/lib
     ${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/GLM
   )
@@ -20,10 +22,34 @@ if(MSVC)
   add_definitions(-DSDL_MAIN_HANDLED)
 endif()
 
-
 add_executable(game
 	src/game/main.cpp
 )
+
+if(MSVC)
+  target_link_libraries(game
+    SDL2 SDL2_image glew32 opengl32
+  )
+else()
+  target_link_libraries(game
+    SDL2 SDL2_image GLU GLEW GL
+  )
+endif()
+
+if(MSVC)
+  add_custom_command(TARGET game POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+      "${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/SDL2/bin/SDL2.dll"
+      "$<TARGET_FILE_DIR:GameEngine>"
+  )
+
+  add_custom_command(TARGET game POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+      "${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/glew/bin/glew32.dll"
+      "$<TARGET_FILE_DIR:GameEngine>"
+  )
+endif()
+
 
 add_library(GameEngine
 	src/GameEngine/Core.h
@@ -37,7 +63,9 @@ add_library(GameEngine
 	src/GameEngine/VertexBuffer.h
 	src/GameEngine/VertexArray.h
 	src/GameEngine/ShaderProgram.h
-	src/GameEngine/TriangleRenderer.h
+	src/GameEngine/MeshRenderer.h
+	src/GameEngine/Material.h
+
 
 	src/GameEngine/Core.cpp
 	src/GameEngine/Environment.cpp
@@ -47,13 +75,14 @@ add_library(GameEngine
 	src/GameEngine/GameEngine.cpp
 	src/GameEngine/Screen.cpp
 
-	src/GameEngine/TriangleRenderer.cpp
 	src/GameEngine/VertexBuffer.cpp
 	src/GameEngine/VertexArray.cpp
 	src/GameEngine/ShaderProgram.cpp
+	src/GameEngine/MeshRenderer.cpp
+	src/GameEngine/Material.cpp
 )
 	
 target_link_libraries(game GameEngine)
-target_link_libraries(GameEngine SDL2 glew32 opengl32)
+target_link_libraries(GameEngine SDL2 SDL2_image glew32 opengl32)
 
 

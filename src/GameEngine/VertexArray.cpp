@@ -1,10 +1,8 @@
 #include "VertexArray.h"
 #include "VertexBuffer.h"
 
-VertexArray::VertexArray()
+VertexArray::VertexArray() : dirty(false)
 {
-	id = 0;
-
 	// Create new VAO
 	glGenVertexArrays(1, &id);
 
@@ -13,28 +11,63 @@ VertexArray::VertexArray()
 		throw std::exception();
 	}
 
-	// Bind to GPU
-	glBindVertexArray(id);
-	glBindBuffer(GL_ARRAY_BUFFER, GetVertexCount());
-
-	// (shader, number of vertex in row, vertex data type, normalized, gap in points, data does not start at 0)
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (void *)0); // What does this do???
-
-	glEnableVertexAttribArray(0);
-
-	// Reset state
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
+	buffers.resize(10);
 }
 
-void VertexArray::SetBuffer(std::string _attribute, VertexBuffer *buffer)
+void VertexArray::SetBuffer(std::string _attribute, std::weak_ptr<VertexBuffer> _buffer)
 {
-
+	if (_attribute == "in_Position")
+	{
+		buffers.at(0) = _buffer.lock();
+	}
+	else if (_attribute == "in_Color")
+	{
+		buffers.at(1) = _buffer.lock();
+	}
+	else
+	{
+		throw std::exception();
+	}
+	dirty = true;
 }
 
 int VertexArray::GetVertexCount()
 {
+	if (!buffers.at(0))
+	{
+		throw std::exception();
+	}
+	return buffers.at(0)->GetDataSize() / buffers.at(0)->GetComponents();
+}
 
+GLuint VertexArray::GetID()
+{
+	if (dirty)
+	{
+		// Bind to GPU
+		glBindVertexArray(id);
+
+		for (size_t i = 0; i < buffers.size(); i++)
+		{
+			if (buffers.at(i))
+			{
+				glBindBuffer(GL_ARRAY_BUFFER, buffers.at(i)->GetID());
+
+				glVertexAttribPointer(i, buffers.at(i)->GetComponents(), GL_FLOAT, GL_FALSE,
+					buffers.at(i)->GetComponents() * sizeof(GLfloat), (void *)0);
+
+				glEnableVertexAttribArray(i);
+			}
+			else
+			{
+				glDisableVertexAttribArray(i);
+			}
+		}
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		glBindVertexArray(0);
+		dirty = false;
+	}
+	return id;
 }
 
 VertexArray::~VertexArray()

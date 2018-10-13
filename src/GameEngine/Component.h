@@ -10,7 +10,9 @@ class Environment;
 class Keyboard;
 
 class Component
-{
+{ 
+	// Friend class can access private and protected members from other class
+	friend class Entity;
 public:
 	virtual ~Component();
 	std::shared_ptr<Entity> GetEntity();
@@ -18,13 +20,15 @@ public:
 	std::shared_ptr<Keyboard> GetKeyboard();
 	std::shared_ptr<Environment> GetEnvironment();
 
-	virtual void OnTick();
 private:
 	std::weak_ptr<Entity> entity;
 
-	void OnInit();
-	void OnBegin();
-	void OnDisplay();
+	virtual void Awake();
+	virtual void Start();
+	virtual void Update();
+	virtual void Display();
+
+	bool ranOnce;
 };
 
 #endif

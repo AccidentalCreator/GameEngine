@@ -1,35 +1,75 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
+#include "Component.h"
 
 #include <vector>
 #include <memory>
 
-class Component;
+#define ADDCOMPONENT \
+	std::shared_ptr<T> rtn = std::make_shared<T>();\
+	rtn->entity = self; \
+	rtn->ranOnce = false; \
+	components.push_back(rtn);
+
 class Core;
 
 class Entity
 {
+	// Friend class can access private and protected members from other class
+	friend class Core;
 public:
-	std::shared_ptr<Core>& GetCore() { return core.lock(); };
+	std::shared_ptr<Core> GetCore();
 
-	template <typename T> 
+	template <typename T>
+	std::shared_ptr<T> GetComponent()
+	{
+		for (size_t i = 0; i < components.size(); i++)
+		{
+			std::shared_ptr<T> tst = std::dynamic_pointer_cast<T>(components.at(i));
+
+			if (tst)
+			{
+				return tst;
+			}
+		}
+
+		throw std::exception();
+	}
+
+	template <typename T>
 	std::shared_ptr<T> AddComponent()
 	{
-		std::shared_ptr<T> rtn = std::make_shared<T>();
+		ADDCOMPONENT
+			rtn->Start();
 
-		components.push_back(rtn);
 		return rtn;
 	}
-	//template <typename T, typename A> std::shared_ptr<T> AddComponent<T, A>(a:A);
-	//template <typename T, typename A, template B> std::shared_ptr<T> AddComponent<T, A, B>(a:A, b:B);
-	//template <typename T, typename A, template B, template C> std::shared_ptr<T> AddComponent<T, A, B, C>(a : A, b : B, c : C);
-	void Tick();
+
+	template <typename T, typename A>
+	std::shared_ptr<T> AddComponent(A a)
+	{
+		ADDCOMPONENT
+			rtn->Start(a);
+
+		return rtn;
+	}
+
+	template <typename T, typename A, typename B>
+	std::shared_ptr<T> AddComponent(A a, B b)
+	{
+		ADDCOMPONENT
+			rtn->Start(a, b);
+
+		return rtn;
+	}
 
 private:
 	std::vector<std::shared_ptr<Component>> components;
 	std::weak_ptr<Core> core;
+	std::weak_ptr<Entity> self;
 
+	void Update();
 	void Display();
 
 };

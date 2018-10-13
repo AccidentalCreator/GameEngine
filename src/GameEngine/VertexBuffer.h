@@ -7,17 +7,17 @@
 #include <glm.hpp>
 #include <vector>
 
-class VertextBuffer
+class VertexBuffer
 {
 public:
-	VertextBuffer();
-	~VertextBuffer();
+	VertexBuffer();
+	~VertexBuffer();
 
 	void Add(glm::vec3 _value);
 	void Add(glm::vec4 _value);
-	int GetComponent();
+	int GetComponents();
 	int GetDataSize();
-	GLuint GetId();
+	GLuint GetID();
 
 private:
 	GLuint id;
