@@ -64,7 +64,6 @@ add_library(GameEngine
 	src/GameEngine/VertexArray.h
 	src/GameEngine/ShaderProgram.h
 	src/GameEngine/MeshRenderer.h
-	src/GameEngine/Material.h
 
 
 	src/GameEngine/Core.cpp
@@ -79,7 +78,6 @@ add_library(GameEngine
 	src/GameEngine/VertexArray.cpp
 	src/GameEngine/ShaderProgram.cpp
 	src/GameEngine/MeshRenderer.cpp
-	src/GameEngine/Material.cpp
 )
 	
 target_link_libraries(game GameEngine)
