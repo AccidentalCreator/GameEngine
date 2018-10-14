@@ -17,6 +17,23 @@ VertexBuffer::~VertexBuffer()
 
 }
 
+void VertexBuffer::Add(glm::vec2 _value)
+{
+	if (!components)
+	{
+		components = 2;
+	}
+
+	if (components != 2)
+	{
+		throw std::exception();
+	}
+
+	data.push_back(_value.x);
+	data.push_back(_value.y);
+	dirty = true;
+}
+
 void VertexBuffer::Add(glm::vec3 _value)
 {
 	if (!components)

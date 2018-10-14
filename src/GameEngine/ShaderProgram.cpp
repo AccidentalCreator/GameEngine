@@ -62,6 +62,7 @@ ShaderProgram::ShaderProgram(std::string _vert, std::string _frag)
 	glAttachShader(id, fragmentShaderId);
 	glBindAttribLocation(id, 0, "in_Position");
 	glBindAttribLocation(id, 1, "in_Color");
+	glBindAttribLocation(id, 2, "in_TexCoord");
 
 	if (glGetError() != GL_NO_ERROR)
 	{

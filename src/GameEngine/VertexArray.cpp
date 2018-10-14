@@ -24,6 +24,10 @@ void VertexArray::SetBuffer(std::string _attribute, std::weak_ptr<VertexBuffer> 
 	{
 		buffers.at(1) = _buffer.lock();
 	}
+	else if (_attribute == "in_TexCoord")
+	{
+		buffers.at(2) = _buffer.lock();
+	}
 	else
 	{
 		throw std::exception();

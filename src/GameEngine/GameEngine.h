@@ -13,6 +13,7 @@
 #include "VertexArray.h"
 #include "VertexBuffer.h"
 #include "MeshRenderer.h"
+#include "Material.h"
 
 class GameObject
 {
