@@ -24,6 +24,9 @@ int main()
 	std::shared_ptr<Material> material = triangle->AddComponent<Material>();
 	material->LoadTexture("../resources/textures/wall.jpg");
 
+	std::shared_ptr<Sound> sound = std::make_shared<Sound>("../resources/sounds/dixie_horn.ogg");
+	sound->Play();
+
 	core->Start();
 
 

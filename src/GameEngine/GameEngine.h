@@ -14,6 +14,7 @@
 #include "VertexBuffer.h"
 #include "MeshRenderer.h"
 #include "Material.h"
+#include "Sound.h"
 
 class GameObject
 {

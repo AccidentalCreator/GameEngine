@@ -8,6 +8,9 @@ if(MSVC)
     contrib/msvc-windows-x86/SDL2/include
     contrib/msvc-windows-x86/SDL2_image/include
     contrib/msvc-windows-x86/GLM
+    contrib/msvc-windows-x86/openal-soft/include
+    contrib/msvc-windows-x86/ogg/include
+    contrib/msvc-windows-x86/vorbis/include
   )
 
   link_directories(
@@ -15,6 +18,9 @@ if(MSVC)
    ${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/SDL2_image/lib
     ${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/glew/lib
     ${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/GLM
+    ${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/openal-soft/lib
+    ${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/ogg/lib
+    ${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/vorbis/lib
   )
 endif()
 
@@ -28,11 +34,11 @@ add_executable(game
 
 if(MSVC)
   target_link_libraries(game
-    SDL2 SDL2_image glew32 opengl32
+    SDL2 SDL2_image glew32 opengl32 OpenAL32 ogg vorbis vorbisfile
   )
 else()
   target_link_libraries(game
-    SDL2 SDL2_image GLU GLEW GL
+    SDL2 SDL2_image GLU GLEW GL AL ogg vorbis vorbisfile
   )
 endif()
 
@@ -48,6 +54,12 @@ if(MSVC)
       "${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/glew/bin/glew32.dll"
       "$<TARGET_FILE_DIR:GameEngine>"
   )
+
+  add_custom_command(TARGET game POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+      "${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/openal-soft/bin/OpenAL32.dll"
+      "$<TARGET_FILE_DIR:GameEngine>"
+  )
 endif()
 
 
@@ -61,6 +73,7 @@ add_library(GameEngine
 	src/GameEngine/Screen.h
 	src/GameEngine/Material.h
 	src/GameEngine/stb_image.h
+	src/GameEngine/Sound.h
 
 	src/GameEngine/VertexBuffer.h
 	src/GameEngine/VertexArray.h
@@ -77,6 +90,7 @@ add_library(GameEngine
 	src/GameEngine/Screen.cpp
 	src/GameEngine/Material.cpp
 	src/GameEngine/stb_image.cpp
+	src/GameEngine/Sound.cpp
 
 	src/GameEngine/VertexBuffer.cpp
 	src/GameEngine/VertexArray.cpp
