@@ -14,6 +14,28 @@ std::shared_ptr<Core> Core::Initialize()
 
 	screen->Init();
 
+	rtn->device = alcOpenDevice(NULL);
+
+	if (!rtn->device)
+	{
+		throw std::exception();
+	}
+
+	rtn->context = alcCreateContext(rtn->device, NULL);
+
+	if (!rtn->context)
+	{
+		alcCloseDevice(rtn->device);
+		throw std::exception();
+	}
+
+	if (!alcMakeContextCurrent(rtn->context))
+	{
+		alcDestroyContext(rtn->context);
+		alcCloseDevice(rtn->device);
+		throw std::exception();
+	}
+
 	return rtn;
 }
 
@@ -38,6 +60,21 @@ void Core::Start()
 			(*it)->Update();
 		}
 
+		for (auto it = entities.begin(); it != entities.end(); )
+		{
+			if (!(*it)->isAlive)
+			{
+				std::cout << "Destroyed" << std::endl;
+				it = entities.erase(it);
+			}
+			else
+			{
+				it++;
+			}
+		}
+
+
+
 		screen->Clear(); // Clear screen
 
 		for (std::vector<std::shared_ptr<Entity> >::iterator it = entities.begin();
@@ -57,6 +94,7 @@ std::shared_ptr<Entity> Core::AddEntity()
 	entities.push_back(rtn);
 	rtn->self = rtn;
 	rtn->core = self;
+	rtn->isAlive = true;
 	return rtn;
 }
 

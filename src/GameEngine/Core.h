@@ -7,6 +7,9 @@
 #include <vector>
 #include <memory>
 
+#include <AL/al.h>
+#include <AL/alc.h>
+
 class Environment;
 class Keyboard;
 class Component;
@@ -29,6 +32,9 @@ private:
 	std::shared_ptr<Keyboard> keyboard;
 	std::weak_ptr<Core> self;
 	std::shared_ptr<Screen> screen;
+
+	ALCdevice* device;
+	ALCcontext* context;
 
 	bool running;
 };

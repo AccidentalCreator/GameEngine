@@ -165,5 +165,5 @@ void MeshRenderer::Display()
 	shaders->SetUniform("in_Projection", projection);
 	glm::mat4 camera = glm::lookAt(glm::vec3(-5, 3, -5), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
 	shaders->SetUniform("in_Camera", camera);
-	shaders->Draw(*meshData); // Should use smart pointer???
+	shaders->Draw(*meshData); 
 }

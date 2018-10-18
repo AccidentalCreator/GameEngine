@@ -18,7 +18,11 @@ void Entity::Update()
 			(*it)->ranOnce = true;
 		}
 
-		(*it)->Update();
+		try
+		{
+			(*it)->Update();
+		}
+		catch (...) {}
 
 	}
 }
@@ -30,4 +34,11 @@ void Entity::Display()
 	{
 		(*it)->Display();
 	}
+}
+
+
+void Entity::Destroy()
+{
+	std::cout << "Destroy called" << std::endl;
+	isAlive = false;
 }

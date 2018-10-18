@@ -15,7 +15,7 @@ if(MSVC)
 
   link_directories(
     ${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/SDL2/lib
-   ${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/SDL2_image/lib
+    ${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/SDL2_image/lib
     ${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/glew/lib
     ${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/GLM
     ${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/openal-soft/lib
@@ -74,6 +74,7 @@ add_library(GameEngine
 	src/GameEngine/Material.h
 	src/GameEngine/stb_image.h
 	src/GameEngine/Sound.h
+	src/GameEngine/Exception.h
 
 	src/GameEngine/VertexBuffer.h
 	src/GameEngine/VertexArray.h
@@ -91,6 +92,7 @@ add_library(GameEngine
 	src/GameEngine/Material.cpp
 	src/GameEngine/stb_image.cpp
 	src/GameEngine/Sound.cpp
+	src/GameEngine/Exception.cpp
 
 	src/GameEngine/VertexBuffer.cpp
 	src/GameEngine/VertexArray.cpp

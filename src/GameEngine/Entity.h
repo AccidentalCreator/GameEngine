@@ -20,6 +20,7 @@ class Entity
 	friend class Core;
 public:
 	std::shared_ptr<Core> GetCore();
+	void Destroy();
 
 	template <typename T>
 	std::shared_ptr<T> GetComponent()
@@ -72,6 +73,7 @@ private:
 	void Update();
 	void Display();
 
+	bool isAlive;
 };
 
 #endif

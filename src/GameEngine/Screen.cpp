@@ -32,6 +32,8 @@ void Screen::Init()
 		throw std::exception();
 	}
 
+	
+
 	// OpenGL windoow settings
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
