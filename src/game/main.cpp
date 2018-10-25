@@ -16,8 +16,7 @@ public:
 int main()
 {
 
-	std::shared_ptr<Core> core = std::make_shared<Core>(); // Gets core from engine
-	core->Initialize();
+	std::shared_ptr<Core> core = Core::Initialize();
 
 	std::shared_ptr<Entity> cube = core->AddEntity();
 	std::shared_ptr<MeshRenderer> meshRenderer = cube->AddComponent<MeshRenderer>();

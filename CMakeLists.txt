@@ -22,6 +22,7 @@ if(MSVC)
     ${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/ogg/lib
     ${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/vorbis/lib
   )
+
 endif()
 
 if(MSVC)
@@ -75,6 +76,7 @@ add_library(GameEngine
 	src/GameEngine/stb_image.h
 	src/GameEngine/Sound.h
 	src/GameEngine/Exception.h
+	src/GameEngine/Transform.h
 
 	src/GameEngine/VertexBuffer.h
 	src/GameEngine/VertexArray.h
@@ -93,6 +95,7 @@ add_library(GameEngine
 	src/GameEngine/stb_image.cpp
 	src/GameEngine/Sound.cpp
 	src/GameEngine/Exception.cpp
+	src/GameEngine/Transform.cpp
 
 	src/GameEngine/VertexBuffer.cpp
 	src/GameEngine/VertexArray.cpp

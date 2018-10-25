@@ -1,6 +1,7 @@
 #include "Screen.h"
 
 #include <iostream>
+#include <gtx/transform.hpp>
 
 #define WINDOW_WIDTH 640
 #define WINDOW_HEIGHT 480
@@ -37,6 +38,8 @@ void Screen::Init()
 	// OpenGL windoow settings
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
+
+	projection = glm::perspective(glm::radians(50.0f), (float)(WINDOW_WIDTH / WINDOW_HEIGHT), 0.1f, 10.0f);
 }
 
 void Screen::Clear()

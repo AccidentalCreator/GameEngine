@@ -13,6 +13,7 @@
 	components.push_back(rtn);
 
 class Core;
+class Transform;
 
 class Entity
 {

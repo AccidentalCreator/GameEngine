@@ -2,6 +2,10 @@
 #include "VertexArray.h"
 #include "VertexBuffer.h"
 #include "ShaderProgram.h"
+#include "Transform.h"
+#include "Screen.h"
+#include "Core.h"
+#include "Entity.h"
 
 #include <gtc\matrix_transform.hpp>
 #include <iostream>
@@ -156,14 +160,20 @@ void MeshRenderer::Awake()
 	// Tells what shaders to use
 	shaders = std::make_shared<ShaderProgram>("../resources/shaders/simple.vert", "../resources/shaders/simple.frag");
 
+	//transform = std::make_shared<Transform>();  // getCompomnent
+	//screen = std::make_shared<Screen>(); //getCore -> getScreen
+
+	transform = GetEntity()->GetComponent<Transform>();
+	screen = GetCore()->GetScreen();
 }
 
 void MeshRenderer::Display()
 {
-	shaders->SetUniform("in_Model", glm::mat4(1.0f));
-	glm::mat4 projection = glm::perspective(glm::radians(50.0f), (float)(640 / 480), 0.1f, 10.0f);
-	shaders->SetUniform("in_Projection", projection);
+	shaders->SetUniform("in_Model", transform->GetModelMatrix());
+	shaders->SetUniform("in_Projection", screen->GetProjectionMatric());
 	glm::mat4 camera = glm::lookAt(glm::vec3(-5, 3, -5), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
 	shaders->SetUniform("in_Camera", camera);
+
 	shaders->Draw(*meshData); 
 }
+

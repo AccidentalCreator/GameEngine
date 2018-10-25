@@ -20,12 +20,15 @@ public:
 	void End();
 
 	glm::vec2 GetSize() { return size; };
+
+	glm::mat4 GetProjectionMatric() { return projection; }
 	
 private:
 	glm::vec2 size;
 
 	SDL_Window *window;
 
+	glm::mat4 projection;
 };
 
 #endif // !SCREEN_H

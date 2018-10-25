@@ -1,6 +1,7 @@
 #include "Core.h"
 #include "Entity.h"
 #include "Screen.h"
+#include "Transform.h"
 
 #include <iostream>
 
@@ -10,9 +11,9 @@ std::shared_ptr<Core> Core::Initialize()
 	rtn->running = false;
 	rtn->self = rtn;
 	
-	screen = std::make_shared<Screen>();
+	rtn->screen = std::make_shared<Screen>();
 
-	screen->Init();
+	rtn->screen->Init();
 
 	rtn->device = alcOpenDevice(NULL);
 
@@ -95,6 +96,7 @@ std::shared_ptr<Entity> Core::AddEntity()
 	rtn->self = rtn;
 	rtn->core = self;
 	rtn->isAlive = true;
+	rtn->AddComponent<Transform>();
 	return rtn;
 }
 
