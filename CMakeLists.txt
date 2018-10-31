@@ -77,6 +77,7 @@ add_library(GameEngine
 	src/GameEngine/Sound.h
 	src/GameEngine/Exception.h
 	src/GameEngine/Transform.h
+	src/GameEngine/Camera.h
 
 	src/GameEngine/VertexBuffer.h
 	src/GameEngine/VertexArray.h
@@ -96,6 +97,7 @@ add_library(GameEngine
 	src/GameEngine/Sound.cpp
 	src/GameEngine/Exception.cpp
 	src/GameEngine/Transform.cpp
+	src/GameEngine/Camera.cpp
 
 	src/GameEngine/VertexBuffer.cpp
 	src/GameEngine/VertexArray.cpp

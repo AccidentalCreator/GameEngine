@@ -160,17 +160,16 @@ void MeshRenderer::Awake()
 	// Tells what shaders to use
 	shaders = std::make_shared<ShaderProgram>("../resources/shaders/simple.vert", "../resources/shaders/simple.frag");
 
-	//transform = std::make_shared<Transform>();  // getCompomnent
-	//screen = std::make_shared<Screen>(); //getCore -> getScreen
-
 	transform = GetEntity()->GetComponent<Transform>();
 	screen = GetCore()->GetScreen();
+	
 }
 
 void MeshRenderer::Display()
 {
 	shaders->SetUniform("in_Model", transform->GetModelMatrix());
 	shaders->SetUniform("in_Projection", screen->GetProjectionMatric());
+	
 	glm::mat4 camera = glm::lookAt(glm::vec3(-5, 3, -5), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
 	shaders->SetUniform("in_Camera", camera);
 

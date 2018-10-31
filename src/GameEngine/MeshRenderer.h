@@ -13,7 +13,7 @@ class ShaderProgram;
 class Transform;
 class Screen;
 class Entity;
-
+class Camera;
 
 class MeshRenderer : public Component
 {
@@ -27,6 +27,7 @@ private:
 	std::shared_ptr<ShaderProgram> shaders;
 	std::shared_ptr<Transform> transform;
 	std::shared_ptr<Screen> screen;
+	std::shared_ptr<Camera> camera;
 
 };
 
