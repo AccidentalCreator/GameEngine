@@ -4,6 +4,7 @@
 
 #include <memory>
 
+
 class Entity;
 class Core;
 class Environment;
@@ -19,6 +20,7 @@ public:
 	std::shared_ptr<Core> GetCore();
 	std::shared_ptr<Keyboard> GetKeyboard();
 	std::shared_ptr<Environment> GetEnvironment();
+
 
 private:
 	std::weak_ptr<Entity> entity;

@@ -15,6 +15,7 @@
 #include "MeshRenderer.h"
 #include "Material.h"
 #include "Sound.h"
+#include "Camera.h"
 
 class GameObject
 {

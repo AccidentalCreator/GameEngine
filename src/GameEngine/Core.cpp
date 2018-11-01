@@ -2,6 +2,7 @@
 #include "Entity.h"
 #include "Screen.h"
 #include "Transform.h"
+#include "Component.h"
 
 #include <iostream>
 
@@ -74,8 +75,6 @@ void Core::Start()
 			}
 		}
 
-
-
 		screen->Clear(); // Clear screen
 
 		for (std::vector<std::shared_ptr<Entity> >::iterator it = entities.begin();
@@ -104,3 +103,5 @@ void Core::Stop()
 {
 	running = false;
 }
+
+

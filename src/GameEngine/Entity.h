@@ -5,6 +5,7 @@
 
 #include <vector>
 #include <memory>
+#include <string>
 
 #define ADDCOMPONENT \
 	std::shared_ptr<T> rtn = std::make_shared<T>();\
@@ -66,6 +67,18 @@ public:
 		return rtn;
 	}
 
+	template <typename T, typename A, typename B, typename C>
+	std::shared_ptr<T> AddComponent(A a, B b, C c)
+	{
+		ADDCOMPONENT
+			rtn->Start(a, b, c);
+
+		return rtn;
+	}
+
+	std::string GetTag() { return tag; }
+	void SetTag(std::string _tag) { tag = _tag; }
+
 private:
 	std::vector<std::shared_ptr<Component>> components;
 	std::weak_ptr<Core> core;
@@ -75,6 +88,8 @@ private:
 	void Display();
 
 	bool isAlive;
+
+	std::string tag;
 };
 
 #endif

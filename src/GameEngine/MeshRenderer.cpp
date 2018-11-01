@@ -6,6 +6,7 @@
 #include "Screen.h"
 #include "Core.h"
 #include "Entity.h"
+#include "Camera.h"
 
 #include <gtc\matrix_transform.hpp>
 #include <iostream>
@@ -175,15 +176,14 @@ void MeshRenderer::AddModel(std::string _modelPath)
 
 	transform = GetEntity()->GetComponent<Transform>();
 	screen = GetCore()->GetScreen();
+	camera = GetCore()->FindEntityWithComponent<Camera>();
 }
 
 void MeshRenderer::Display()
 {
 	shaders->SetUniform("in_Model", transform->GetModelMatrix());
 	shaders->SetUniform("in_Projection", screen->GetProjectionMatric());
-	
-	glm::mat4 camera = glm::lookAt(glm::vec3(0, 6, -6), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
-	shaders->SetUniform("in_Camera", camera);
+	shaders->SetUniform("in_Camera", camera->GetComponent<Camera>()->GetViewMatrix());
 
 	shaders->Draw(*meshData); 
 }

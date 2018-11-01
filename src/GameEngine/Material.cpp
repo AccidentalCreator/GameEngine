@@ -3,7 +3,7 @@
 
 #include "stb_image.h"
 
-void Material::Awake()
+void Material::Start(std::string _imagePath)
 {
 	glGenTextures(1, &id);
 
@@ -12,13 +12,10 @@ void Material::Awake()
 		throw std::exception();
 	}
 
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
 	VAO = std::make_shared<VertexArray>();
 	VAOid = VAO->GetID();
+
+	LoadTexture(_imagePath);
 }
 
 void Material::LoadTexture(std::string _imagePath)
@@ -28,7 +25,7 @@ void Material::LoadTexture(std::string _imagePath)
 	channels = 0;
 
 	imageData = stbi_load(_imagePath.c_str(), &width, &height, &channels, 4);
-
+	
 	if (!imageData)
 	{
 		throw std::exception();
@@ -42,7 +39,7 @@ void Material::Display()
 	{
 		glBindTexture(GL_TEXTURE_2D, id);
 		// Load texture
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, imageData);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageData);
 		glGenerateMipmap(GL_TEXTURE_2D);
 		stbi_image_free(imageData);
 		dirty = false;

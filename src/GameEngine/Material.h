@@ -14,7 +14,7 @@ class VertexArray;
 class Material :public Component
 {
 public:
-	void Awake();
+	void Start(std::string _imagePath);
 	void LoadTexture(std::string _imagePath);
 
 private:
