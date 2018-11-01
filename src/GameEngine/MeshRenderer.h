@@ -7,6 +7,7 @@
 #include "Component.h"
 
 #include <memory>
+#include <string>
 
 class VertexArray;
 class ShaderProgram;
@@ -19,6 +20,8 @@ class MeshRenderer : public Component
 {
 public:
 	void Awake();
+	void AddModel(std::string _modelPath);
+
 
 private:
 	void Display();

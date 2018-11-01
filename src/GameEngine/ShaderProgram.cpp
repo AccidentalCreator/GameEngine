@@ -63,6 +63,7 @@ ShaderProgram::ShaderProgram(std::string _vert, std::string _frag)
 	glBindAttribLocation(id, 0, "in_Position");
 	glBindAttribLocation(id, 1, "in_Color");
 	glBindAttribLocation(id, 2, "in_TexCoord");
+	glBindAttribLocation(id, 3, "in_Normal");
 
 	if (glGetError() != GL_NO_ERROR)
 	{
