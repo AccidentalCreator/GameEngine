@@ -26,7 +26,8 @@ int main()
 	std::shared_ptr<MeshRenderer> catRenderer = cat->AddComponent<MeshRenderer>();
 	catRenderer->AddModel("../resources/models/cat.obj");
 	std::shared_ptr<Material> material = cat->AddComponent<Material>("../resources/textures/cat.png");
-	//material->LoadTexture("../resources/textures/cat.png");
+	cat->GetComponent<Transform>()->SetPosition(glm::vec3(0, 0, 0));
+
 
 	//std::shared_ptr<Entity> cube = core->AddEntity();
 	//std::shared_ptr<MeshRenderer> meshRenderer = cube->AddComponent<MeshRenderer>();

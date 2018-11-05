@@ -182,7 +182,7 @@ void MeshRenderer::AddModel(std::string _modelPath)
 void MeshRenderer::Display()
 {
 	shaders->SetUniform("in_Model", transform->GetModelMatrix());
-	shaders->SetUniform("in_Projection", screen->GetProjectionMatric());
+	shaders->SetUniform("in_Projection", screen->GetProjectionMatrix());
 	shaders->SetUniform("in_Camera", camera->GetComponent<Camera>()->GetViewMatrix());
 
 	shaders->Draw(*meshData); 

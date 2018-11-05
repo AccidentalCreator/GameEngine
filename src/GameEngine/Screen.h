@@ -21,7 +21,7 @@ public:
 
 	glm::vec2 GetSize() { return size; };
 
-	glm::mat4 GetProjectionMatric() { return projection; }
+	glm::mat4 GetProjectionMatrix() { return projection; }
 	
 private:
 	glm::vec2 size;

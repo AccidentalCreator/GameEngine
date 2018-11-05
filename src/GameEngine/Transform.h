@@ -12,9 +12,9 @@ public:
 
 	void SetTransform(glm::vec3 _position, glm::vec3 _rotation, glm::vec3 _scale);
 	
-	void SetPosition(glm::vec3 _position) { position = _position; }
-	void SetRotation(glm::vec3 _rotation) { position = _rotation; }
-	void SetScale(glm::vec3 _scale) { position = _scale; }
+	void SetPosition(glm::vec3 _position);
+	void SetRotation(glm::vec3 _rotation);
+	void SetScale(glm::vec3 _scale);
 
 	glm::vec3 GetPosition() { return position; };
 	glm::vec3 GetRotation() { return rotation; };

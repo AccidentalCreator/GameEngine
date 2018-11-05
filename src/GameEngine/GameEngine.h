@@ -16,6 +16,7 @@
 #include "Material.h"
 #include "Sound.h"
 #include "Camera.h"
+#include "Transform.h"
 
 class GameObject
 {
