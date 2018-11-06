@@ -39,7 +39,7 @@ void Screen::Init()
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
 
-	projection = glm::perspective(glm::radians(50.0f), (float)(WINDOW_WIDTH / WINDOW_HEIGHT), 0.1f, 10.0f);
+	projection = glm::perspective(glm::radians(45.0f), (float)(WINDOW_WIDTH / WINDOW_HEIGHT), 0.1f, 100.0f);
 }
 
 void Screen::Clear()

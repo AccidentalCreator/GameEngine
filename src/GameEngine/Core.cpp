@@ -4,6 +4,7 @@
 #include "Transform.h"
 #include "Component.h"
 #include "Resources.h"
+#include "Environment.h"
 
 #include <iostream>
 
@@ -16,7 +17,9 @@ std::shared_ptr<Core> Core::Initialize()
 	rtn->screen = std::make_shared<Screen>();
 	rtn->screen->Init();
 
+	rtn->environment = std::make_shared<Environment>();
 	rtn->resources = std::make_shared<Resources>();
+
 
 	rtn->device = alcOpenDevice(NULL);
 
@@ -84,6 +87,8 @@ void Core::Start()
 		{
 			(*it)->Display();
 		}
+
+		environment->CalculateDeltaTime();
 
 		screen->End(); // Swap window buffers
 	}

@@ -17,6 +17,7 @@ class Component;
 class Entity;
 class Screen;
 class Resources;
+class Environment;
 
 class Core
 {
@@ -28,6 +29,7 @@ public:
 	std::shared_ptr<Entity> AddEntity();
 	std::shared_ptr<Screen> GetScreen() { return screen; }
 	std::shared_ptr<Resources> GetResources() { return resources; }
+	std::shared_ptr<Environment> GetEnvironment() { return environment; }
 
 	template <typename T>
 	std::shared_ptr<Entity> FindEntityWithComponent()
