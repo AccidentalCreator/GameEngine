@@ -3,6 +3,7 @@
 #include "Screen.h"
 #include "Transform.h"
 #include "Component.h"
+#include "Resources.h"
 
 #include <iostream>
 
@@ -13,8 +14,9 @@ std::shared_ptr<Core> Core::Initialize()
 	rtn->self = rtn;
 	
 	rtn->screen = std::make_shared<Screen>();
-
 	rtn->screen->Init();
+
+	rtn->resources = std::make_shared<Resources>();
 
 	rtn->device = alcOpenDevice(NULL);
 

@@ -16,7 +16,7 @@ class Keyboard;
 class Component;
 class Entity;
 class Screen;
-
+class Resources;
 
 class Core
 {
@@ -27,6 +27,7 @@ public:
 	void Stop();
 	std::shared_ptr<Entity> AddEntity();
 	std::shared_ptr<Screen> GetScreen() { return screen; }
+	std::shared_ptr<Resources> GetResources() { return resources; }
 
 	template <typename T>
 	std::shared_ptr<Entity> FindEntityWithComponent()
@@ -58,6 +59,7 @@ private:
 	std::shared_ptr<Keyboard> keyboard;
 	std::weak_ptr<Core> self;
 	std::shared_ptr<Screen> screen;
+	std::shared_ptr<Resources> resources;
 
 	ALCdevice* device;
 	ALCcontext* context;

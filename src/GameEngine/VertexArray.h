@@ -24,6 +24,7 @@ public:
 	GLuint GetID();
 
 private:
+
 	GLuint id;
 	std::vector<std::shared_ptr<VertexBuffer>> buffers;
 	bool dirty;

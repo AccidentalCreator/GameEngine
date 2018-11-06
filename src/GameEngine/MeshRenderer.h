@@ -15,6 +15,7 @@ class Transform;
 class Screen;
 class Entity;
 class Camera;
+class Resources;
 
 class MeshRenderer : public Component
 {

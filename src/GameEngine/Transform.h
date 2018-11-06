@@ -20,7 +20,7 @@ public:
 	glm::vec3 GetRotation() { return rotation; };
 	glm::vec3 GetScale() { return scale; };
 
-	glm::mat4 GetModelMatrix() { return modelMatrix; };
+	glm::mat4 GetModelMatrix();
 
 private:
 	glm::vec3 position;

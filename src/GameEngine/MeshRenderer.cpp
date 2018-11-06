@@ -7,6 +7,7 @@
 #include "Core.h"
 #include "Entity.h"
 #include "Camera.h"
+#include "Resources.h"
 
 #include <gtc\matrix_transform.hpp>
 #include <iostream>
@@ -164,12 +165,22 @@ void MeshRenderer::Awake()
 	//transform = GetEntity()->GetComponent<Transform>();
 	//screen = GetCore()->GetScreen();
 	
+	
 }
 
 void MeshRenderer::AddModel(std::string _modelPath)
 {
-	// Pass data to VAO
-	meshData = std::make_shared<VertexArray>(_modelPath); // Create VAO
+	std::shared_ptr<Resources> resources = GetCore()->GetResources();
+
+	if (resources->CheckMeshUsed(_modelPath))
+	{
+		meshData = resources->GetMeshData();
+	}
+	else
+	{
+		meshData = std::make_shared<VertexArray>(_modelPath); // Create VAO
+		resources->AddMeshData(meshData);
+	}
 
 	// Tells what shaders to use
 	shaders = std::make_shared<ShaderProgram>("../resources/shaders/simple.vert", "../resources/shaders/simple.frag");
