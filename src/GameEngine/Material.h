@@ -10,6 +10,7 @@
 #include "Component.h"
 
 class VertexArray;
+class Resources;
 
 class Material :public Component
 {
@@ -22,6 +23,7 @@ private:
 
 	unsigned char *imageData;
 
+	std::shared_ptr<Resources> resources;
 	std::shared_ptr<VertexArray> VAO;
 
 	GLuint id;

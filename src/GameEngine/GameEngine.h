@@ -7,7 +7,7 @@
 #include "Core.h"
 #include "Entity.h"
 #include "Environment.h"
-#include "Keyboard.h"
+#include "KeyboardHandler.h"
 #include "Screen.h"
 #include "ShaderProgram.h"
 #include "VertexArray.h"
@@ -17,6 +17,7 @@
 #include "Sound.h"
 #include "Camera.h"
 #include "Transform.h"
+#include "MouseHandler.h"
 
 class GameObject
 {

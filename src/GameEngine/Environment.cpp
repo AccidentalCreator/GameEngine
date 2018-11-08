@@ -12,6 +12,4 @@ void Environment::CalculateDeltaTime()
 
 	deltaTime *= 1000;
 
-	std::cout << deltaTime << std::endl;
-
 }

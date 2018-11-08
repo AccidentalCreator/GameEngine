@@ -5,6 +5,8 @@
 #include "Component.h"
 #include "Resources.h"
 #include "Environment.h"
+#include "KeyboardHandler.h"
+#include "MouseHandler.h"
 
 #include <iostream>
 
@@ -19,6 +21,9 @@ std::shared_ptr<Core> Core::Initialize()
 
 	rtn->environment = std::make_shared<Environment>();
 	rtn->resources = std::make_shared<Resources>();
+	rtn->keyboard = std::make_shared<KeyboardHandler>();
+	rtn->mouse = std::make_shared<MouseHandler>();
+
 
 
 	rtn->device = alcOpenDevice(NULL);
@@ -60,6 +65,24 @@ void Core::Start()
 			{
 				running = false;
 			}
+
+			if (event.type == SDL_KEYDOWN)
+			{
+				keyboard->SetKeyPressed(event.key.keysym.sym);
+			}
+			else if (event.type == SDL_KEYUP)
+			{
+				keyboard->SetKeyReleased(event.key.keysym.sym);
+			}
+			else if (event.type == SDL_MOUSEBUTTONDOWN)
+			{
+				mouse->SetMouseButtonPressed(event.button);
+			}
+			else if (event.type == SDL_MOUSEMOTION)
+			{
+				mouse->SetMousePosition(event.motion.x, event.motion.y);
+			}
+			
 		}
 
 		for (auto it = entities.begin(); it != entities.end(); it++)

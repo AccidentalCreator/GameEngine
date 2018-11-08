@@ -46,6 +46,12 @@ void  Transform::SetRotation(glm::vec3 _rotation)
 	CalcModelMatrix();
 }
 
+void  Transform::SetSize(glm::vec2 _size)
+{
+	size = _size;
+	CalcModelMatrix();
+}
+
 void  Transform::SetScale(glm::vec3 _scale)
 {
 	scale = _scale; 

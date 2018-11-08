@@ -32,6 +32,7 @@ int main()
 	std::shared_ptr<Entity> cat2 = core->AddEntity();
 	std::shared_ptr<MeshRenderer> cat2Renderer = cat2->AddComponent<MeshRenderer>();
 	cat2Renderer->AddModel("../resources/models/cat.obj");
+	//std::shared_ptr<Material> material2 = cat2->AddComponent<Material>("../resources/textures/cat.png");
 	cat2->GetComponent<Transform>()->SetPosition(glm::vec3(-1, 0, 0));
 
 	//std::shared_ptr<Entity> cube = core->AddEntity();

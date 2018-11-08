@@ -1,7 +1,11 @@
 #include "Material.h"
 #include "VertexArray.h"
+#include "Resources.h"
+#include "Core.h"
 
 #include "stb_image.h"
+
+#include <iostream>
 
 void Material::Start(std::string _imagePath)
 {
@@ -15,7 +19,16 @@ void Material::Start(std::string _imagePath)
 	VAO = std::make_shared<VertexArray>();
 	VAOid = VAO->GetID();
 
-	LoadTexture(_imagePath);
+	resources = GetCore()->GetResources();
+	if (resources->CheckMaterialUsed(_imagePath))
+	{
+		imageData = resources->GetMatData();
+	}
+	else
+	{
+		LoadTexture(_imagePath);
+	}
+
 }
 
 void Material::LoadTexture(std::string _imagePath)
@@ -30,6 +43,9 @@ void Material::LoadTexture(std::string _imagePath)
 	{
 		throw std::exception();
 	}
+
+	resources->AddMatData(imageData);
+
 	dirty = true;
 }
 

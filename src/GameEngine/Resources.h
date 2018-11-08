@@ -8,7 +8,7 @@
 
 class MeshRenderer;
 class Material;
-//class Sound;
+class Sound;
 
 // Need to:
 // Store the resources - add to vector
@@ -19,22 +19,29 @@ class VertexArray;
 class Resources
 {
 public:
-	bool CheckMeshUsed(std::string _meshPath);
+	bool CheckMeshUsed(std::string _path);
+	bool CheckMaterialUsed(std::string _path);
+	bool CheckSoundUsed(std::string _path);
+
 	std::shared_ptr<VertexArray> GetMeshData();
-	void AddMeshData(std::shared_ptr<VertexArray> _meshData);
+	unsigned char* GetMatData();
+	std::shared_ptr<VertexArray> GetSoundData();
+
+	void AddMeshData(std::shared_ptr<VertexArray> _data);
+	void AddMatData(unsigned char* _data);
+	void AddSoundData(std::shared_ptr<VertexArray> _data);
 
 private:
 	std::vector<std::shared_ptr<VertexArray>> meshResources;
 	std::vector<std::string> meshPaths;
 	
-
-	//std::vector<MeshRenderer> soundResources;
-	//std::vector<Sound> materialResources;
-
-	std::vector<std::string> soundPaths;
+	std::vector<unsigned char*> materialResources;
 	std::vector<std::string> materialPaths;
 
-	int meshIndex;
+	std::vector<std::shared_ptr<VertexArray>> soundResources;
+	std::vector<std::string> soundPaths;
+
+	int index;
 	
 
 };

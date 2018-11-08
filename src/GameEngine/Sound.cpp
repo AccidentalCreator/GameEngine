@@ -1,4 +1,6 @@
 #include "Sound.h"
+#include "Resources.h"
+#include "Core.h"
 
 #include <AL\al.h>
 #include <vorbis\vorbisfile.h>

@@ -30,7 +30,10 @@ if(MSVC)
 endif()
 
 add_executable(game
+	src/game/Object.h
+
 	src/game/main.cpp
+	src/game/Object.cpp
 )
 
 if(MSVC)
@@ -68,7 +71,8 @@ add_library(GameEngine
 	src/GameEngine/Core.h
 	src/GameEngine/Environment.h
 	src/GameEngine/Entity.h
-	src/GameEngine/Keyboard.h
+	src/GameEngine/KeyboardHandler.h
+	src/GameEngine/MouseHandler.h
 	src/GameEngine/Component.h
 	src/GameEngine/GameEngine.h
 	src/GameEngine/Screen.h
@@ -79,6 +83,7 @@ add_library(GameEngine
 	src/GameEngine/Transform.h
 	src/GameEngine/Camera.h
 	src/GameEngine/Resources.h
+	src/GameEngine/BoxCollision.h
 
 	src/GameEngine/VertexBuffer.h
 	src/GameEngine/VertexArray.h
@@ -89,7 +94,8 @@ add_library(GameEngine
 	src/GameEngine/Core.cpp
 	src/GameEngine/Environment.cpp
 	src/GameEngine/Entity.cpp
-	src/GameEngine/Keyboard.cpp
+	src/GameEngine/KeyboardHandler.cpp
+	src/GameEngine/MouseHandler.cpp
 	src/GameEngine/Component.cpp
 	src/GameEngine/GameEngine.cpp
 	src/GameEngine/Screen.cpp
@@ -100,6 +106,7 @@ add_library(GameEngine
 	src/GameEngine/Transform.cpp
 	src/GameEngine/Camera.cpp
 	src/GameEngine/Resources.cpp
+	src/GameEngine/BoxCollision.cpp
 
 	src/GameEngine/VertexBuffer.cpp
 	src/GameEngine/VertexArray.cpp

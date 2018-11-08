@@ -18,6 +18,8 @@ class Entity;
 class Screen;
 class Resources;
 class Environment;
+class KeyboardHandler;
+class MouseHandler;
 
 class Core
 {
@@ -58,7 +60,8 @@ private:
 	
 	std::shared_ptr<Environment> environment;
 	std::vector<std::shared_ptr<Entity>> entities;
-	std::shared_ptr<Keyboard> keyboard;
+	std::shared_ptr<KeyboardHandler> keyboard;
+	std::shared_ptr<MouseHandler> mouse;
 	std::weak_ptr<Core> self;
 	std::shared_ptr<Screen> screen;
 	std::shared_ptr<Resources> resources;

@@ -14,10 +14,12 @@ public:
 	
 	void SetPosition(glm::vec3 _position);
 	void SetRotation(glm::vec3 _rotation);
+	void SetSize(glm::vec2 _size);
 	void SetScale(glm::vec3 _scale);
 
 	glm::vec3 GetPosition() { return position; };
 	glm::vec3 GetRotation() { return rotation; };
+	glm::vec2 GetSize() { return size; };
 	glm::vec3 GetScale() { return scale; };
 
 	glm::mat4 GetModelMatrix();
@@ -25,6 +27,7 @@ public:
 private:
 	glm::vec3 position;
 	glm::vec3 rotation;
+	glm::vec2 size;
 	glm::vec3 scale;
 
 	glm::mat4 positionMatrix;
