@@ -18,6 +18,7 @@
 #include "Camera.h"
 #include "Transform.h"
 #include "MouseHandler.h"
+#include "Orthagraphic.h"
 
 class GameObject
 {

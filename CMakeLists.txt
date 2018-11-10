@@ -84,6 +84,8 @@ add_library(GameEngine
 	src/GameEngine/Camera.h
 	src/GameEngine/Resources.h
 	src/GameEngine/BoxCollision.h
+	src/GameEngine/Button.h
+	src/GameEngine/Orthagraphic.h
 
 	src/GameEngine/VertexBuffer.h
 	src/GameEngine/VertexArray.h
@@ -107,6 +109,8 @@ add_library(GameEngine
 	src/GameEngine/Camera.cpp
 	src/GameEngine/Resources.cpp
 	src/GameEngine/BoxCollision.cpp
+	src/GameEngine/Button.cpp
+	src/GameEngine/Orthagraphic.cpp
 
 	src/GameEngine/VertexBuffer.cpp
 	src/GameEngine/VertexArray.cpp

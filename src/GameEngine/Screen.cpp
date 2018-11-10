@@ -22,6 +22,8 @@ void Screen::Init()
 		WINDOW_WIDTH, WINDOW_HEIGHT,
 		SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);
 
+	size.x = WINDOW_WIDTH;
+	size.y = WINDOW_HEIGHT;
 
 	if (!SDL_GL_CreateContext(window))
 	{

@@ -21,7 +21,11 @@ class MeshRenderer : public Component
 {
 public:
 	void Awake();
-	void AddModel(std::string _modelPath);
+	void AddModel(std::string _modelPath, std::string _vertexPath, std::string _fragPath);
+
+	std::shared_ptr<ShaderProgram> GetShaders() { return shaders; }
+	std::shared_ptr<VertexArray> GetMeshData() { return meshData; }
+	std::shared_ptr<Transform> GetTransform() { return transform; }
 
 
 private:

@@ -10,15 +10,15 @@ class Transform : public Component
 public:
 	void Awake();
 
-	void SetTransform(glm::vec3 _position, glm::vec3 _rotation, glm::vec3 _scale);
+	void SetTransform(glm::vec3 _position, float _rotation, glm::vec3 _scale);
 	
 	void SetPosition(glm::vec3 _position);
-	void SetRotation(glm::vec3 _rotation);
+	void SetRotation(float _rotation);
 	void SetSize(glm::vec2 _size);
 	void SetScale(glm::vec3 _scale);
 
 	glm::vec3 GetPosition() { return position; };
-	glm::vec3 GetRotation() { return rotation; };
+	float GetRotation() { return rotation; };
 	glm::vec2 GetSize() { return size; };
 	glm::vec3 GetScale() { return scale; };
 
@@ -26,7 +26,7 @@ public:
 
 private:
 	glm::vec3 position;
-	glm::vec3 rotation;
+	float rotation;
 	glm::vec2 size;
 	glm::vec3 scale;
 

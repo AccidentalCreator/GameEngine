@@ -168,7 +168,7 @@ void MeshRenderer::Awake()
 	
 }
 
-void MeshRenderer::AddModel(std::string _modelPath)
+void MeshRenderer::AddModel(std::string _modelPath, std::string _vertexPath, std::string _fragPath)
 {
 	std::shared_ptr<Resources> resources = GetCore()->GetResources();
 
@@ -183,7 +183,7 @@ void MeshRenderer::AddModel(std::string _modelPath)
 	}
 
 	// Tells what shaders to use
-	shaders = std::make_shared<ShaderProgram>("../resources/shaders/simple.vert", "../resources/shaders/simple.frag");
+	shaders = std::make_shared<ShaderProgram>(_vertexPath, _fragPath);
 
 	transform = GetEntity()->GetComponent<Transform>();
 	screen = GetCore()->GetScreen();
