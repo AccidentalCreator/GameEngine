@@ -2,6 +2,7 @@
 #define TRANSFORM_H
 
 #include <glm.hpp>
+#include <memory>
 #include "Component.h"
 
 

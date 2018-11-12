@@ -8,7 +8,7 @@
 class Entity;
 class Core;
 class Environment;
-class Keyboard;
+class KeyboardHandler;
 
 class Component
 { 
@@ -18,7 +18,7 @@ public:
 	virtual ~Component();
 	std::shared_ptr<Entity> GetEntity();
 	std::shared_ptr<Core> GetCore();
-	std::shared_ptr<Keyboard> GetKeyboard();
+	std::shared_ptr<KeyboardHandler> GetKeyboard();
 	std::shared_ptr<Environment> GetEnvironment();
 
 

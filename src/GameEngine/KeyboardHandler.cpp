@@ -1,45 +1,32 @@
 #include "KeyboardHandler.h"
 
-bool KeyboardHandler::GetKey(int _keyCode)
-{
-	// Iterates through all the keys that are not pressed
-	for (int i = 0; i < keys.size(); i++)
-	{
-		// If key is vector return true
-		if (keys.at(i) == _keyCode)
-		{
-			return true;
-		}
-	}
-	return false;
-}
-
-bool KeyboardHandler::GetKeyDown(int _keyCode)
-{
-	// Iterates through all the keys that are not pressed
-	for (int i = 0; i < downKeys.size(); i++)
-	{
-		// If key is vector return true
-		if (downKeys.at(i) == _keyCode)
-		{
-			return true;
-		}
-	}
-	return false;
-}
-
-bool KeyboardHandler::GetKeyUp(int _keyCode)
+bool KeyboardHandler::GetKeyUp(std::string _key)
 {
 	// Iterates through all the down keys that are pressed
 	for (int i = 0; i < downKeys.size(); i++)
 	{
 		// If key is vector return true
-		if (downKeys.at(i) == _keyCode)
+		if (SDL_GetKeyName(downKeys.at(i)) == _key)
 		{
 			return false;
 		}
 	}
 	return true;
+}
+
+bool KeyboardHandler::GetKeyDown(std::string _key)
+{
+	// Iterates through all the keys that are not pressed
+		//std::cout << downKeys.size() << std::endl;
+	for (int i = 0; i < downKeys.size(); i++)
+	{
+		// If key is vector return true
+		if (SDL_GetKeyName(downKeys.at(i)) == _key)
+		{
+			return true;
+		}
+	}
+	return false;
 }
 
 void KeyboardHandler::SetKeyPressed(SDL_Keycode _key)

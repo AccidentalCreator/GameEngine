@@ -12,7 +12,6 @@
 #include <AL/alc.h>
 
 class Environment;
-class Keyboard;
 class Component;
 class Entity;
 class Screen;
@@ -32,6 +31,7 @@ public:
 	std::shared_ptr<Screen> GetScreen() { return screen; }
 	std::shared_ptr<Resources> GetResources() { return resources; }
 	std::shared_ptr<Environment> GetEnvironment() { return environment; }
+	std::shared_ptr<KeyboardHandler> GetKeyboard() { return keyboard; }
 
 	template <typename T>
 	std::shared_ptr<Entity> FindEntityWithComponent()
@@ -55,6 +55,8 @@ public:
 		// Otherwise return null
 		return std::shared_ptr<Entity>();
 	}
+
+	std::shared_ptr<Entity> FindEntityWithTag(std::string _tag);
 
 private:
 	

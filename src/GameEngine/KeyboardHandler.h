@@ -3,14 +3,14 @@
 
 #include <vector>
 #include <SDL2\SDL.h>
-
+#include <string>
 
 class KeyboardHandler
 {
 public:
-	bool GetKey(int _keyCode);
-	bool GetKeyDown(int _keyCode);
-	bool GetKeyUp(int _keyCode);
+	bool GetKeyDown(std::string _key);
+	bool GetKeyUp(std::string _key);
+
 
 	void SetKeyPressed(SDL_Keycode _key);
 	void SetKeyReleased(SDL_Keycode _key);

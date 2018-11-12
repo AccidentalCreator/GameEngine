@@ -12,7 +12,7 @@ void Transform::SetTransform(glm::vec3 _position, float _rotation, glm::vec3 _sc
 	position = _position;
 	rotation = _rotation;
 	scale = _scale;
-	CalcModelMatrix();
+	//CalcModelMatrix();
 }
 
 
@@ -30,26 +30,26 @@ glm::mat4 Transform::GetModelMatrix()
 	return modelMatrix; 
 };
 
-void Transform::SetPosition(glm::vec3 _position) 
+void Transform::SetPosition(glm::vec3 _position)
 {
 	position = _position; 
-	CalcModelMatrix();
+	//CalcModelMatrix();
 }
 
 void  Transform::SetRotation(float _rotation)
 {
 	rotation = _rotation; 
-	CalcModelMatrix();
+	//CalcModelMatrix();
 }
 
 void  Transform::SetSize(glm::vec2 _size)
 {
 	size = _size;
-	CalcModelMatrix();
+	//CalcModelMatrix();
 }
 
 void  Transform::SetScale(glm::vec3 _scale)
 {
 	scale = _scale; 
-	CalcModelMatrix();
+	//CalcModelMatrix();
 }

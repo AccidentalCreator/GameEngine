@@ -129,6 +129,23 @@ std::shared_ptr<Entity> Core::AddEntity()
 	return rtn;
 }
 
+std::shared_ptr<Entity> Core::FindEntityWithTag(std::string _tag)
+{
+	// Iterate through entities 
+	for (std::vector<std::shared_ptr<Entity> >::iterator it = entities.begin();
+		it != entities.end(); it++)
+	{
+		// Iterates through all entitys tags
+		if ((*it)->GetTag() == _tag)
+		{
+			return (*it);
+		}
+	}
+	// Otherwise return null
+	return std::shared_ptr<Entity>();
+
+}
+
 void Core::Stop()
 {
 	running = false;

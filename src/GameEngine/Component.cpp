@@ -1,5 +1,7 @@
 #include "Component.h"
 #include "Entity.h"
+#include "Core.h"
+#include "KeyboardHandler.h"
 
 std::shared_ptr<Entity> Component::GetEntity()
 {
@@ -11,14 +13,14 @@ std::shared_ptr<Core> Component::GetCore()
 	return GetEntity()->GetCore();
 }
 
-std::shared_ptr<Keyboard> Component::GetKeyboard()
+std::shared_ptr<KeyboardHandler> Component::GetKeyboard()
 {
-	return std::shared_ptr<Keyboard>();
+	return GetCore()->GetKeyboard();
 }
 
 std::shared_ptr<Environment> Component::GetEnvironment()
 {
-	return std::shared_ptr<Environment>();
+	return GetCore()->GetEnvironment();
 }
 
 void Component::Awake()
