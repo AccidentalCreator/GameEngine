@@ -11,7 +11,6 @@
 class MeshRenderer;
 class Material;
 class Sound;
-//class VertexArray;
 
 // Need to:
 // Store the resources - add to vector

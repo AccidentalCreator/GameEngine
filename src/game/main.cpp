@@ -1,6 +1,7 @@
 #include <GameEngine\GameEngine.h>
 #include "PlayerHandler.h"
 #include "CameraHandler.h"
+#include "FloorBlock.h"
 // Include game engine
 
 #include <iostream>
@@ -12,14 +13,15 @@ int main()
 	std::shared_ptr<Core> core = Core::Initialize();
 
 	std::shared_ptr<Entity> camera = core->AddEntity();
-	std::shared_ptr<Camera> cam = camera->AddComponent<Camera>(glm::vec3(9, 10, -20), glm::vec3(9, 0, 0), glm::vec3(0, 1, 0));
+	std::shared_ptr<Camera> cam = camera->AddComponent<Camera>(glm::vec3(9, 10, 20), glm::vec3(9, 0, 0), glm::vec3(0, 1, 0));
+	cam->SetRotation(-45.0f, glm::vec3(1, 0, 0));
 	//std::shared_ptr<Camera> cam = camera->AddComponent<Camera>(glm::vec3(0, 10, -20), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
-
+	
 	std::shared_ptr<CameraHandler> cameraHandler = camera->AddComponent<CameraHandler>();
 
-	int noOfFloorTiles = 42;
-	int x = 0;
-	int z = -6;
+	int noOfFloorTiles = 30;
+	int x = -5;
+	int z = 0;
 	std::vector<std::shared_ptr<Entity>> floorTiles;
 	for (int i = 0; i < noOfFloorTiles; i++)
 	{
@@ -27,24 +29,26 @@ int main()
 		std::shared_ptr<MeshRenderer> floorRenderer = floorTile->AddComponent<MeshRenderer>();
 		floorRenderer->AddModel("../resources/models/Cube2.obj", "../resources/shaders/simple.vert", "../resources/shaders/simple.frag");
 		floorTile->GetComponent<Transform>()->SetTransform(glm::vec3(x, 0, z), 0.0f, glm::vec3(1, 1, 1));
+		floorTile->GetComponent<Transform>()->SetSize(glm::vec3(1, 1, 1));
 		std::shared_ptr<Material> floorMaterial = floorTile->AddComponent<Material>("../resources/textures/WhiteCube.png");
+		std::shared_ptr<FloorBlock> floorHandler = floorTile->AddComponent<FloorBlock>();
 		floorTiles.push_back(floorTile);
-		z += 3;
-		if (z > 10)
+		x += 5;
+		if (x > 5)
 		{
-			z = -6;
-			x += 3;
+			x = -5;
+			z += 5;
 		}
 	}
 
 	std::shared_ptr<Entity> player = core->AddEntity();
 	player->SetTag("Player");
+	player->GetComponent<Transform>()->SetTransform(glm::vec3(0, 1, 0), 0.0f, glm::vec3(1, 1, 1));
+	player->GetComponent<Transform>()->SetSize(glm::vec3(1, 1, 1));
 	std::shared_ptr<PlayerHandler> playerHandler = player->AddComponent<PlayerHandler>();
 	std::shared_ptr<MeshRenderer> playerRenderer = player->AddComponent<MeshRenderer>();
-	playerRenderer->AddModel("../resources/models/Cube2.obj", "../resources/shaders/simple.vert", "../resources/shaders/simple.frag");
+	playerRenderer->AddModel("../resources/models/cat.obj", "../resources/shaders/simple.vert", "../resources/shaders/simple.frag");
 	std::shared_ptr<Material> playerMaterial = player->AddComponent<Material>("../resources/textures/RedCube.png");
-	player->GetComponent<Transform>()->SetTransform(glm::vec3(2, 1, 0), 0.0f, glm::vec3(1, 1, 1));
-
 
 
 	//std::shared_ptr<Entity> cat = core->AddEntity();

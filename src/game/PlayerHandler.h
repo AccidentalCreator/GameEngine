@@ -20,9 +20,13 @@ private:
 	std::shared_ptr<glm::vec3> position;
 
 	float speed;
-	bool movementMade;
+	bool movementUp;
+	bool movementDown;
+	bool movementLeft;
+	bool movementRight;
 
 	void Movement();
+	void CheckKeyRelease();
 
 };
 

@@ -2,9 +2,9 @@
 
 void CameraHandler::Awake()
 {
-	//player = GetCore()->FindEntityWithTag("Player");
-	//GetEntity()->GetComponent<Camera>()->SetTarget(player->GetComponent<Transform>()->GetPosition());
-	//position = std::make_shared<glm::vec3>(GetEntity()->GetComponent<Transform>()->GetPosition());	
+	player = GetCore()->FindEntityWithTag("Player");
+	playerPosition = std::make_shared<glm::vec3>(GetEntity()->GetComponent<Transform>()->GetPosition());
+	GetEntity()->GetComponent<Camera>()->SetPosition(*playerPosition);
 }
 
 void CameraHandler::Start()
@@ -14,13 +14,9 @@ void CameraHandler::Start()
 
 void CameraHandler::Update()
 {
-	//playerPosition = std::make_shared<glm::vec3>(player->GetComponent<Transform>()->GetPosition());
+	playerPosition = std::make_shared<glm::vec3>(player->GetComponent<Transform>()->GetPosition());
 	//std::cout << playerPosition->x << std::endl;
-	//position = *playerPosition.lock().get();// +glm::vec3(0, 3, 0);
-	//position = *playerPosition.get();// +glm::vec3(0, 3, -2);
-	//position.y += 3;
-	//GetEntity()->GetComponent<Camera>()->SetPosition(position);
-	//std::cout << GetEntity()->GetComponent<Transform>()->GetPosition().x << std::endl;
+	GetEntity()->GetComponent<Camera>()->SetPosition(*playerPosition + glm::vec3 (0, 10, -35));
 }
 
 void CameraHandler::FollowPlayer()

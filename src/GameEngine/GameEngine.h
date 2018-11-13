@@ -19,6 +19,7 @@
 #include "Transform.h"
 #include "MouseHandler.h"
 #include "Orthagraphic.h"
+#include "BoxCollision.h"
 
 class GameObject
 {

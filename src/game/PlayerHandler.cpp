@@ -5,8 +5,7 @@
 
 void PlayerHandler::Awake()
 {
-	speed = 1;
-	movementMade = false;
+	speed = 5;
 	input = GetKeyboard();
 	position = std::make_shared<glm::vec3>(GetEntity()->GetComponent<Transform>()->GetPosition());
 }
@@ -18,7 +17,7 @@ void PlayerHandler::Start()
 void PlayerHandler::Update()
 {
 	Movement();
-	movementMade = false;
+	CheckKeyRelease();
 }
 
 void PlayerHandler::Display()
@@ -28,32 +27,51 @@ void PlayerHandler::Display()
 void PlayerHandler::Movement()
 {
 	if (input->GetKeyDown("A") 
-		&& !movementMade)
+		&& !movementLeft)
 	{
 		position->x += speed;
-		movementMade = true;
+		movementLeft = true;
+		GetEntity()->GetComponent<Transform>()->SetPosition(*position.get());
 	}
-	else if (input->GetKeyDown("D")
-		&& !movementMade)
+	if (input->GetKeyDown("D")
+		&& !movementRight)
 	{
 		position->x -= speed;
-		movementMade = true;
+		movementRight = true;
+		GetEntity()->GetComponent<Transform>()->SetPosition(*position.get());
 	}
-	else if (input->GetKeyDown("W")
-		&& !movementMade)
+	if (input->GetKeyDown("W")
+		&& !movementUp)
 	{
 		position->z += speed;
-		movementMade = true;
+		movementUp = true;
+		GetEntity()->GetComponent<Transform>()->SetPosition(*position.get());
 	}
-	else if (input->GetKeyDown("S")
-		&& !movementMade)
+	if (input->GetKeyDown("S")
+		&& !movementDown)
 	{
 		position->z -= speed;
-		movementMade = true;
-	}
-
-	if (movementMade)
-	{
+		movementDown = true;
 		GetEntity()->GetComponent<Transform>()->SetPosition(*position.get());
+	}
+}
+
+void PlayerHandler::CheckKeyRelease()
+{
+	if (input->GetKeyUp("A"))
+	{
+		movementLeft = false;
+	}
+	if (input->GetKeyUp("D"))
+	{
+		movementRight = false;
+	}
+	if (input->GetKeyUp("W"))
+	{
+		movementUp = false;
+	}
+	if (input->GetKeyUp("S"))
+	{
+		movementDown = false;
 	}
 }
