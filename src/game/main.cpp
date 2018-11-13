@@ -32,6 +32,7 @@ int main()
 		floorTile->GetComponent<Transform>()->SetSize(glm::vec3(1, 1, 1));
 		std::shared_ptr<Material> floorMaterial = floorTile->AddComponent<Material>("../resources/textures/WhiteCube.png");
 		std::shared_ptr<FloorBlock> floorHandler = floorTile->AddComponent<FloorBlock>();
+		floorHandler->SetCounter(i);
 		floorTiles.push_back(floorTile);
 		x += 5;
 		if (x > 5)

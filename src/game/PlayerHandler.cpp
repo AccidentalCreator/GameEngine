@@ -19,6 +19,7 @@ void PlayerHandler::Update()
 {
 	Movement();
 	CheckKeyRelease();
+	GravitySim();
 }
 
 void PlayerHandler::Display()
@@ -29,7 +30,8 @@ void PlayerHandler::GravitySim()
 {
 	if (!colliding)
 	{
-		position->z -= GetEnvironment()->GetDeltaTime() * 10;
+		position->y -= GetEnvironment()->GetDeltaTime() * 50;
+		GetEntity()->GetComponent<Transform>()->SetPosition(*position.get());
 	}
 }
 
@@ -38,6 +40,7 @@ void PlayerHandler::Movement()
 	if (input->GetKeyDown("A") 
 		&& !movementLeft)
 	{
+		colliding = false;
 		position->x += speed;
 		movementLeft = true;
 		GetEntity()->GetComponent<Transform>()->SetPosition(*position.get());
@@ -45,6 +48,7 @@ void PlayerHandler::Movement()
 	if (input->GetKeyDown("D")
 		&& !movementRight)
 	{
+		colliding = false;
 		position->x -= speed;
 		movementRight = true;
 		GetEntity()->GetComponent<Transform>()->SetPosition(*position.get());
@@ -52,6 +56,7 @@ void PlayerHandler::Movement()
 	if (input->GetKeyDown("W")
 		&& !movementUp)
 	{
+		colliding = false;
 		position->z += speed;
 		movementUp = true;
 		GetEntity()->GetComponent<Transform>()->SetPosition(*position.get());
@@ -59,6 +64,7 @@ void PlayerHandler::Movement()
 	if (input->GetKeyDown("S")
 		&& !movementDown)
 	{
+		colliding = false;
 		position->z -= speed;
 		movementDown = true;
 		GetEntity()->GetComponent<Transform>()->SetPosition(*position.get());

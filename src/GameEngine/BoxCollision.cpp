@@ -5,6 +5,7 @@
 bool BoxCollision::CheckCollision(std::weak_ptr<Entity> _a, std::weak_ptr<Entity> _b)
 {
 	bool xTrue = false;
+	bool zTrue = false;
 	bool yTrue = false;
 
 	//if (_a.lock()->GetComponent<Transform>()->GetPosition().x < _b.lock()->GetComponent<Transform>()->GetPosition().x)
@@ -45,14 +46,21 @@ bool BoxCollision::CheckCollision(std::weak_ptr<Entity> _a, std::weak_ptr<Entity
 		&& _a.lock()->GetComponent<Transform>()->GetPosition().x >= _b.lock()->GetComponent<Transform>()->GetPosition().x - _b.lock()->GetComponent<Transform>()->GetSize().x / 2)
 	{
 		xTrue = true;
-		if (_a.lock()->GetComponent<Transform>()->GetPosition().z <= _b.lock()->GetComponent<Transform>()->GetPosition().z + _b.lock()->GetComponent<Transform>()->GetSize().y / 2
-			&& _a.lock()->GetComponent<Transform>()->GetPosition().z >= _b.lock()->GetComponent<Transform>()->GetPosition().z - _b.lock()->GetComponent<Transform>()->GetSize().y / 2)
+		if (_a.lock()->GetComponent<Transform>()->GetPosition().z <= _b.lock()->GetComponent<Transform>()->GetPosition().z + _b.lock()->GetComponent<Transform>()->GetSize().x / 2
+			&& _a.lock()->GetComponent<Transform>()->GetPosition().z >= _b.lock()->GetComponent<Transform>()->GetPosition().z - _b.lock()->GetComponent<Transform>()->GetSize().x / 2)
 		{
-			yTrue = true;
+			zTrue = true;
+			if (_a.lock()->GetComponent<Transform>()->GetPosition().y <= _b.lock()->GetComponent<Transform>()->GetPosition().y + _b.lock()->GetComponent<Transform>()->GetSize().y / 2
+				&& _a.lock()->GetComponent<Transform>()->GetPosition().y >= _b.lock()->GetComponent<Transform>()->GetPosition().y - _b.lock()->GetComponent<Transform>()->GetSize().y / 2)
+			{
+				yTrue = true;
+			}
 		}
 	}
 
-	if (xTrue && yTrue)
+	if (xTrue 
+		&& zTrue
+		&& yTrue)
 	{
 		return true;
 	}

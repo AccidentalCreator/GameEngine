@@ -12,6 +12,8 @@ public:
 	void Update();
 	void Display();
 
+	void SetCounter(int _number) { counter = _number; }
+
 private:
 	void FloorPlayerCollision();
 
@@ -19,6 +21,9 @@ private:
 	BoxCollision collision;
 	bool collided;
 	float countDown = 1;
+	bool flagPlayer;
+
+	int counter;
 };
 
 #endif // !FLOORBLOCK_H

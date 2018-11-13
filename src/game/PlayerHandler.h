@@ -15,7 +15,9 @@ public:
 
 	void GravitySim();
 	
-	bool SetColliding(bool _colliding) { colliding = _colliding; }
+	void SetColliding(bool _colliding) { colliding = _colliding; }
+	// delete after testing
+	bool GetColliding() { return colliding; }
 
 private:
 
