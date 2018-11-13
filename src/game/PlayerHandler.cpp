@@ -5,7 +5,7 @@
 
 void PlayerHandler::Awake()
 {
-	speed = 5;
+	speed = 1;
 	movementMade = false;
 	input = GetKeyboard();
 	position = std::make_shared<glm::vec3>(GetEntity()->GetComponent<Transform>()->GetPosition());
@@ -27,24 +27,28 @@ void PlayerHandler::Display()
 
 void PlayerHandler::Movement()
 {
-	if (input->GetKeyDown("A"))
+	if (input->GetKeyDown("A") 
+		&& !movementMade)
 	{
-		position->x += speed * GetEnvironment()->GetDeltaTime();
+		position->x += speed;
 		movementMade = true;
 	}
-	else if (input->GetKeyDown("D"))
+	else if (input->GetKeyDown("D")
+		&& !movementMade)
 	{
-		position->x -= speed * GetEnvironment()->GetDeltaTime();
+		position->x -= speed;
 		movementMade = true;
 	}
-	else if (input->GetKeyDown("W"))
+	else if (input->GetKeyDown("W")
+		&& !movementMade)
 	{
-		position->z += speed * GetEnvironment()->GetDeltaTime();
+		position->z += speed;
 		movementMade = true;
 	}
-	else if (input->GetKeyDown("S"))
+	else if (input->GetKeyDown("S")
+		&& !movementMade)
 	{
-		position->z -= speed * GetEnvironment()->GetDeltaTime();
+		position->z -= speed;
 		movementMade = true;
 	}
 

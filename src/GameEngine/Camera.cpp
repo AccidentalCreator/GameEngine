@@ -1,9 +1,11 @@
 #include "Camera.h"
+#include "Entity.h"
+#include "Transform.h"
 #include <gtc\matrix_transform.hpp>
 
 void Camera::Start(glm::vec3 _position, glm::vec3 _target, glm::vec3 _orientation)
 {
-	position = _position;
+	SetPosition(_position);
 	target = _target;
 	orientation = _orientation;
 
@@ -16,6 +18,12 @@ glm::mat4 Camera::GetViewMatrix()
 {
 	viewMatrix = glm::lookAt(position, target, orientation);
 	return viewMatrix;
+}
+
+void Camera::SetPosition(glm::vec3 _position)
+{
+	position = _position;
+	GetEntity()->GetComponent<Transform>()->SetPosition(-position);
 }
 
 void Camera::Display()

@@ -15,8 +15,9 @@ public:
 	void FollowPlayer();
 
 private:
-	glm::vec3 position;
+	//std::shared_ptr<glm::vec3> position;
 	//std::weak_ptr<glm::vec3> playerPosition;
+	glm::vec3 position;
 	std::shared_ptr<glm::vec3> playerPosition;
 
 	std::shared_ptr<Entity> player;

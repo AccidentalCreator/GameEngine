@@ -11,7 +11,7 @@ public:
 	void Start(glm::vec3 _position, glm::vec3 _target, glm::vec3 _orientation);
 	glm::mat4 GetViewMatrix();
 
-	void SetPosition(glm::vec3 _position) { position = -_position; }
+	void SetPosition(glm::vec3 _position);
 	void SetTarget(glm::vec3 _target) { target = _target; }
 	void SetOrientation(glm::vec3 _orientation) { orientation = _orientation; }
 

@@ -6,15 +6,30 @@
 #include <string>
 #include <memory>
 
+#include "VertexArray.h"
+
 class MeshRenderer;
 class Material;
 class Sound;
+//class VertexArray;
 
 // Need to:
 // Store the resources - add to vector
 // Check resources
 
-class VertexArray;
+struct MatResource
+{
+	std::string path;
+	unsigned char* data;
+	std::shared_ptr<VertexArray> VAO;
+	GLuint id;
+};
+
+struct MeshResource
+{
+	std::string path;
+	VertexArray data;
+};
 
 class Resources
 {
@@ -23,13 +38,16 @@ public:
 	bool CheckMaterialUsed(std::string _path);
 	bool CheckSoundUsed(std::string _path);
 
-	std::shared_ptr<VertexArray> GetMeshData();
-	unsigned char* GetMatData();
-	std::shared_ptr<VertexArray> GetSoundData();
+	std::shared_ptr<VertexArray> GetMeshData(std::string _path);
+	std::shared_ptr<VertexArray> GetMatVAO(std::string _path);
+	GLuint GetMatId(std::string _path);
 
-	void AddMeshData(std::shared_ptr<VertexArray> _data);
-	void AddMatData(unsigned char* _data);
-	void AddSoundData(std::shared_ptr<VertexArray> _data);
+	void AddMeshData(std::shared_ptr<VertexArray> _data, std::string _path);
+	void AddMatData(std::string _path, std::shared_ptr<VertexArray> _VAO, GLuint _id);
+	
+	std::shared_ptr<VertexArray> GetSoundData();
+	void AddSoundData(std::shared_ptr<VertexArray> _data, std::string _path);
+
 
 private:
 	std::vector<std::shared_ptr<VertexArray>> meshResources;
@@ -41,9 +59,10 @@ private:
 	std::vector<std::shared_ptr<VertexArray>> soundResources;
 	std::vector<std::string> soundPaths;
 
-	int index;
-	
+	std::vector<MatResource> materialsUsed;
+	std::vector<MeshResource> meshsUsed;
 
+	
 };
 
 #endif // ! RESOURCES_H

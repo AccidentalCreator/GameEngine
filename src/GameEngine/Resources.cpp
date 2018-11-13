@@ -5,31 +5,31 @@
 
 bool Resources::CheckMeshUsed(std::string _path)
 {
-	for (size_t i = 0; i < meshPaths.size(); i++)
+	for (size_t i = 0; i < meshsUsed.size(); i++)
 	{
-		if (meshPaths.at(i) == _path)
+		if (meshsUsed.at(i).path == _path)
 		{
-			index = i;
 			return true;
 		}
 	}
-
-	meshPaths.push_back(_path);
+	MeshResource r;
+	r.path = _path;
+	meshsUsed.push_back(r);
 	return false;
 }
 
 bool Resources::CheckMaterialUsed(std::string _path)
 {
-	for (size_t i = 0; i < materialPaths.size(); i++)
+	for (size_t i = 0; i < materialsUsed.size(); i++)
 	{
-		if (materialPaths.at(i) == _path)
+		if (materialsUsed.at(i).path == _path)
 		{
-			index = i;
 			return true;
 		}
 	}
-
-	materialPaths.push_back(_path);
+	MatResource r;
+	r.path = _path;
+	materialsUsed.push_back(r);
 	return false;
 }
 
@@ -39,7 +39,6 @@ bool Resources::CheckSoundUsed(std::string _path)
 	{
 		if (soundPaths.at(i) == _path)
 		{
-			index = i;
 			return true;
 		}
 	}
@@ -48,32 +47,68 @@ bool Resources::CheckSoundUsed(std::string _path)
 	return false;
 }
 
-std::shared_ptr<VertexArray> Resources::GetMeshData()
+std::shared_ptr<VertexArray> Resources::GetMeshData(std::string _path)
 {
-	return meshResources.at(index);
+	for (size_t i = 0; i < meshsUsed.size(); i++)
+	{
+		if (meshsUsed.at(i).path == _path)
+		{
+			return std::make_shared<VertexArray>(meshsUsed.at(i).data);
+		}
+	}
 }
 
-unsigned char* Resources::GetMatData()
+std::shared_ptr<VertexArray> Resources::GetMatVAO(std::string _path)
 {
-	return materialResources.at(index);
+	for (size_t i = 0; i < materialsUsed.size(); i++)
+	{
+		if (materialsUsed.at(i).path == _path)
+		{
+			return materialsUsed.at(i).VAO;
+		}
+	}
+}
+
+GLuint Resources::GetMatId(std::string _path)
+{
+	for (size_t i = 0; i < materialsUsed.size(); i++)
+	{
+		if (materialsUsed.at(i).path == _path)
+		{
+			return materialsUsed.at(i).id;
+		}
+	}
 }
 
 std::shared_ptr<VertexArray> Resources::GetSoundData()
 {
-	return soundResources.at(index);
+	return soundResources.at(0);
 }
 
-void Resources::AddMeshData(std::shared_ptr<VertexArray> _data)
+void Resources::AddMeshData(std::shared_ptr<VertexArray> _data, std::string _path)
 {
-	meshResources.push_back(_data);
+	for (size_t i = 0; i < meshsUsed.size(); i++)
+	{
+		if (meshsUsed.at(i).path == _path)
+		{
+			meshsUsed.at(i).data = *_data.get();
+		}
+	}
 }
 
-void Resources::AddMatData(unsigned char* _data)
+void Resources::AddMatData(std::string _path, std::shared_ptr<VertexArray> _VAO, GLuint _id)
 {
-	materialResources.push_back(_data);
+	for (size_t i = 0; i < materialsUsed.size(); i++)
+	{
+		if (materialsUsed.at(i).path == _path)
+		{
+			materialsUsed.at(i).VAO = _VAO;
+			materialsUsed.at(i).id = _id;
+		}
+	}
 }
 
-void Resources::AddSoundData(std::shared_ptr<VertexArray> _data)
+void Resources::AddSoundData(std::shared_ptr<VertexArray> _data, std::string _path)
 {
 	soundResources.push_back(_data);
 }

@@ -9,26 +9,25 @@
 
 void Material::Start(std::string _imagePath)
 {
-	glGenTextures(1, &id);
-
-	if (!id)
-	{
-		throw std::exception();
-	}
-
-	VAO = std::make_shared<VertexArray>();
-	VAOid = VAO->GetID();
-
 	resources = GetCore()->GetResources();
 	if (resources->CheckMaterialUsed(_imagePath))
 	{
-		imageData = resources->GetMatData();
+		VAO = resources->GetMatVAO(_imagePath);
+		id = resources->GetMatId(_imagePath);
 	}
 	else
 	{
+		glGenTextures(1, &id);
+
+		if (!id)
+		{
+			throw std::exception();
+		}
+
+		VAO = std::make_shared<VertexArray>();
 		LoadTexture(_imagePath);
 	}
-
+	VAOid = VAO->GetID();
 }
 
 void Material::LoadTexture(std::string _imagePath)
@@ -44,7 +43,7 @@ void Material::LoadTexture(std::string _imagePath)
 		throw std::exception();
 	}
 
-	resources->AddMatData(imageData);
+	resources->AddMatData(_imagePath, VAO, id);
 
 	dirty = true;
 }

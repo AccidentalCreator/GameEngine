@@ -32,10 +32,12 @@ endif()
 add_executable(game
 	src/game/PlayerHandler.h
 	src/game/CameraHandler.h
+	src/game/FloorBlock.h
 
 	src/game/main.cpp
 	src/game/PlayerHandler.cpp
 	src/game/CameraHandler.cpp
+	src/game/FloorBlock.cpp
 )
 
 if(MSVC)
