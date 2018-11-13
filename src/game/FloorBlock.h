@@ -17,6 +17,8 @@ private:
 
 	std::weak_ptr<Entity> player;
 	BoxCollision collision;
+	bool collided;
+	float countDown = 1;
 };
 
 #endif // !FLOORBLOCK_H

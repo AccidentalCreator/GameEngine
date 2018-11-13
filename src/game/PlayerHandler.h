@@ -13,6 +13,10 @@ public:
 	void Update();
 	void Display();
 
+	void GravitySim();
+	
+	bool SetColliding(bool _colliding) { colliding = _colliding; }
+
 private:
 
 	std::shared_ptr<KeyboardHandler> input;
@@ -24,6 +28,8 @@ private:
 	bool movementDown;
 	bool movementLeft;
 	bool movementRight;
+	bool colliding;
+
 
 	void Movement();
 	void CheckKeyRelease();

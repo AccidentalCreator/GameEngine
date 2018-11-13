@@ -5,6 +5,7 @@
 
 void PlayerHandler::Awake()
 {
+	colliding = true;
 	speed = 5;
 	input = GetKeyboard();
 	position = std::make_shared<glm::vec3>(GetEntity()->GetComponent<Transform>()->GetPosition());
@@ -22,6 +23,14 @@ void PlayerHandler::Update()
 
 void PlayerHandler::Display()
 {
+}
+
+void PlayerHandler::GravitySim()
+{
+	if (!colliding)
+	{
+		position->z -= GetEnvironment()->GetDeltaTime() * 10;
+	}
 }
 
 void PlayerHandler::Movement()
