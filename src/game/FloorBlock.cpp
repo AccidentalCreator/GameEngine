@@ -14,6 +14,7 @@ void FloorBlock::Start()
 	flagPlayer = false;
 	startTimerOnce = true;
 	disappearTime = 3.0f;
+	isAlive = true;
 }
 
 void FloorBlock::Update()
@@ -28,7 +29,7 @@ void FloorBlock::Update()
 			{
 				player.lock()->GetComponent<PlayerHandler>()->SetColliding(false);
 			}
-			GetEntity()->Destroy();
+			isAlive = false;
 		}
 	}
 }

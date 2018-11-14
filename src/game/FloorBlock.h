@@ -13,6 +13,7 @@ public:
 	void Display();
 
 	void SetCounter(int _number) { counter = _number; }
+	bool GetIsAlive() { return isAlive; }
 
 private:
 	void FloorPlayerCollision();
@@ -26,6 +27,8 @@ private:
 
 	bool collided;
 	bool flagPlayer;
+
+	bool isAlive;
 
 	int counter;
 };

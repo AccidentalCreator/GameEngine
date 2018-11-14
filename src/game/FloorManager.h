@@ -17,6 +17,7 @@ private:
 	void SpawnFloor();
 	void SpawnStartingFloor();
 	void RemoveFloor();
+	void VectorCleanUp();
 
 	int noOfTiles = 30;
 	int x;

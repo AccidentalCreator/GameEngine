@@ -14,6 +14,8 @@ void FloorManager::Start()
 
 void FloorManager::Update()
 {
+	std::cout << floorTiles.size() << std::endl;
+	VectorCleanUp();
 }
 
 void FloorManager::Display()
@@ -26,7 +28,6 @@ void FloorManager::SpawnFloor()
 
 void FloorManager::SpawnStartingFloor()
 {
-	std::vector<std::shared_ptr<Entity>> floorTiles;
 	for (int i = 0; i < noOfTiles; i++)
 	{
 		std::shared_ptr<Entity> floorTile = GetCore()->AddEntity();
@@ -49,4 +50,18 @@ void FloorManager::SpawnStartingFloor()
 
 void FloorManager::RemoveFloor()
 {
+}
+
+void FloorManager::VectorCleanUp()
+{
+	// Iterates through vector removing floor tiles
+	for (size_t i = 0; i < floorTiles.size(); i++)
+	{
+		if (!floorTiles.at(i)->GetComponent<FloorBlock>()->GetIsAlive())
+		{
+			floorTiles.at(i)->Destroy();
+			floorTiles.erase(floorTiles.begin() + i);
+			i--;
+		}
+	}
 }
