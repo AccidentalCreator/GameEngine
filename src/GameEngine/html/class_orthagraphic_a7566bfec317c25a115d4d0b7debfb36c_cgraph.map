@@ -1,0 +1,5 @@
+<map id="Orthagraphic::AddOrtho" name="Orthagraphic::AddOrtho">
+<area shape="rect" id="node2" href="$class_mesh_renderer.html#a90798e723067ca8c721f0c96c1609972" title="MeshRenderer::AddModel" alt="" coords="212,31,384,57"/>
+<area shape="rect" id="node3" href="$class_component.html#a601ec93559ca1dd75c2c1ea13510594d" title="Component::GetCore" alt="" coords="432,5,576,32"/>
+<area shape="rect" id="node4" href="$class_component.html#a746298ddfd39da5b191926aa8d8f6d95" title="Component::GetEntity" alt="" coords="624,31,775,57"/>
+</map>

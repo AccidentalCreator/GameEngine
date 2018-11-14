@@ -1,0 +1,48 @@
+\hypertarget{_entity_8h}{}\section{Entity.\+h File Reference}
+\label{_entity_8h}\index{Entity.\+h@{Entity.\+h}}
+{\ttfamily \#include \char`\"{}Component.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+Include dependency graph for Entity.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{_entity_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_entity_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_entity}{Entity}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_entity_8h_a6869d9f71eebbab486a7839b37bfc3c6}{A\+D\+D\+C\+O\+M\+P\+O\+N\+E\+NT}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{_entity_8h_a6869d9f71eebbab486a7839b37bfc3c6}\label{_entity_8h_a6869d9f71eebbab486a7839b37bfc3c6}} 
+\index{Entity.\+h@{Entity.\+h}!A\+D\+D\+C\+O\+M\+P\+O\+N\+E\+NT@{A\+D\+D\+C\+O\+M\+P\+O\+N\+E\+NT}}
+\index{A\+D\+D\+C\+O\+M\+P\+O\+N\+E\+NT@{A\+D\+D\+C\+O\+M\+P\+O\+N\+E\+NT}!Entity.\+h@{Entity.\+h}}
+\subsubsection{\texorpdfstring{A\+D\+D\+C\+O\+M\+P\+O\+N\+E\+NT}{ADDCOMPONENT}}
+{\footnotesize\ttfamily \#define A\+D\+D\+C\+O\+M\+P\+O\+N\+E\+NT}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}
+std::shared\_ptr<T> rtn = std::make\_shared<T>();\(\backslash\)
+    rtn->entity = \textcolor{keyword}{self}; \(\backslash\)
+    rtn->ranOnce = \textcolor{keyword}{false}; \(\backslash\)
+    components.push\_back(rtn);
+\end{DoxyCode}

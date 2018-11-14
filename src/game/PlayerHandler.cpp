@@ -30,7 +30,7 @@ void PlayerHandler::GravitySim()
 {
 	if (!colliding)
 	{
-		position->y -= GetEnvironment()->GetDeltaTime() * 50;
+		position->y -= GetEnvironment()->GetDeltaTime();
 		GetEntity()->GetComponent<Transform>()->SetPosition(*position.get());
 	}
 }

@@ -20,6 +20,7 @@
 #include "MouseHandler.h"
 #include "Orthagraphic.h"
 #include "BoxCollision.h"
+#include "Timer.h"
 
 class GameObject
 {

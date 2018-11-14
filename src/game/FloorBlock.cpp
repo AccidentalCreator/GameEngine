@@ -5,23 +5,24 @@
 void FloorBlock::Awake()
 {
 	player = GetCore()->FindEntityWithTag("Player");
-	collided = false;
-	flagPlayer = false;
+	//timer = std::make_shared<Timer>(timer);
 }
 
 void FloorBlock::Start()
 {
+	collided = false;
+	flagPlayer = false;
+	startTimerOnce = true;
+	disappearTime = 3.0f;
 }
 
 void FloorBlock::Update()
 {
-	if (!collided && counter != 1)
-		FloorPlayerCollision();
-	else if (collided)
+	FloorPlayerCollision();
+
+	if (collided)
 	{
-		FloorPlayerCollision();
-		countDown -= GetEnvironment()->GetDeltaTime();
-		if (countDown < 0)
+		if (!timer.Running())
 		{
 			if (collision.CheckCollision(GetEntity(), player))
 			{
@@ -42,6 +43,10 @@ void FloorBlock::FloorPlayerCollision()
 	{
 		collided = true;
 		player.lock()->GetComponent<PlayerHandler>()->SetColliding(true);
+		if (startTimerOnce)
+		{
+			timer.Start(disappearTime);
+			startTimerOnce = false;
+		}
 	}
-
 }

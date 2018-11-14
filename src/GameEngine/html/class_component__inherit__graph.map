@@ -1,0 +1,8 @@
+<map id="Component" name="Component">
+<area shape="rect" id="node2" href="$class_button.html" title="{Button\n||+ AddButton()\l}" alt="" coords="5,263,108,340"/>
+<area shape="rect" id="node3" href="$class_camera.html" title="{Camera\n||+ Start()\l+ GetViewMatrix()\l+ SetPosition()\l+ SetTarget()\l+ SetOrientation()\l+ SetRotation()\l+ CalcRotation()\l}" alt="" coords="132,219,259,384"/>
+<area shape="rect" id="node4" href="$class_material.html" title="{Material\n||+ Start()\l+ LoadTexture()\l}" alt="" coords="283,255,396,347"/>
+<area shape="rect" id="node5" href="$class_mesh_renderer.html" title="{MeshRenderer\n||+ Awake()\l+ AddModel()\l+ GetShaders()\l+ GetMeshData()\l+ GetTransform()\l}" alt="" coords="421,233,543,369"/>
+<area shape="rect" id="node7" href="$class_transform.html" title="{Transform\n||+ Awake()\l+ SetTransform()\l+ SetPosition()\l+ SetRotation()\l+ SetSize()\l+ SetScale()\l+ GetPosition()\l+ GetRotation()\l+ GetSize()\l+ GetScale()\l+ GetModelMatrix()\l}" alt="" coords="568,189,703,413"/>
+<area shape="rect" id="node6" href="$class_orthagraphic.html" title="{Orthagraphic\n||+ Awake()\l+ AddOrtho()\l}" alt="" coords="433,461,531,553"/>
+</map>

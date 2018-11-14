@@ -1,0 +1,110 @@
+\hypertarget{class_mesh_renderer}{}\section{Mesh\+Renderer Class Reference}
+\label{class_mesh_renderer}\index{Mesh\+Renderer@{Mesh\+Renderer}}
+
+
+{\ttfamily \#include $<$Mesh\+Renderer.\+h$>$}
+
+
+
+Inheritance diagram for Mesh\+Renderer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=181pt]{class_mesh_renderer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Mesh\+Renderer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=181pt]{class_mesh_renderer__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_mesh_renderer_a3fc0e9658d3b9a53e3559cb9b939aeb9}{Awake}} ()
+\item 
+void \mbox{\hyperlink{class_mesh_renderer_a90798e723067ca8c721f0c96c1609972}{Add\+Model}} (std\+::string \+\_\+model\+Path, std\+::string \+\_\+vertex\+Path, std\+::string \+\_\+frag\+Path)
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_shader_program}{Shader\+Program}} $>$ \mbox{\hyperlink{class_mesh_renderer_a07be90e4601d54e0870854cc91dc018c}{Get\+Shaders}} ()
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_vertex_array}{Vertex\+Array}} $>$ \mbox{\hyperlink{class_mesh_renderer_a2924155f99c9276a2089ff618f9016c8}{Get\+Mesh\+Data}} ()
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_transform}{Transform}} $>$ \mbox{\hyperlink{class_mesh_renderer_a89beac4cf0a91a275686c5f5507af465}{Get\+Transform}} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_mesh_renderer_a90798e723067ca8c721f0c96c1609972}\label{class_mesh_renderer_a90798e723067ca8c721f0c96c1609972}} 
+\index{Mesh\+Renderer@{Mesh\+Renderer}!Add\+Model@{Add\+Model}}
+\index{Add\+Model@{Add\+Model}!Mesh\+Renderer@{Mesh\+Renderer}}
+\subsubsection{\texorpdfstring{Add\+Model()}{AddModel()}}
+{\footnotesize\ttfamily void Mesh\+Renderer\+::\+Add\+Model (\begin{DoxyParamCaption}\item[{std\+::string}]{\+\_\+model\+Path,  }\item[{std\+::string}]{\+\_\+vertex\+Path,  }\item[{std\+::string}]{\+\_\+frag\+Path }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_mesh_renderer_a90798e723067ca8c721f0c96c1609972_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_mesh_renderer_a90798e723067ca8c721f0c96c1609972_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_mesh_renderer_a3fc0e9658d3b9a53e3559cb9b939aeb9}\label{class_mesh_renderer_a3fc0e9658d3b9a53e3559cb9b939aeb9}} 
+\index{Mesh\+Renderer@{Mesh\+Renderer}!Awake@{Awake}}
+\index{Awake@{Awake}!Mesh\+Renderer@{Mesh\+Renderer}}
+\subsubsection{\texorpdfstring{Awake()}{Awake()}}
+{\footnotesize\ttfamily void Mesh\+Renderer\+::\+Awake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_component}{Component}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{class_orthagraphic_a62f9d1b5d54623252bc3d15eba1e7181}{Orthagraphic}}.
+
+\mbox{\Hypertarget{class_mesh_renderer_a2924155f99c9276a2089ff618f9016c8}\label{class_mesh_renderer_a2924155f99c9276a2089ff618f9016c8}} 
+\index{Mesh\+Renderer@{Mesh\+Renderer}!Get\+Mesh\+Data@{Get\+Mesh\+Data}}
+\index{Get\+Mesh\+Data@{Get\+Mesh\+Data}!Mesh\+Renderer@{Mesh\+Renderer}}
+\subsubsection{\texorpdfstring{Get\+Mesh\+Data()}{GetMeshData()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_vertex_array}{Vertex\+Array}}$>$ Mesh\+Renderer\+::\+Get\+Mesh\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_mesh_renderer_a07be90e4601d54e0870854cc91dc018c}\label{class_mesh_renderer_a07be90e4601d54e0870854cc91dc018c}} 
+\index{Mesh\+Renderer@{Mesh\+Renderer}!Get\+Shaders@{Get\+Shaders}}
+\index{Get\+Shaders@{Get\+Shaders}!Mesh\+Renderer@{Mesh\+Renderer}}
+\subsubsection{\texorpdfstring{Get\+Shaders()}{GetShaders()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_shader_program}{Shader\+Program}}$>$ Mesh\+Renderer\+::\+Get\+Shaders (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_mesh_renderer_a07be90e4601d54e0870854cc91dc018c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_mesh_renderer_a89beac4cf0a91a275686c5f5507af465}\label{class_mesh_renderer_a89beac4cf0a91a275686c5f5507af465}} 
+\index{Mesh\+Renderer@{Mesh\+Renderer}!Get\+Transform@{Get\+Transform}}
+\index{Get\+Transform@{Get\+Transform}!Mesh\+Renderer@{Mesh\+Renderer}}
+\subsubsection{\texorpdfstring{Get\+Transform()}{GetTransform()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_transform}{Transform}}$>$ Mesh\+Renderer\+::\+Get\+Transform (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_mesh_renderer_8h}{Mesh\+Renderer.\+h}}\item 
+\mbox{\hyperlink{_mesh_renderer_8cpp}{Mesh\+Renderer.\+cpp}}\end{DoxyCompactItemize}

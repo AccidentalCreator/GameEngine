@@ -33,11 +33,13 @@ add_executable(game
 	src/game/PlayerHandler.h
 	src/game/CameraHandler.h
 	src/game/FloorBlock.h
+	src/game/FloorManager.h
 
 	src/game/main.cpp
 	src/game/PlayerHandler.cpp
 	src/game/CameraHandler.cpp
 	src/game/FloorBlock.cpp
+	src/game/FloorManager.cpp
 )
 
 if(MSVC)
@@ -90,6 +92,7 @@ add_library(GameEngine
 	src/GameEngine/BoxCollision.h
 	src/GameEngine/Button.h
 	src/GameEngine/Orthagraphic.h
+	src/GameEngine/Timer.h
 
 	src/GameEngine/VertexBuffer.h
 	src/GameEngine/VertexArray.h
@@ -115,6 +118,7 @@ add_library(GameEngine
 	src/GameEngine/BoxCollision.cpp
 	src/GameEngine/Button.cpp
 	src/GameEngine/Orthagraphic.cpp
+	src/GameEngine/Timer.cpp
 
 	src/GameEngine/VertexBuffer.cpp
 	src/GameEngine/VertexArray.cpp

@@ -1,0 +1,126 @@
+\hypertarget{class_camera}{}\section{Camera Class Reference}
+\label{class_camera}\index{Camera@{Camera}}
+
+
+{\ttfamily \#include $<$Camera.\+h$>$}
+
+
+
+Inheritance diagram for Camera\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=181pt]{class_camera__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Camera\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=181pt]{class_camera__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_camera_aaaf81f5649f2f9e003a922d4abd29c99}{Start}} (glm\+::vec3 \+\_\+position, glm\+::vec3 \+\_\+target, glm\+::vec3 \+\_\+orientation)
+\item 
+glm\+::mat4 \mbox{\hyperlink{class_camera_affa333055635aed96518c4c66be9a70c}{Get\+View\+Matrix}} ()
+\item 
+void \mbox{\hyperlink{class_camera_ab2c13ba0cd3d3b08feeab6a4f7d496bc}{Set\+Position}} (glm\+::vec3 \+\_\+position)
+\item 
+void \mbox{\hyperlink{class_camera_a9073f66c6522efed683d2867e197a6c8}{Set\+Target}} (glm\+::vec3 \+\_\+target)
+\item 
+void \mbox{\hyperlink{class_camera_a6518b723541de76a710e337a0ee364b0}{Set\+Orientation}} (glm\+::vec3 \+\_\+orientation)
+\item 
+void \mbox{\hyperlink{class_camera_ae054ebd0fdc18f36dfcd4a3c968ec471}{Set\+Rotation}} (float \+\_\+angle, glm\+::vec3 \+\_\+orientation)
+\item 
+void \mbox{\hyperlink{class_camera_a3d79803c1dc47d6c1065072a6c5cd8be}{Calc\+Rotation}} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_camera_a3d79803c1dc47d6c1065072a6c5cd8be}\label{class_camera_a3d79803c1dc47d6c1065072a6c5cd8be}} 
+\index{Camera@{Camera}!Calc\+Rotation@{Calc\+Rotation}}
+\index{Calc\+Rotation@{Calc\+Rotation}!Camera@{Camera}}
+\subsubsection{\texorpdfstring{Calc\+Rotation()}{CalcRotation()}}
+{\footnotesize\ttfamily void Camera\+::\+Calc\+Rotation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_camera_affa333055635aed96518c4c66be9a70c}\label{class_camera_affa333055635aed96518c4c66be9a70c}} 
+\index{Camera@{Camera}!Get\+View\+Matrix@{Get\+View\+Matrix}}
+\index{Get\+View\+Matrix@{Get\+View\+Matrix}!Camera@{Camera}}
+\subsubsection{\texorpdfstring{Get\+View\+Matrix()}{GetViewMatrix()}}
+{\footnotesize\ttfamily glm\+::mat4 Camera\+::\+Get\+View\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_camera_a6518b723541de76a710e337a0ee364b0}\label{class_camera_a6518b723541de76a710e337a0ee364b0}} 
+\index{Camera@{Camera}!Set\+Orientation@{Set\+Orientation}}
+\index{Set\+Orientation@{Set\+Orientation}!Camera@{Camera}}
+\subsubsection{\texorpdfstring{Set\+Orientation()}{SetOrientation()}}
+{\footnotesize\ttfamily void Camera\+::\+Set\+Orientation (\begin{DoxyParamCaption}\item[{glm\+::vec3}]{\+\_\+orientation }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_camera_ab2c13ba0cd3d3b08feeab6a4f7d496bc}\label{class_camera_ab2c13ba0cd3d3b08feeab6a4f7d496bc}} 
+\index{Camera@{Camera}!Set\+Position@{Set\+Position}}
+\index{Set\+Position@{Set\+Position}!Camera@{Camera}}
+\subsubsection{\texorpdfstring{Set\+Position()}{SetPosition()}}
+{\footnotesize\ttfamily void Camera\+::\+Set\+Position (\begin{DoxyParamCaption}\item[{glm\+::vec3}]{\+\_\+position }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=336pt]{class_camera_ab2c13ba0cd3d3b08feeab6a4f7d496bc_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=300pt]{class_camera_ab2c13ba0cd3d3b08feeab6a4f7d496bc_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_camera_ae054ebd0fdc18f36dfcd4a3c968ec471}\label{class_camera_ae054ebd0fdc18f36dfcd4a3c968ec471}} 
+\index{Camera@{Camera}!Set\+Rotation@{Set\+Rotation}}
+\index{Set\+Rotation@{Set\+Rotation}!Camera@{Camera}}
+\subsubsection{\texorpdfstring{Set\+Rotation()}{SetRotation()}}
+{\footnotesize\ttfamily void Camera\+::\+Set\+Rotation (\begin{DoxyParamCaption}\item[{float}]{\+\_\+angle,  }\item[{glm\+::vec3}]{\+\_\+orientation }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_camera_a9073f66c6522efed683d2867e197a6c8}\label{class_camera_a9073f66c6522efed683d2867e197a6c8}} 
+\index{Camera@{Camera}!Set\+Target@{Set\+Target}}
+\index{Set\+Target@{Set\+Target}!Camera@{Camera}}
+\subsubsection{\texorpdfstring{Set\+Target()}{SetTarget()}}
+{\footnotesize\ttfamily void Camera\+::\+Set\+Target (\begin{DoxyParamCaption}\item[{glm\+::vec3}]{\+\_\+target }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_camera_aaaf81f5649f2f9e003a922d4abd29c99}\label{class_camera_aaaf81f5649f2f9e003a922d4abd29c99}} 
+\index{Camera@{Camera}!Start@{Start}}
+\index{Start@{Start}!Camera@{Camera}}
+\subsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily void Camera\+::\+Start (\begin{DoxyParamCaption}\item[{glm\+::vec3}]{\+\_\+position,  }\item[{glm\+::vec3}]{\+\_\+target,  }\item[{glm\+::vec3}]{\+\_\+orientation }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_camera_aaaf81f5649f2f9e003a922d4abd29c99_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=157pt]{class_camera_aaaf81f5649f2f9e003a922d4abd29c99_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_camera_8h}{Camera.\+h}}\item 
+\mbox{\hyperlink{_camera_8cpp}{Camera.\+cpp}}\end{DoxyCompactItemize}

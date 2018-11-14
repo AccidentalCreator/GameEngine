@@ -1,0 +1,5 @@
+<map id="Orthagraphic::Awake" name="Orthagraphic::Awake">
+<area shape="rect" id="node2" href="$class_component.html#a601ec93559ca1dd75c2c1ea13510594d" title="Component::GetCore" alt="" coords="215,5,359,32"/>
+<area shape="rect" id="node4" href="$class_mesh_renderer.html#a07be90e4601d54e0870854cc91dc018c" title="MeshRenderer::GetShaders" alt="" coords="196,56,379,83"/>
+<area shape="rect" id="node3" href="$class_component.html#a746298ddfd39da5b191926aa8d8f6d95" title="Component::GetEntity" alt="" coords="427,5,577,32"/>
+</map>

@@ -1,8 +1,8 @@
 #include <GameEngine\GameEngine.h>
 #include "PlayerHandler.h"
 #include "CameraHandler.h"
-#include "FloorBlock.h"
-// Include game engine
+#include "FloorManager.h"
+#include "FloorBlock.h" // Can deleted after testing
 
 #include <iostream>
 #include <memory>
@@ -19,33 +19,13 @@ int main()
 	
 	std::shared_ptr<CameraHandler> cameraHandler = camera->AddComponent<CameraHandler>();
 
-	int noOfFloorTiles = 30;
-	int x = -5;
-	int z = 0;
-	std::vector<std::shared_ptr<Entity>> floorTiles;
-	for (int i = 0; i < noOfFloorTiles; i++)
-	{
-		std::shared_ptr<Entity> floorTile = core->AddEntity();
-		std::shared_ptr<MeshRenderer> floorRenderer = floorTile->AddComponent<MeshRenderer>();
-		floorRenderer->AddModel("../resources/models/Cube2.obj", "../resources/shaders/simple.vert", "../resources/shaders/simple.frag");
-		floorTile->GetComponent<Transform>()->SetTransform(glm::vec3(x, 0, z), 0.0f, glm::vec3(1, 1, 1));
-		floorTile->GetComponent<Transform>()->SetSize(glm::vec3(1, 1, 1));
-		std::shared_ptr<Material> floorMaterial = floorTile->AddComponent<Material>("../resources/textures/WhiteCube.png");
-		std::shared_ptr<FloorBlock> floorHandler = floorTile->AddComponent<FloorBlock>();
-		floorHandler->SetCounter(i);
-		floorTiles.push_back(floorTile);
-		x += 5;
-		if (x > 5)
-		{
-			x = -5;
-			z += 5;
-		}
-	}
+	std::shared_ptr<Entity> GameHandler = core->AddEntity();
+	std::shared_ptr<FloorManager> floorHandler = GameHandler->AddComponent<FloorManager>();
 
 	std::shared_ptr<Entity> player = core->AddEntity();
 	player->SetTag("Player");
 	player->GetComponent<Transform>()->SetTransform(glm::vec3(0, 1, 0), 0.0f, glm::vec3(1, 1, 1));
-	player->GetComponent<Transform>()->SetSize(glm::vec3(1, 1, 1));
+	player->GetComponent<Transform>()->SetSize(glm::vec3(1, 2, 1));
 	std::shared_ptr<PlayerHandler> playerHandler = player->AddComponent<PlayerHandler>();
 	std::shared_ptr<MeshRenderer> playerRenderer = player->AddComponent<MeshRenderer>();
 	playerRenderer->AddModel("../resources/models/cat.obj", "../resources/shaders/simple.vert", "../resources/shaders/simple.frag");

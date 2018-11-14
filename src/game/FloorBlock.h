@@ -19,8 +19,12 @@ private:
 
 	std::weak_ptr<Entity> player;
 	BoxCollision collision;
+
+	Timer timer;
+	bool startTimerOnce;
+	float disappearTime;
+
 	bool collided;
-	float countDown = 1;
 	bool flagPlayer;
 
 	int counter;
