@@ -12,15 +12,31 @@ public:
 	void Start();
 	void Update();
 
-	void FollowPlayer();
+
 
 private:
-	//std::shared_ptr<glm::vec3> position;
-	//std::weak_ptr<glm::vec3> playerPosition;
-	//glm::vec3 position;
-	std::shared_ptr<glm::vec3> playerPosition;
 
-	std::shared_ptr<Entity> player;
+	std::shared_ptr<MouseHandler> mouseInput;
+	std::shared_ptr<KeyboardHandler> keyInput;
+
+	std::shared_ptr<Transform> transform;
+	glm::vec3 postition;
+	std::shared_ptr<glm::vec3> cameraFront;
+
+	void Movement();
+	void Direction();
+
+	float speed;
+	float lastMouseX;
+	float lastMouseY;
+	float offsetX;
+	float offsetY;
+	float mouseSensitivity;
+	float yaw;
+	float pitch;
+	glm::vec3 newCameraFront;
+
+	bool runOnce;
 };
 
 #endif // !CAMERAHANDLER_H

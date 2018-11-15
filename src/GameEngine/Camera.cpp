@@ -3,23 +3,20 @@
 #include "Transform.h"
 #include <gtc\matrix_transform.hpp>
 
-void Camera::Start(glm::vec3 _position, glm::vec3 _target, glm::vec3 _orientation)
+void Camera::Start()
 {
-	SetPosition(_position);
-	target = _target;
-	orientation = _orientation;
-
-	inverseDirection = glm::normalize(position - target);
+	position = GetEntity()->GetComponent<Transform>()->GetPosition();
+	direction = glm::normalize(position - target);
 	up = glm::vec3(0.0f, 1.0f, 0.0f);
-	cameraRight = glm::normalize(glm::cross(up, inverseDirection));
-	cameraUp = glm::cross(inverseDirection, cameraRight);
-	cameraFront = glm::vec3(0.0f, 0.0f, 1.0f);
+	cameraRight = glm::normalize(glm::cross(up, direction));
+	cameraUp = glm::cross(direction, cameraRight);
+	cameraFront = std::make_shared<glm::vec3>(0.0f, 0.0f, 1.0f);
 }
 
 glm::mat4 Camera::GetViewMatrix()
 {
-	viewMatrix = glm::lookAt(position, position + cameraFront, cameraUp);
-	//CalcRotation();
+	position = GetEntity()->GetComponent<Transform>()->GetPosition();
+	viewMatrix = glm::lookAt(position, position + *cameraFront, cameraUp);
 	return viewMatrix;
 }
 
@@ -35,10 +32,7 @@ void Camera::SetRotation(float _angle, glm::vec3 _orientation)
 	rotationOrientation = _orientation;
 }
 
-void Camera::CalcRotation()
-{
-	viewMatrix = glm::rotate(viewMatrix, glm::radians(angle), rotationOrientation);
-}
+
 
 void Camera::Display()
 {

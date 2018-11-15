@@ -32,6 +32,7 @@ public:
 	std::shared_ptr<Resources> GetResources() { return resources; }
 	std::shared_ptr<Environment> GetEnvironment() { return environment; }
 	std::shared_ptr<KeyboardHandler> GetKeyboard() { return keyboard; }
+	std::shared_ptr<MouseHandler> GetMouse() { return mouse; }
 	std::shared_ptr<Entity> FindEntityWithTag(std::string _tag);
 
 	template <typename T>

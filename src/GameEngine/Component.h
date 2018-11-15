@@ -9,6 +9,7 @@ class Entity;
 class Core;
 class Environment;
 class KeyboardHandler;
+class MouseHandler;
 
 class Component
 { 
@@ -19,6 +20,7 @@ public:
 	std::shared_ptr<Entity> GetEntity();
 	std::shared_ptr<Core> GetCore();
 	std::shared_ptr<KeyboardHandler> GetKeyboard();
+	std::shared_ptr<MouseHandler> GetMouse();
 	std::shared_ptr<Environment> GetEnvironment();
 
 

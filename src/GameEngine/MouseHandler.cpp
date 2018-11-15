@@ -28,9 +28,6 @@ void MouseHandler::SetMouseButtonPressed(SDL_MouseButtonEvent _event)
 	}
 }
 
-#define MouseButtonRemove \
-	mouseButtonDown.erase(mouseButtonDown.begin() + i); \
-	i++;
 
 void MouseHandler::SetMouseButtonReleased(SDL_MouseButtonEvent _event)
 {
@@ -39,15 +36,18 @@ void MouseHandler::SetMouseButtonReleased(SDL_MouseButtonEvent _event)
 	{
 		if (_event.type == SDL_BUTTON_LEFT)
 		{
-			MouseButtonRemove;
+			mouseButtonDown.erase(mouseButtonDown.begin() + i);
+			i++;
 		}
 		else if (_event.type == SDL_BUTTON_RIGHT)
 		{
-			MouseButtonRemove;
+			mouseButtonDown.erase(mouseButtonDown.begin() + i);
+			i++;
 		}
 		else if (_event.type == SDL_BUTTON_MIDDLE)
 		{
-			MouseButtonRemove;
+			mouseButtonDown.erase(mouseButtonDown.begin() + i);
+			i++;
 		}
 	}
 }

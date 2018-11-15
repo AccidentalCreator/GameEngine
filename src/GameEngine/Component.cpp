@@ -18,6 +18,11 @@ std::shared_ptr<KeyboardHandler> Component::GetKeyboard()
 	return GetCore()->GetKeyboard();
 }
 
+std::shared_ptr<MouseHandler> Component::GetMouse()
+{
+	return GetCore()->GetMouse();
+}
+
 std::shared_ptr<Environment> Component::GetEnvironment()
 {
 	return GetCore()->GetEnvironment();

@@ -4,7 +4,7 @@
 
 void FloorBlock::Awake()
 {
-	player = GetCore()->FindEntityWithTag("Player");
+	//player = GetCore()->FindEntityWithTag("Player");
 	//timer = std::make_shared<Timer>(timer);
 }
 
@@ -19,7 +19,7 @@ void FloorBlock::Start()
 
 void FloorBlock::Update()
 {
-	FloorPlayerCollision();
+	//FloorPlayerCollision();
 
 	if (collided)
 	{

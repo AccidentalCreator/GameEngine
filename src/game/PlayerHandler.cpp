@@ -17,8 +17,8 @@ void PlayerHandler::Start()
 
 void PlayerHandler::Update()
 {
-	Movement();
-	CheckKeyRelease();
+	//Movement();
+	//CheckKeyRelease();
 	GravitySim();
 }
 
