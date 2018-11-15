@@ -93,6 +93,7 @@ add_library(GameEngine
 	src/GameEngine/Button.h
 	src/GameEngine/Orthagraphic.h
 	src/GameEngine/Timer.h
+	src/GameEngine/Texture.h
 
 	src/GameEngine/VertexBuffer.h
 	src/GameEngine/VertexArray.h
@@ -119,6 +120,7 @@ add_library(GameEngine
 	src/GameEngine/Button.cpp
 	src/GameEngine/Orthagraphic.cpp
 	src/GameEngine/Timer.cpp
+	src/GameEngine/Texture.cpp
 
 	src/GameEngine/VertexBuffer.cpp
 	src/GameEngine/VertexArray.cpp

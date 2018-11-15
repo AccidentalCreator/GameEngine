@@ -29,7 +29,7 @@ int main()
 	std::shared_ptr<PlayerHandler> playerHandler = player->AddComponent<PlayerHandler>();
 	std::shared_ptr<MeshRenderer> playerRenderer = player->AddComponent<MeshRenderer>();
 	playerRenderer->AddModel("../resources/models/cat.obj", "../resources/shaders/simple.vert", "../resources/shaders/simple.frag");
-	std::shared_ptr<Material> playerMaterial = player->AddComponent<Material>("../resources/textures/RedCube.png");
+   
 
 
 	//std::shared_ptr<Entity> cat = core->AddEntity();

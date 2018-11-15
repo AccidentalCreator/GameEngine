@@ -2,9 +2,8 @@
 #ifndef MESHRENDERER_H
 #define MESHRENDERER_H
 
-
-
 #include "Component.h"
+#include "Texture.h"
 
 #include <memory>
 #include <string>
@@ -32,6 +31,7 @@ private:
 	void Display();
 
 	std::shared_ptr<VertexArray> meshData;
+	std::shared_ptr<Texture> texture;
 	std::shared_ptr<ShaderProgram> shaders;
 	std::shared_ptr<Transform> transform;
 	std::shared_ptr<Screen> screen;

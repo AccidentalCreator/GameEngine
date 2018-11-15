@@ -9,6 +9,7 @@
 #include "Camera.h"
 #include "Resources.h"
 
+
 #include <gtc\matrix_transform.hpp>
 #include <iostream>
 
@@ -38,6 +39,7 @@ void MeshRenderer::AddModel(std::string _modelPath, std::string _vertexPath, std
 	transform = GetEntity()->GetComponent<Transform>();
 	screen = GetCore()->GetScreen();
 	camera = GetCore()->FindEntityWithComponent<Camera>();
+	texture = std::make_shared<Texture>("../resources/textures/CubeText.png");
 }
 
 void MeshRenderer::Display()
@@ -45,6 +47,7 @@ void MeshRenderer::Display()
 	shaders->SetUniform("in_Model", transform->GetModelMatrix());
 	shaders->SetUniform("in_Projection", screen->GetProjectionMatrix());
 	shaders->SetUniform("in_Camera", camera->GetComponent<Camera>()->GetViewMatrix());
+	shaders->SetUniform("in_Texture", texture);
 
 	shaders->Draw(*meshData); 
 }
