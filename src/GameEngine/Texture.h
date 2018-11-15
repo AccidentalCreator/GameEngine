@@ -4,18 +4,22 @@
 
 #include <GL/glew.h>
 #include <glm.hpp>
-
+#include <memory>
 #include <string>
 
-class Texture
-{
-	GLuint id;
-	glm::vec2 size;
+#include "Component.h"
 
+class Texture : public Component
+{
 public:
-	Texture(std::string path);
+	//void Start(std::string _texPath);
+	void AddTexture(std::string _texPath);
 	glm::vec2 GetSize();
 	GLuint GetId();
+
+private:
+	GLuint id;
+	glm::vec2 size;
 
 };
 

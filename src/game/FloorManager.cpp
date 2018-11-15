@@ -32,10 +32,11 @@ void FloorManager::SpawnStartingFloor()
 	{
 		std::shared_ptr<Entity> floorTile = GetCore()->AddEntity();
 		std::shared_ptr<MeshRenderer> floorRenderer = floorTile->AddComponent<MeshRenderer>();
-		floorRenderer->AddModel("../resources/models/Cube3.obj", "../resources/shaders/simple.vert", "../resources/shaders/simple.frag");
+		floorRenderer->AddModel("../resources/models/Cube3.obj", "../resources/textures/CubeText.png", "../resources/shaders/simple.vert", "../resources/shaders/simple.frag");
 		floorTile->GetComponent<Transform>()->SetTransform(glm::vec3(x, 0, z), 0.0f, glm::vec3(2, 2, 2));
 		floorTile->GetComponent<Transform>()->SetSize(glm::vec3(2, 2, 2));
-		std::shared_ptr<Material> floorMaterial = floorTile->AddComponent<Material>("../resources/textures/WhiteCube.png");
+		std::shared_ptr<Texture> floorMaterial = floorTile->AddComponent<Texture>();
+		floorMaterial->AddTexture("../resources/textures/WhiteCube.png");
 		std::shared_ptr<FloorBlock> floorHandler = floorTile->AddComponent<FloorBlock>();
 		floorHandler->SetCounter(i);
 		floorTiles.push_back(floorTile);

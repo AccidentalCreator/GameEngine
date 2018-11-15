@@ -14,12 +14,12 @@ class Transform;
 class Screen;
 class Entity;
 class Camera;
-class Resources;
 
 class MeshRenderer : public Component
 {
 public:
 	void Awake();
+	void AddModel(std::string _modelPath, std::string _texturePath, std::string _vertexPath, std::string _fragPath);
 	void AddModel(std::string _modelPath, std::string _vertexPath, std::string _fragPath);
 
 	std::shared_ptr<ShaderProgram> GetShaders() { return shaders; }
@@ -37,6 +37,7 @@ private:
 	std::shared_ptr<Screen> screen;
 	std::shared_ptr<Entity> camera;
 
+	bool runOnce;
 };
 
 #endif // !MESHRENDERER_H

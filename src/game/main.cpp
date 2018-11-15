@@ -29,6 +29,10 @@ int main()
 	std::shared_ptr<PlayerHandler> playerHandler = player->AddComponent<PlayerHandler>();
 	std::shared_ptr<MeshRenderer> playerRenderer = player->AddComponent<MeshRenderer>();
 	playerRenderer->AddModel("../resources/models/cat.obj", "../resources/shaders/simple.vert", "../resources/shaders/simple.frag");
+	// Why doesnt this work!
+	//std::shared_ptr<Texture> playerTexture = player->AddComponent<Texture>("../resources/textures/MissingTexture.png");
+	std::shared_ptr<Texture> playerTexture = player->AddComponent<Texture>();
+	playerTexture->AddTexture("../resources/textures/MissingTexture.png");
    
 
 

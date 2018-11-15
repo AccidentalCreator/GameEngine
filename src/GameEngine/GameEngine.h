@@ -13,7 +13,6 @@
 #include "VertexArray.h"
 #include "VertexBuffer.h"
 #include "MeshRenderer.h"
-#include "Material.h"
 #include "Sound.h"
 #include "Camera.h"
 #include "Transform.h"
@@ -21,6 +20,7 @@
 #include "Orthagraphic.h"
 #include "BoxCollision.h"
 #include "Timer.h"
+#include "Texture.h"
 
 class GameObject
 {

@@ -82,7 +82,6 @@ add_library(GameEngine
 	src/GameEngine/Component.h
 	src/GameEngine/GameEngine.h
 	src/GameEngine/Screen.h
-	src/GameEngine/Material.h
 	src/GameEngine/stb_image.h
 	src/GameEngine/Sound.h
 	src/GameEngine/Exception.h
@@ -109,7 +108,6 @@ add_library(GameEngine
 	src/GameEngine/Component.cpp
 	src/GameEngine/GameEngine.cpp
 	src/GameEngine/Screen.cpp
-	src/GameEngine/Material.cpp
 	src/GameEngine/stb_image.cpp
 	src/GameEngine/Sound.cpp
 	src/GameEngine/Exception.cpp

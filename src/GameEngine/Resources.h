@@ -19,8 +19,6 @@ class Sound;
 struct MatResource
 {
 	std::string path;
-	unsigned char* data;
-	std::shared_ptr<VertexArray> VAO;
 	GLuint id;
 };
 
@@ -38,11 +36,10 @@ public:
 	bool CheckSoundUsed(std::string _path);
 
 	std::shared_ptr<VertexArray> GetMeshData(std::string _path);
-	std::shared_ptr<VertexArray> GetMatVAO(std::string _path);
 	GLuint GetMatId(std::string _path);
 
 	void AddMeshData(std::shared_ptr<VertexArray> _data, std::string _path);
-	void AddMatData(std::string _path, std::shared_ptr<VertexArray> _VAO, GLuint _id);
+	void AddMatData(std::string _path, GLuint _id);
 	
 	std::shared_ptr<VertexArray> GetSoundData();
 	void AddSoundData(std::shared_ptr<VertexArray> _data, std::string _path);

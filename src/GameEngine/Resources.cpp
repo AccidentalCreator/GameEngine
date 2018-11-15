@@ -58,17 +58,6 @@ std::shared_ptr<VertexArray> Resources::GetMeshData(std::string _path)
 	}
 }
 
-std::shared_ptr<VertexArray> Resources::GetMatVAO(std::string _path)
-{
-	for (size_t i = 0; i < materialsUsed.size(); i++)
-	{
-		if (materialsUsed.at(i).path == _path)
-		{
-			return materialsUsed.at(i).VAO;
-		}
-	}
-}
-
 GLuint Resources::GetMatId(std::string _path)
 {
 	for (size_t i = 0; i < materialsUsed.size(); i++)
@@ -96,13 +85,12 @@ void Resources::AddMeshData(std::shared_ptr<VertexArray> _data, std::string _pat
 	}
 }
 
-void Resources::AddMatData(std::string _path, std::shared_ptr<VertexArray> _VAO, GLuint _id)
+void Resources::AddMatData(std::string _path, GLuint _id)
 {
 	for (size_t i = 0; i < materialsUsed.size(); i++)
 	{
 		if (materialsUsed.at(i).path == _path)
 		{
-			materialsUsed.at(i).VAO = _VAO;
 			materialsUsed.at(i).id = _id;
 		}
 	}
