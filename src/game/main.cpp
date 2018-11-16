@@ -16,11 +16,10 @@ int main()
 	camera->GetComponent<Transform>()->SetPosition(glm::vec3 (0, 0, -10));
 	std::shared_ptr<Camera> cam = camera->AddComponent<Camera>();
 	std::shared_ptr<CameraHandler> cameraHandler = camera->AddComponent<CameraHandler>();
-	//std::shared_ptr<Camera> cam = camera->AddComponent<Camera>(glm::vec3(0, 10, -20), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
 	
 
-	std::shared_ptr<Entity> GameHandler = core->AddEntity();
-	std::shared_ptr<FloorManager> floorHandler = GameHandler->AddComponent<FloorManager>();
+	//std::shared_ptr<Entity> GameHandler = core->AddEntity();
+	//std::shared_ptr<FloorManager> floorHandler = GameHandler->AddComponent<FloorManager>();
 
 	//std::shared_ptr<Entity> player = core->AddEntity();
 	//player->SetTag("Player");
@@ -34,21 +33,26 @@ int main()
 	//std::shared_ptr<Texture> playerTexture = player->AddComponent<Texture>();
 	//playerTexture->AddTexture("../resources/textures/MissingTexture.png");
    
+	std::shared_ptr<Entity> level = core->AddEntity();
+	std::shared_ptr<MeshRenderer> levelRenderer = level->AddComponent<MeshRenderer>();
+	levelRenderer->AddModel("../resources/models/Map.obj", "../resources/shaders/simple.vert", "../resources/shaders/simple.frag");
+	std::shared_ptr<Texture> levelTexture = level->AddComponent<Texture>();
+	levelTexture->AddTexture("../resources/textures/MapTexture.png");
+	level->GetComponent<Transform>()->SetTransform(glm::vec3(-100, -10, -50), 0.0f, glm::vec3(0.1f, 0.1f, 0.1f));
 
+	//std::shared_ptr<Entity> cat = core->AddEntity();
+	//std::shared_ptr<MeshRenderer> catRenderer = cat->AddComponent<MeshRenderer>();
+	//catRenderer->AddModel("../resources/models/cat.obj", "../resources/shaders/simple.vert", "../resources/shaders/simple.frag");
+	//std::shared_ptr<Texture> catTexture = cat->AddComponent<Texture>();
+	//catTexture->AddTexture("../resources/textures/cat.png");
+	//cat->GetComponent<Transform>()->SetTransform(glm::vec3(2, 0, 0), 180.0f, glm::vec3(1, 1, 1));
 
-	std::shared_ptr<Entity> cat = core->AddEntity();
-	std::shared_ptr<MeshRenderer> catRenderer = cat->AddComponent<MeshRenderer>();
-	catRenderer->AddModel("../resources/models/cat.obj", "../resources/shaders/simple.vert", "../resources/shaders/simple.frag");
-	std::shared_ptr<Texture> catTexture = cat->AddComponent<Texture>();
-	catTexture->AddTexture("../resources/textures/cat.png");
-	cat->GetComponent<Transform>()->SetTransform(glm::vec3(2, 0, 0), 180.0f, glm::vec3(1, 1, 1));
-
-	std::shared_ptr<Entity> cat2 = core->AddEntity();
-	std::shared_ptr<MeshRenderer> cat2Renderer = cat2->AddComponent<MeshRenderer>();
-	cat2Renderer->AddModel("../resources/models/cat.obj", "../resources/shaders/simple.vert", "../resources/shaders/simple.frag");
-	std::shared_ptr<Texture> cat2Texture = cat2->AddComponent<Texture>();
-	cat2Texture->AddTexture("../resources/textures/cat.png");
-	cat2->GetComponent<Transform>()->SetTransform(glm::vec3(-1, 0, 0), 180.0f, glm::vec3(1, 1, 1));
+	//std::shared_ptr<Entity> cat2 = core->AddEntity();
+	//std::shared_ptr<MeshRenderer> cat2Renderer = cat2->AddComponent<MeshRenderer>();
+	//cat2Renderer->AddModel("../resources/models/cat.obj", "../resources/shaders/simple.vert", "../resources/shaders/simple.frag");
+	//std::shared_ptr<Texture> cat2Texture = cat2->AddComponent<Texture>();
+	//cat2Texture->AddTexture("../resources/textures/cat.png");
+	//cat2->GetComponent<Transform>()->SetTransform(glm::vec3(-1, 0, 0), 180.0f, glm::vec3(1, 1, 1));
 
 	//std::shared_ptr<Entity> cat3 = core->AddEntity();
 	//std::shared_ptr<Orthagraphic> cat3Renderer = cat3->AddComponent<Orthagraphic>();

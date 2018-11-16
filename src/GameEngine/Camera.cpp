@@ -26,14 +26,6 @@ void Camera::SetPosition(glm::vec3 _position)
 	GetEntity()->GetComponent<Transform>()->SetPosition(-position);
 }
 
-void Camera::SetRotation(float _angle, glm::vec3 _orientation)
-{
-	angle = _angle;
-	rotationOrientation = _orientation;
-}
-
-
-
 void Camera::Display()
 {
 

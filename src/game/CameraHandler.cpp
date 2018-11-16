@@ -24,7 +24,7 @@ void CameraHandler::Update()
 
 void CameraHandler::Movement()
 {
-	speed = 1.0f * GetEnvironment()->GetDeltaTime();
+	speed = 7.0f * GetEnvironment()->GetDeltaTime();
 	postition = transform->GetPosition();
 	if (keyInput->GetKeyDown("W"))
 	{
@@ -42,7 +42,7 @@ void CameraHandler::Movement()
 	{
 		postition += glm::normalize(glm::cross(*cameraFront, glm::vec3(0, 1, 0))) * speed;
 	}
-	postition.y = 0;
+	//postition.y = 0;
 	transform->SetPosition(postition);
 }
 

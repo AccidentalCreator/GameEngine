@@ -19,7 +19,6 @@ class MeshRenderer : public Component
 {
 public:
 	void Awake();
-	void AddModel(std::string _modelPath, std::string _texturePath, std::string _vertexPath, std::string _fragPath);
 	void AddModel(std::string _modelPath, std::string _vertexPath, std::string _fragPath);
 
 	std::shared_ptr<ShaderProgram> GetShaders() { return shaders; }

@@ -69,6 +69,10 @@ void Core::Start()
 			if (event.type == SDL_KEYDOWN)
 			{
 				keyboard->SetKeyPressed(event.key.keysym.sym);
+				if (keyboard->GetKeyDown("Escape"))
+				{
+					running = false;
+				}
 			}
 			else if (event.type == SDL_KEYUP)
 			{

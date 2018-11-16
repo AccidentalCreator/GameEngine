@@ -35,13 +35,16 @@ void Screen::Init()
 		throw std::exception();
 	}
 
-	
-
 	// OpenGL windoow settings
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
 
-	projection = glm::perspective(glm::radians(45.0f), (float)(WINDOW_WIDTH / WINDOW_HEIGHT), 0.1f, 100.0f);
+	// Locks mouse to window
+	SDL_WarpMouseInWindow(window, size.x / 2, size.y / 2);
+	SDL_SetRelativeMouseMode(SDL_TRUE);
+	SDL_CaptureMouse(SDL_TRUE);
+
+	projection = glm::perspective(glm::radians(45.0f), (float)(WINDOW_WIDTH / WINDOW_HEIGHT), 0.1f, 500.0f);
 }
 
 void Screen::Clear()

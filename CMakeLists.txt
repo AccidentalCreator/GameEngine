@@ -93,6 +93,8 @@ add_library(GameEngine
 	src/GameEngine/Orthagraphic.h
 	src/GameEngine/Timer.h
 	src/GameEngine/Texture.h
+	src/GameEngine/StaticMeshCollider.h
+	src/GameEngine/Mesh.h
 
 	src/GameEngine/VertexBuffer.h
 	src/GameEngine/VertexArray.h
@@ -119,6 +121,8 @@ add_library(GameEngine
 	src/GameEngine/Orthagraphic.cpp
 	src/GameEngine/Timer.cpp
 	src/GameEngine/Texture.cpp
+	src/GameEngine/StaticMeshCollider.cpp
+	src/GameEngine/Mesh.cpp
 
 	src/GameEngine/VertexBuffer.cpp
 	src/GameEngine/VertexArray.cpp
