@@ -21,6 +21,7 @@
 #include "BoxCollision.h"
 #include "Timer.h"
 #include "Texture.h"
+#include "StaticMeshCollider.h"
 
 class GameObject
 {

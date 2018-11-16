@@ -41,7 +41,7 @@ void Screen::Init()
 
 	// Locks mouse to window
 	SDL_WarpMouseInWindow(window, size.x / 2, size.y / 2);
-	SDL_SetRelativeMouseMode(SDL_TRUE);
+	//SDL_SetRelativeMouseMode(SDL_TRUE);
 	SDL_CaptureMouse(SDL_TRUE);
 
 	projection = glm::perspective(glm::radians(45.0f), (float)(WINDOW_WIDTH / WINDOW_HEIGHT), 0.1f, 500.0f);

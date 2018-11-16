@@ -1,147 +1,3 @@
-#include "StaticMeshCollider.h"
-#include "VertexArray.h"
-#include "Entity.h"
-#include "MeshRenderer.h"
-#include <math.h>
-#include <stdio.h>
-#include <iostream>
-
-// ASK KARSTEN WHAT MAGIC HE USED TO USE THIS LINE
-//int triBoxOverLap(float _colCentre[3], float _halfColSize[3], float triVerts[3][3]);
-
-void StaticMeshCollider::Start()
-{
-	noOfColumns = 10;
-
-	std::shared_ptr<MeshRenderer> meshRenderer = GetEntity()->GetComponent<MeshRenderer>();
-	std::shared_ptr<VertexArray> meshData = meshRenderer->GetMeshData();
-	FindSizeOfModel();
-
-	// Create Partioned Columns
-	glm::vec3 meshSize = size.maxCoord - size.minCoord;
-	glm::vec3 columnSize = meshSize / noOfColumns;
-	columnSize.y = meshSize.y; // Top of column is top of model
-
-	for (size_t y = 0; y < noOfColumns; y++)
-	{
-		// Set position to middle of columns
-		glm::vec3 position = size.minCoord + columnSize / 2.0f;
-		position.z += (float)y * columnSize.z;
-
-		for (size_t x = 0; x < noOfColumns; x++)
-		{
-			std::shared_ptr<PartitioningColumn> column = std::make_shared<PartitioningColumn>();
-			column->size = columnSize;
-			column->position = position;
-			columns.push_back(column);
-			position.x += columnSize.x;
-		}
-	}
-
-	// Add faces to vector of faces
-	for (size_t i = 0; i < meshData->faces.size(); i++)
-	{
-		Face face = meshData->faces.at(i);
-		AddFace(face);
-	}
-}
-
-void StaticMeshCollider::AddFace(Face _face)
-{
-	float face[3][3] = { 0 };
-	face[0][0] = _face.a.position.x;
-	face[0][1] = _face.a.position.y;
-	face[0][2] = _face.a.position.z;
-
-	face[1][0] = _face.b.position.x;
-	face[1][1] = _face.b.position.y;
-	face[1][2] = _face.b.position.z;
-
-	face[2][0] = _face.c.position.x;
-	face[2][1] = _face.c.position.y;
-	face[2][2] = _face.c.position.z;
-
-	bool faceFound = false;
-
-	for (size_t i = 0; i < columns.size(); i++)
-	{
-		// Not sure what stands for
-		float columnCentre[3] = { 0 };
-		columnCentre[0] = columns.at(i)->position.x;
-		columnCentre[1] = columns.at(i)->position.y;
-		columnCentre[2] = columns.at(i)->position.z;
-
-		// Sub collumns overlap
-		glm::vec3 subColumn = columns.at(i)->size;
-		subColumn.x += 1;
-		subColumn.z += 1;
-
-		float halfColumnSize[3] = { 0 };
-		halfColumnSize[0] = subColumn.x / 2.0f;
-		halfColumnSize[1] = subColumn.y / 2.0f;
-		halfColumnSize[2] = subColumn.z / 2.0f;
-
-		if (triBoxOverlap(columnCentre, halfColumnSize, face))
-		{
-			columns.at(i)->faces.push_back(_face);
-			faceFound = true;
-		}
-	}
-
-	if (!faceFound)
-	{
-		static int g = 0;
-		// Face not found
-		std::cout << "FACE NOT FOUND "  << g << std::endl;
-		g++;
-		//throw std::exception();
-	}
-}
-
-void StaticMeshCollider::FindSizeOfModel()
-{
-	std::vector<glm::vec3> positions;
-	std::shared_ptr<MeshRenderer> meshRenderer = GetEntity()->GetComponent<MeshRenderer>();
-	std::shared_ptr<VertexArray> meshData = meshRenderer->GetMeshData();
-
-	// Place all the vertex position data into the positions vector
-	for (size_t i = 0; i < meshData->faces.size(); i++)
-	{
-		Face face = meshData->faces.at(i);
-		positions.push_back(face.a.position);
-		positions.push_back(face.b.position);
-		positions.push_back(face.c.position);
-	}
-
-	// Assign positions of first face
-	size.maxCoord = positions.at(0);
-	size.minCoord = positions.at(0);
-
-	for (size_t i = 1; i < positions.size(); i++)
-	{
-		// Check max position
-		if (positions.at(i).x > size.maxCoord.x)
-			size.maxCoord.x = positions.at(i).x;
-		if (positions.at(i).y > size.maxCoord.y)
-			size.maxCoord.y = positions.at(i).y;
-		if (positions.at(i).z > size.maxCoord.z)
-			size.maxCoord.z = positions.at(i).z;
-
-		// Check min positions
-		if (positions.at(i).x < size.minCoord.x)
-			size.minCoord.x = positions.at(i).x;
-		if (positions.at(i).y < size.minCoord.y)
-			size.minCoord.y = positions.at(i).y;
-		if (positions.at(i).z < size.minCoord.z)
-			size.minCoord.z = positions.at(i).z;
-	}
-
-	// Not Sure why this
-	size.minCoord = size.minCoord - glm::vec3(1, 1, 1);
-	size.maxCoord = size.maxCoord + glm::vec3(1, 1, 1);
-}
-
-
 /********************************************************/
 /* AABB-triangle overlap test code                      */
 /* by Tomas Akenine-Möller                              */
@@ -155,6 +11,8 @@ void StaticMeshCollider::FindSizeOfModel()
 /* suggestions and discussions on how to optimize code. */
 /* Thanks to David Hunt for finding a ">="-bug!         */
 /********************************************************/
+#include <math.h>
+#include <stdio.h>
 
 #define X 0
 #define Y 1
@@ -179,7 +37,7 @@ void StaticMeshCollider::FindSizeOfModel()
   if(x2<min) min=x2;\
   if(x2>max) max=x2;
 
-int StaticMeshCollider::planeBoxOverlap(float normal[3], float vert[3], float maxbox[3])	// -NJMP-
+int planeBoxOverlap(float normal[3], float vert[3], float maxbox[3])	// -NJMP-
 {
 	int q;
 	float vmin[3], vmax[3], v;
@@ -250,7 +108,7 @@ int StaticMeshCollider::planeBoxOverlap(float normal[3], float vert[3], float ma
 	rad = fa * boxhalfsize[X] + fb * boxhalfsize[Y];   \
 	if(min>rad || max<-rad) return 0;
 
-int StaticMeshCollider::triBoxOverlap(float boxcenter[3], float boxhalfsize[3], float triverts[3][3])
+int triBoxOverlap(float boxcenter[3], float boxhalfsize[3], float triverts[3][3])
 {
 
 	/*    use separating axis theorem to test overlap between triangle and box */

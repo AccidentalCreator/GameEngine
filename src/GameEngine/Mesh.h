@@ -4,6 +4,7 @@
 
 #include <memory>
 #include <vector>
+#include <glm.hpp>
 
 struct MeshSpace;
 struct Face;
@@ -11,12 +12,13 @@ struct Face;
 class Mesh
 {
 public:
-//	Mesh();
-//	std::vector<Face>& GetFaces();
-//	void AddFace(Face& _face);
-//
-//private:
-//	std::shared_ptr<MeshSpace> meshSpace;
+	Mesh();
+
+	std::vector<Face>& GetFaces();
+	void AddFace(Face& _face);
+
+private:
+	std::shared_ptr<MeshSpace> meshSpace;
 };
 
 #endif // !MESH_H

@@ -10,10 +10,14 @@
 #include <string>
 #include <glm.hpp>
 
+#include "Face.h"
+
 class VertexBuffer;
+class StaticModelCollider;
 
 class VertexArray
 {
+	friend class StaticMeshCollider;
 public:
 	VertexArray();
 	VertexArray(std::string _modelPath);
@@ -33,9 +37,7 @@ private:
 	void removeWhitespace(std::string& _string, std::vector<std::string>& _output);
 	void splitString(std::string& _input, char _splitter, std::vector<std::string>& _output);
 
-	glm::vec3 maxPoint;
-	glm::vec3 mindPoint;
-
+	std::vector<Face> faces;
 };
 
 #endif // !VERTEXARRAY_H

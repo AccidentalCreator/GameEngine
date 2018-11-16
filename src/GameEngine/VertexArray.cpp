@@ -78,35 +78,77 @@ VertexArray::VertexArray(std::string _modelPath) : dirty(false)
 		}
 		else if (splitLine.at(0) == "f")
 		{
+			Face face;
+
 			std::vector<std::string> subsplit;
+
+			// Face V1
 			splitString(splitLine.at(1), '/', subsplit);
+			
+			face.a.position = positions.at(atoi(subsplit.at(0).c_str()) - 1);
+			face.a.texCoord = texCoords.at(atoi(subsplit.at(1).c_str()) - 1);
 
 			positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));
 			if (texCoordBuffer) texCoordBuffer->Add(texCoords.at(atoi(subsplit.at(1).c_str()) - 1));
 			if (normalBuffer) normalBuffer->Add(normals.at(atoi(subsplit.at(2).c_str()) - 1));
+			
+			// Face V2
 			splitString(splitLine.at(2), '/', subsplit);
+
+			face.b.position = positions.at(atoi(subsplit.at(0).c_str()) - 1);
+			face.b.texCoord = texCoords.at(atoi(subsplit.at(1).c_str()) - 1);
+
 			positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));
 			if (texCoordBuffer) texCoordBuffer->Add(texCoords.at(atoi(subsplit.at(1).c_str()) - 1));
 			if (normalBuffer) normalBuffer->Add(normals.at(atoi(subsplit.at(2).c_str()) - 1));
+			
+			// Face V3
 			splitString(splitLine.at(3), '/', subsplit);
+
+			face.c.position = positions.at(atoi(subsplit.at(0).c_str()) - 1);
+			face.c.texCoord = texCoords.at(atoi(subsplit.at(1).c_str()) - 1);
+
 			positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));
 			if (texCoordBuffer) texCoordBuffer->Add(texCoords.at(atoi(subsplit.at(1).c_str()) - 1));
 			if (normalBuffer) normalBuffer->Add(normals.at(atoi(subsplit.at(2).c_str()) - 1));
+
+			faces.push_back(face); // Add face to vector
 
 			if (splitLine.size() < 5) continue;
+			
+			face = Face(); // New face
+
+			// Face V1
 			splitString(splitLine.at(3), '/', subsplit);
+
+			face.a.position = positions.at(atoi(subsplit.at(0).c_str()) - 1);
+			face.a.texCoord = texCoords.at(atoi(subsplit.at(1).c_str()) - 1);
 
 			positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));
 			if (texCoordBuffer) texCoordBuffer->Add(texCoords.at(atoi(subsplit.at(1).c_str()) - 1));
 			if (normalBuffer) normalBuffer->Add(normals.at(atoi(subsplit.at(2).c_str()) - 1));
+			
+			// Face V2
 			splitString(splitLine.at(4), '/', subsplit);
+
+			face.b.position = positions.at(atoi(subsplit.at(0).c_str()) - 1);
+			face.b.texCoord = texCoords.at(atoi(subsplit.at(1).c_str()) - 1);
+
 			positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));
 			if (texCoordBuffer) texCoordBuffer->Add(texCoords.at(atoi(subsplit.at(1).c_str()) - 1));
 			if (normalBuffer) normalBuffer->Add(normals.at(atoi(subsplit.at(2).c_str()) - 1));
+			
+			// Face V3
 			splitString(splitLine.at(1), '/', subsplit);
+
+			face.c.position = positions.at(atoi(subsplit.at(0).c_str()) - 1);
+			face.c.texCoord = texCoords.at(atoi(subsplit.at(1).c_str()) - 1);
+
 			positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));
 			if (texCoordBuffer) texCoordBuffer->Add(texCoords.at(atoi(subsplit.at(1).c_str()) - 1));
 			if (normalBuffer) normalBuffer->Add(normals.at(atoi(subsplit.at(2).c_str()) - 1));
+		
+			faces.push_back(face); // Add face to vector
 		}
 	}
 
