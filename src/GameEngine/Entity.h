@@ -85,6 +85,7 @@ private:
 	std::weak_ptr<Entity> self;
 
 	void Update();
+	void LateUpdate();
 	void Display();
 
 	bool isAlive;

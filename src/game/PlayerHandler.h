@@ -13,11 +13,6 @@ public:
 	void Update();
 	void Display();
 
-	void GravitySim();
-	
-	void SetColliding(bool _colliding) { colliding = _colliding; }
-	// delete after testing
-	bool GetColliding() { return colliding; }
 
 private:
 
@@ -26,15 +21,8 @@ private:
 	std::shared_ptr<glm::vec3> position;
 
 	float speed;
-	bool movementUp;
-	bool movementDown;
-	bool movementLeft;
-	bool movementRight;
-	bool colliding;
-
 
 	void Movement();
-	void CheckKeyRelease();
 
 };
 

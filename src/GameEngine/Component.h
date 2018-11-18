@@ -30,6 +30,7 @@ private:
 	virtual void Awake();
 	virtual void Start();
 	virtual void Update();
+	virtual void LateUpdate();
 	virtual void Display();
 
 	bool ranOnce;

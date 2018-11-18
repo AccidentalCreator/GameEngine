@@ -1,8 +1,7 @@
 #include <GameEngine\GameEngine.h>
-#include "PlayerHandler.h"
 #include "CameraHandler.h"
-#include "FloorManager.h"
-#include "FloorBlock.h" // Can deleted after testing
+#include "PickUpHandler.h"
+#include "PlayerHandler.h"
 
 #include <iostream>
 #include <memory>
@@ -11,19 +10,29 @@ int main()
 {
 
 	std::shared_ptr<Core> core = Core::Initialize();
+   
+	// Map 
+	std::shared_ptr<Entity> level = core->AddEntity();
+	std::shared_ptr<MeshRenderer> levelRenderer = level->AddComponent<MeshRenderer>();
+	levelRenderer->AddModel("../resources/models/Map3.obj", "../resources/shaders/simple.vert", "../resources/shaders/simple.frag");
+	std::shared_ptr<StaticMeshCollider> meshCollider = level->AddComponent<StaticMeshCollider>();
+	std::shared_ptr<Texture> levelTexture = level->AddComponent<Texture>();
+	levelTexture->AddTexture("../resources/textures/MapTexture.png");
+	level->GetComponent<Transform>()->SetTransform(glm::vec3(-100, -10, -50), 0.0f, glm::vec3(1.0f, 1.0f, 1.0f));
 
+	// Camera
 	std::shared_ptr<Entity> camera = core->AddEntity();
-	camera->GetComponent<Transform>()->SetPosition(glm::vec3 (0, 0, -10));
+	camera->SetTag("Player");
+	camera->GetComponent<Transform>()->SetPosition(glm::vec3 (0, 0, -1));
+	camera->GetComponent<Transform>()->SetSize(glm::vec3(1, 1, 1));
 	std::shared_ptr<Camera> cam = camera->AddComponent<Camera>();
 	std::shared_ptr<CameraHandler> cameraHandler = camera->AddComponent<CameraHandler>();
-	
+	camera->GetComponent<CameraHandler>()->staticMeshCollider = meshCollider;
 
-	//std::shared_ptr<Entity> GameHandler = core->AddEntity();
-	//std::shared_ptr<FloorManager> floorHandler = GameHandler->AddComponent<FloorManager>();
 
 	//std::shared_ptr<Entity> player = core->AddEntity();
 	//player->SetTag("Player");
-	//player->GetComponent<Transform>()->SetTransform(glm::vec3(0, 1, 0), 0.0f, glm::vec3(1, 1, 1));
+	//player->GetComponent<Transform>()->SetTransform(glm::vec3(5, 0, 5), 0.0f, glm::vec3(1, 1, 1));
 	//player->GetComponent<Transform>()->SetSize(glm::vec3(1, 2, 1));
 	//std::shared_ptr<PlayerHandler> playerHandler = player->AddComponent<PlayerHandler>();
 	//std::shared_ptr<MeshRenderer> playerRenderer = player->AddComponent<MeshRenderer>();
@@ -31,16 +40,16 @@ int main()
 	//// Why doesnt this work!
 	////std::shared_ptr<Texture> playerTexture = player->AddComponent<Texture>("../resources/textures/MissingTexture.png");
 	//std::shared_ptr<Texture> playerTexture = player->AddComponent<Texture>();
-	//playerTexture->AddTexture("../resources/textures/MissingTexture.png");
-   
-	std::shared_ptr<Entity> level = core->AddEntity();
-	std::shared_ptr<MeshRenderer> levelRenderer = level->AddComponent<MeshRenderer>();
-	levelRenderer->AddModel("../resources/models/Map.obj", "../resources/shaders/simple.vert", "../resources/shaders/simple.frag");
-	std::shared_ptr<StaticMeshCollider> meshCollider = level->AddComponent<StaticMeshCollider>();
-	std::shared_ptr<Texture> levelTexture = level->AddComponent<Texture>();
-	levelTexture->AddTexture("../resources/textures/MapTexture.png");
-	level->GetComponent<Transform>()->SetTransform(glm::vec3(-100, -10, -50), 0.0f, glm::vec3(0.1f, 0.1f, 0.1f));
-	//level->GetComponent<Transform>()->SetTransform(glm::vec3(0, 0, 0), 0.0f, glm::vec3(1.0f, 1.0f, 1.0f));
+	//playerTexture->AddTexture("../resources/textures/cat.png");
+
+
+	std::shared_ptr<Entity> pickUp = core->AddEntity();
+	std::shared_ptr<MeshRenderer> pickUpMesh = pickUp->AddComponent<MeshRenderer>();
+	pickUpMesh->AddModel("../resources/models/Cube3.obj", "../resources/shaders/simple.vert", "../resources/shaders/simple.frag");
+	pickUp->GetComponent<Transform>()->SetTransform(glm::vec3(0, 0, 0), 0.0f, glm::vec3(2.0f, 2.0f, 2.0f));
+	std::shared_ptr<Texture> pickUpTexture = pickUp->AddComponent<Texture>();
+	pickUpTexture->AddTexture("../resources/textures/WhiteCube.png");
+	std::shared_ptr<PickUpHandler> pickUpHandler = pickUp->AddComponent<PickUpHandler>();
 
 	//std::shared_ptr<Entity> cat = core->AddEntity();
 	//std::shared_ptr<MeshRenderer> catRenderer = cat->AddComponent<MeshRenderer>();

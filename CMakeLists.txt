@@ -11,6 +11,7 @@ if(MSVC)
     contrib/msvc-windows-x86/openal-soft/include
     contrib/msvc-windows-x86/ogg/include
     contrib/msvc-windows-x86/vorbis/include
+    contrib/msvc-windows-x86/SDL2_ttf-2.0.14/include
   )
 
   link_directories(
@@ -21,6 +22,7 @@ if(MSVC)
     ${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/openal-soft/lib
     ${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/ogg/lib
     ${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/vorbis/lib
+    ${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/SDL2_ttf-2.0.14/lib/x86
   )
 
 endif()
@@ -30,25 +32,23 @@ if(MSVC)
 endif()
 
 add_executable(game
-	src/game/PlayerHandler.h
 	src/game/CameraHandler.h
-	src/game/FloorBlock.h
-	src/game/FloorManager.h
+	src/game/PlayerHandler.h
+	src/game/PickUpHandler.h
 
 	src/game/main.cpp
-	src/game/PlayerHandler.cpp
 	src/game/CameraHandler.cpp
-	src/game/FloorBlock.cpp
-	src/game/FloorManager.cpp
+	src/game/PlayerHandler.cpp
+	src/game/PickUpHandler.cpp
 )
 
 if(MSVC)
   target_link_libraries(game
-    SDL2 SDL2_image glew32 opengl32 OpenAL32 ogg vorbis vorbisfile
+    SDL2 SDL2_image glew32 opengl32 OpenAL32 ogg vorbis vorbisfile SDL2_ttf
   )
 else()
   target_link_libraries(game
-    SDL2 SDL2_image GLU GLEW GL AL ogg vorbis vorbisfile
+    SDL2 SDL2_image GLU GLEW GL AL ogg vorbis vorbisfile SDL2_ttf
   )
 endif()
 
@@ -68,6 +68,12 @@ if(MSVC)
   add_custom_command(TARGET game POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
       "${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/openal-soft/bin/OpenAL32.dll"
+      "$<TARGET_FILE_DIR:GameEngine>"
+  )
+
+  add_custom_command(TARGET game POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+      "${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/SDL2_ttf-2.0.14/lib/x86/SDL2_ttf.dll"
       "$<TARGET_FILE_DIR:GameEngine>"
   )
 endif()
@@ -134,6 +140,6 @@ add_library(GameEngine
 )
 	
 target_link_libraries(game GameEngine)
-target_link_libraries(GameEngine SDL2 SDL2_image glew32 opengl32)
+target_link_libraries(GameEngine SDL2 SDL2_image glew32 opengl32 SDL2_ttf)
 
 

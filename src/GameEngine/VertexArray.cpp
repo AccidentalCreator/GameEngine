@@ -151,7 +151,7 @@ VertexArray::VertexArray(std::string _modelPath) : dirty(false)
 			faces.push_back(face); // Add face to vector
 		}
 	}
-
+	
 	SetBuffer("in_Position", positionBuffer);
 	if (texCoordBuffer) SetBuffer("in_TexCoord", texCoordBuffer);
 	if (normalBuffer) SetBuffer("in_Normal", normalBuffer);
@@ -281,4 +281,54 @@ GLuint VertexArray::GetID()
 VertexArray::~VertexArray()
 {
 
+}
+
+void VertexArray::FindModelSize()
+{
+	std::vector<glm::vec3> positions;
+	for (size_t i = 0; i < faces.size(); i++)
+	{
+		positions.push_back(faces.at(i).a.position);
+		positions.push_back(faces.at(i).b.position);
+		positions.push_back(faces.at(i).c.position);
+	}
+
+	glm::vec3 maxPosition = positions.at(0);
+	glm::vec3 minPosition = positions.at(0);
+
+	for (size_t i = 1; i < positions.size(); i++)
+	{
+		// Check max position
+		if (positions.at(i).x > maxPosition.x)
+		{
+			maxPosition.x = positions.at(i).x;
+		}
+		if (positions.at(i).y > maxPosition.y)
+		{
+			maxPosition.y = positions.at(i).y;
+		}
+		if (positions.at(i).z > maxPosition.z)
+		{
+			maxPosition.z = positions.at(i).z;
+		}
+
+		// Check min position
+		if (positions.at(i).x < minPosition.x)
+		{
+			minPosition.x = positions.at(i).x;
+		}
+		if (positions.at(i).y < minPosition.y)
+		{
+			minPosition.y = positions.at(i).y;
+		}
+		if (positions.at(i).z < minPosition.z)
+		{
+			minPosition.z = positions.at(i).z;
+		}
+	}
+
+	glm::vec3 RenderSize;
+	RenderSize.x = maxPosition.x - minPosition.x;
+	RenderSize.y = maxPosition.y - minPosition.y;
+	RenderSize.z = maxPosition.z - minPosition.z;
 }

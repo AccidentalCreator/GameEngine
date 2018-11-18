@@ -11,11 +11,9 @@ public:
 	void Start();
 	glm::mat4 GetViewMatrix();
 
-	void SetPosition(glm::vec3 _position);
-
 	std::shared_ptr<glm::vec3> GetCameraFront() { return cameraFront; }
 	void SetCameraFront(glm::vec3 _cameraFront) { *cameraFront.get() = _cameraFront; }
-
+	void SetTarget(glm::vec3 _target);
 
 private:
 	void Display();

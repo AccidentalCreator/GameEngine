@@ -32,19 +32,19 @@ public:
 	void Start();
 	SizeData GetData();
 	bool Colliding(glm::vec3 _position, glm::vec3 _size);
+	glm::vec3 CollisionAdjustment(glm::vec3 _position, glm::vec3 _size, bool& _solved, glm::vec3 _lastPosition);
 
 private:
 	std::vector<std::shared_ptr<PartitioningColumn> > columns;
 	SizeData size;
 	float noOfColumns;
+	float tryStep;
+	float maxStep;
+	float increment;
+	float maxIncrement;
 	
 	void AddFace(Face _face);
 	void FindSizeOfModel();
-
-	//------------------------
-
-	int triBoxOverlap(float boxcenter[3], float boxhalfsize[3], float triverts[3][3]);
-	int planeBoxOverlap(float normal[3], float vert[3], float maxbox[3]);
 };
 
 #endif // !STATICMESHCOLLIDER_H

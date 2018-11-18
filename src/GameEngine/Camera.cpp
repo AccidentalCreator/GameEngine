@@ -10,20 +10,22 @@ void Camera::Start()
 	up = glm::vec3(0.0f, 1.0f, 0.0f);
 	cameraRight = glm::normalize(glm::cross(up, direction));
 	cameraUp = glm::cross(direction, cameraRight);
-	cameraFront = std::make_shared<glm::vec3>(0.0f, 0.0f, 1.0f);
+	cameraFront = std::make_shared<glm::vec3>(0.0f, 0.0f, -1.0f);
 }
 
 glm::mat4 Camera::GetViewMatrix()
 {
 	position = GetEntity()->GetComponent<Transform>()->GetPosition();
+	//viewMatrix = glm::lookAt(position, *cameraFront + target, up);
 	viewMatrix = glm::lookAt(position, position + *cameraFront, cameraUp);
+	glm::inverse(viewMatrix);
 	return viewMatrix;
 }
 
-void Camera::SetPosition(glm::vec3 _position)
+void Camera::SetTarget(glm::vec3 _target)
 {
-	position = _position;
-	GetEntity()->GetComponent<Transform>()->SetPosition(-position);
+	target = _target;
+	Start();
 }
 
 void Camera::Display()

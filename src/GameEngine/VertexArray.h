@@ -36,6 +36,7 @@ private:
 
 	void removeWhitespace(std::string& _string, std::vector<std::string>& _output);
 	void splitString(std::string& _input, char _splitter, std::vector<std::string>& _output);
+	void FindModelSize();
 
 	std::vector<Face> faces;
 };

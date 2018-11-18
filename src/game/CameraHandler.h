@@ -10,12 +10,13 @@ class CameraHandler : public Component
 public:	
 	void Awake();
 	void Start();
-	void Update();
+	void LateUpdate();
 
-
+	std::shared_ptr<StaticMeshCollider> staticMeshCollider;
+	
 
 private:
-
+	std::weak_ptr<Entity> player;
 	std::shared_ptr<MouseHandler> mouseInput;
 	std::shared_ptr<KeyboardHandler> keyInput;
 
@@ -25,6 +26,7 @@ private:
 
 	void Movement();
 	void Direction();
+	void CheckCollision(glm::vec3 lastPosition, glm::vec3 newPosition);
 
 	float speed;
 	float lastMouseX;
@@ -37,6 +39,7 @@ private:
 	glm::vec3 newCameraFront;
 
 	bool runOnce;
+
 };
 
 #endif // !CAMERAHANDLER_H

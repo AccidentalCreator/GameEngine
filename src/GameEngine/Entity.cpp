@@ -27,6 +27,20 @@ void Entity::Update()
 	}
 }
 
+void Entity::LateUpdate()
+{
+	for (std::vector<std::shared_ptr<Component> >::iterator it = components.begin();
+		it != components.end(); it++)
+	{
+		try
+		{
+			(*it)->LateUpdate();
+		}
+		catch (...) {}
+
+	}
+}
+
 void Entity::Display()
 {
 	for (std::vector<std::shared_ptr<Component> >::iterator it = components.begin();

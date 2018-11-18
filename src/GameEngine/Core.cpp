@@ -94,6 +94,11 @@ void Core::Start()
 			(*it)->Update();
 		}
 
+		for (auto it = entities.begin(); it != entities.end(); it++)
+		{
+			(*it)->LateUpdate();
+		}
+
 		for (auto it = entities.begin(); it != entities.end(); )
 		{
 			if (!(*it)->isAlive)
