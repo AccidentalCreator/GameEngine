@@ -24,6 +24,7 @@ public:
 	~VertexArray();
 
 	void SetBuffer(std::string _attribute, std::weak_ptr<VertexBuffer> _buffer);
+	glm::vec3 FindRenderSize();
 
 	int GetVertexCount();
 	GLuint GetID();
@@ -36,7 +37,6 @@ private:
 
 	void removeWhitespace(std::string& _string, std::vector<std::string>& _output);
 	void splitString(std::string& _input, char _splitter, std::vector<std::string>& _output);
-	void FindModelSize();
 
 	std::vector<Face> faces;
 };

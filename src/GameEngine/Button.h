@@ -6,15 +6,22 @@
 
 #include "Component.h"
 
+class MouseHandler;
+
 class Button : public Component
 {
 public:
-	void AddButton(glm::vec3 _position);
+	void Start();
+	bool CheckClicked();
 
 private:
-	void Display();
 
-	glm::vec3 position;
+	std::shared_ptr<MouseHandler> mouseInput;
+
+	glm::vec2 size;
+	glm::vec2 position;
+
+	bool runOnce;
 };
 
 #endif // !BUTTON_H

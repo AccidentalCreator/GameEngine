@@ -2,6 +2,7 @@
 #include "CameraHandler.h"
 #include "PickUpHandler.h"
 #include "PlayerHandler.h"
+#include "MainMenu.h"
 
 #include <iostream>
 #include <memory>
@@ -10,6 +11,10 @@ int main()
 {
 
 	std::shared_ptr<Core> core = Core::Initialize();
+
+	// Main Menu
+	std::shared_ptr<Entity> menu = core->AddEntity();
+	std::shared_ptr<MainMenu> mainMenu = menu->AddComponent<MainMenu>();
    
 	// Map 
 	std::shared_ptr<Entity> level = core->AddEntity();

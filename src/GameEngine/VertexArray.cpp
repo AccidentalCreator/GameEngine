@@ -86,7 +86,7 @@ VertexArray::VertexArray(std::string _modelPath) : dirty(false)
 			splitString(splitLine.at(1), '/', subsplit);
 			
 			face.a.position = positions.at(atoi(subsplit.at(0).c_str()) - 1);
-			face.a.texCoord = texCoords.at(atoi(subsplit.at(1).c_str()) - 1);
+			//face.a.texCoord = texCoords.at(atoi(subsplit.at(1).c_str()) - 1);
 
 			positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));
 			if (texCoordBuffer) texCoordBuffer->Add(texCoords.at(atoi(subsplit.at(1).c_str()) - 1));
@@ -96,7 +96,7 @@ VertexArray::VertexArray(std::string _modelPath) : dirty(false)
 			splitString(splitLine.at(2), '/', subsplit);
 
 			face.b.position = positions.at(atoi(subsplit.at(0).c_str()) - 1);
-			face.b.texCoord = texCoords.at(atoi(subsplit.at(1).c_str()) - 1);
+			//face.b.texCoord = texCoords.at(atoi(subsplit.at(1).c_str()) - 1);
 
 			positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));
 			if (texCoordBuffer) texCoordBuffer->Add(texCoords.at(atoi(subsplit.at(1).c_str()) - 1));
@@ -106,7 +106,7 @@ VertexArray::VertexArray(std::string _modelPath) : dirty(false)
 			splitString(splitLine.at(3), '/', subsplit);
 
 			face.c.position = positions.at(atoi(subsplit.at(0).c_str()) - 1);
-			face.c.texCoord = texCoords.at(atoi(subsplit.at(1).c_str()) - 1);
+			//face.c.texCoord = texCoords.at(atoi(subsplit.at(1).c_str()) - 1);
 
 			positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));
 			if (texCoordBuffer) texCoordBuffer->Add(texCoords.at(atoi(subsplit.at(1).c_str()) - 1));
@@ -122,7 +122,7 @@ VertexArray::VertexArray(std::string _modelPath) : dirty(false)
 			splitString(splitLine.at(3), '/', subsplit);
 
 			face.a.position = positions.at(atoi(subsplit.at(0).c_str()) - 1);
-			face.a.texCoord = texCoords.at(atoi(subsplit.at(1).c_str()) - 1);
+			//face.a.texCoord = texCoords.at(atoi(subsplit.at(1).c_str()) - 1);
 
 			positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));
 			if (texCoordBuffer) texCoordBuffer->Add(texCoords.at(atoi(subsplit.at(1).c_str()) - 1));
@@ -132,7 +132,7 @@ VertexArray::VertexArray(std::string _modelPath) : dirty(false)
 			splitString(splitLine.at(4), '/', subsplit);
 
 			face.b.position = positions.at(atoi(subsplit.at(0).c_str()) - 1);
-			face.b.texCoord = texCoords.at(atoi(subsplit.at(1).c_str()) - 1);
+			//face.b.texCoord = texCoords.at(atoi(subsplit.at(1).c_str()) - 1);
 
 			positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));
 			if (texCoordBuffer) texCoordBuffer->Add(texCoords.at(atoi(subsplit.at(1).c_str()) - 1));
@@ -142,7 +142,7 @@ VertexArray::VertexArray(std::string _modelPath) : dirty(false)
 			splitString(splitLine.at(1), '/', subsplit);
 
 			face.c.position = positions.at(atoi(subsplit.at(0).c_str()) - 1);
-			face.c.texCoord = texCoords.at(atoi(subsplit.at(1).c_str()) - 1);
+			//face.c.texCoord = texCoords.at(atoi(subsplit.at(1).c_str()) - 1);
 
 			positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));
 			if (texCoordBuffer) texCoordBuffer->Add(texCoords.at(atoi(subsplit.at(1).c_str()) - 1));
@@ -283,7 +283,7 @@ VertexArray::~VertexArray()
 
 }
 
-void VertexArray::FindModelSize()
+glm::vec3 VertexArray::FindRenderSize()
 {
 	std::vector<glm::vec3> positions;
 	for (size_t i = 0; i < faces.size(); i++)
@@ -327,8 +327,10 @@ void VertexArray::FindModelSize()
 		}
 	}
 
-	glm::vec3 RenderSize;
-	RenderSize.x = maxPosition.x - minPosition.x;
-	RenderSize.y = maxPosition.y - minPosition.y;
-	RenderSize.z = maxPosition.z - minPosition.z;
+	glm::vec3 renderSize;
+	renderSize.x = maxPosition.x - minPosition.x;
+	renderSize.y = maxPosition.y - minPosition.y;
+	renderSize.z = maxPosition.z - minPosition.z;
+
+	return renderSize;
 }

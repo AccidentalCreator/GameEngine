@@ -82,6 +82,10 @@ void Core::Start()
 			{
 				mouse->SetMouseButtonPressed(event.button);
 			}
+			else if (event.type == SDL_MOUSEBUTTONUP)
+			{
+				mouse->SetMouseButtonReleased(event.button);
+			}
 			else if (event.type == SDL_MOUSEMOTION)
 			{
 				mouse->SetMousePosition(event.motion.x, event.motion.y);

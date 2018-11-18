@@ -14,15 +14,15 @@ bool MouseHandler::GetMouseButtonDown(int _button)
 
 void MouseHandler::SetMouseButtonPressed(SDL_MouseButtonEvent _event)
 {
-	if (_event.type == SDL_BUTTON_LEFT)
+	if (_event.button == SDL_BUTTON_LEFT)
 	{
 		mouseButtonDown.push_back(0);
 	}
-	else if (_event.type == SDL_BUTTON_RIGHT)
+	else if (_event.button == SDL_BUTTON_RIGHT)
 	{
 		mouseButtonDown.push_back(1);
 	}
-	else if (_event.type == SDL_BUTTON_MIDDLE)
+	else if (_event.button == SDL_BUTTON_MIDDLE)
 	{
 		mouseButtonDown.push_back(2);
 	}
@@ -34,17 +34,17 @@ void MouseHandler::SetMouseButtonReleased(SDL_MouseButtonEvent _event)
 	// Remove key from down vector
 	for (size_t i = 0; i < mouseButtonDown.size(); i++)
 	{
-		if (_event.type == SDL_BUTTON_LEFT)
+		if (_event.button == SDL_BUTTON_LEFT)
 		{
 			mouseButtonDown.erase(mouseButtonDown.begin() + i);
 			i++;
 		}
-		else if (_event.type == SDL_BUTTON_RIGHT)
+		else if (_event.button == SDL_BUTTON_RIGHT)
 		{
 			mouseButtonDown.erase(mouseButtonDown.begin() + i);
 			i++;
 		}
-		else if (_event.type == SDL_BUTTON_MIDDLE)
+		else if (_event.button == SDL_BUTTON_MIDDLE)
 		{
 			mouseButtonDown.erase(mouseButtonDown.begin() + i);
 			i++;

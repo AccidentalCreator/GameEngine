@@ -35,6 +35,7 @@ void MeshRenderer::AddModel(std::string _modelPath, std::string _vertexPath, std
 	// Tells what shaders to use
 	shaders = std::make_shared<ShaderProgram>(_vertexPath, _fragPath);
 
+	GetEntity()->GetComponent<Transform>()->SetSize(meshData->FindRenderSize());
 	//texture = std::make_shared<Texture>("../resources/textures/MissingTexture.png");
 }
 

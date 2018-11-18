@@ -11,7 +11,7 @@ if(MSVC)
     contrib/msvc-windows-x86/openal-soft/include
     contrib/msvc-windows-x86/ogg/include
     contrib/msvc-windows-x86/vorbis/include
-    contrib/msvc-windows-x86/SDL2_ttf-2.0.14/include
+    contrib/msvc-windows-x86/SDL2_ttf/include
   )
 
   link_directories(
@@ -22,7 +22,7 @@ if(MSVC)
     ${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/openal-soft/lib
     ${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/ogg/lib
     ${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/vorbis/lib
-    ${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/SDL2_ttf-2.0.14/lib/x86
+    ${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/SDL2_ttf/lib
   )
 
 endif()
@@ -32,11 +32,13 @@ if(MSVC)
 endif()
 
 add_executable(game
+	src/game/MainMenu.h
 	src/game/CameraHandler.h
 	src/game/PlayerHandler.h
 	src/game/PickUpHandler.h
 
 	src/game/main.cpp
+	src/game/MainMenu.cpp
 	src/game/CameraHandler.cpp
 	src/game/PlayerHandler.cpp
 	src/game/PickUpHandler.cpp
@@ -70,12 +72,6 @@ if(MSVC)
       "${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/openal-soft/bin/OpenAL32.dll"
       "$<TARGET_FILE_DIR:GameEngine>"
   )
-
-  add_custom_command(TARGET game POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different
-      "${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/SDL2_ttf-2.0.14/lib/x86/SDL2_ttf.dll"
-      "$<TARGET_FILE_DIR:GameEngine>"
-  )
 endif()
 
 
@@ -102,6 +98,7 @@ add_library(GameEngine
 	src/GameEngine/StaticMeshCollider.h
 	src/GameEngine/Mesh.h
 	src/GameEngine/Face.h
+	src/GameEngine/Text.h
 
 	src/GameEngine/VertexBuffer.h
 	src/GameEngine/VertexArray.h
@@ -132,6 +129,7 @@ add_library(GameEngine
 	src/GameEngine/Mesh.cpp
 	src/GameEngine/Face.cpp
 	src/GameEngine/tribox.cpp
+	src/GameEngine/Text.cpp
 
 	src/GameEngine/VertexBuffer.cpp
 	src/GameEngine/VertexArray.cpp

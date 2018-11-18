@@ -22,6 +22,7 @@
 #include "Timer.h"
 #include "Texture.h"
 #include "StaticMeshCollider.h"
+#include "Button.h"
 
 class GameObject
 {
