@@ -10,7 +10,7 @@ class CameraHandler : public Component
 public:	
 	void Awake();
 	void Start();
-	void LateUpdate();
+	void Update();
 
 	std::shared_ptr<StaticMeshCollider> staticMeshCollider;
 	
@@ -27,6 +27,7 @@ private:
 	void Movement();
 	void Direction();
 	void CheckCollision(glm::vec3 lastPosition, glm::vec3 newPosition);
+	void Gravity();
 
 	float speed;
 	float lastMouseX;
@@ -36,6 +37,7 @@ private:
 	float mouseSensitivity;
 	float yaw;
 	float pitch;
+	float groundPosition;
 	glm::vec3 newCameraFront;
 
 	bool runOnce;

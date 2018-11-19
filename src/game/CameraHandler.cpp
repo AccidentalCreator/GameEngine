@@ -9,20 +9,18 @@ void CameraHandler::Awake()
 	transform = GetEntity()->GetComponent<Transform>();
 	mouseSensitivity = 0.5f;
 	cameraFront = GetEntity()->GetComponent<Camera>()->GetCameraFront();
-	//player = GetCore()->FindEntityWithTag("Player");
+	transform->SetPosition(glm::vec3(80, 10, 45));
 }
 
 void CameraHandler::Start()
 {
 }
 
-void CameraHandler::LateUpdate()
+void CameraHandler::Update()
 {
-	//GetEntity()->GetComponent<Camera>()->SetTarget(player.lock()->GetComponent<Transform>()->GetPosition());
-	//glm::vec3 position = GetEntity()->GetComponent<Transform>()->GetPosition() + glm::vec3(0, 10, -15);
-	//transform->SetPosition( position);
 	Movement();
 	Direction();
+	Gravity();
 }
 
 void CameraHandler::Movement()
@@ -31,25 +29,27 @@ void CameraHandler::Movement()
 	postition = transform->GetPosition();
 
 	glm::vec3 lastPosition = transform->GetPosition();
+	
+	glm::vec3 cameraFrontTemp = *cameraFront;
+	cameraFrontTemp.y = 0;
+
 	if (keyInput->GetKeyDown("W"))
 	{
-		postition += speed * *cameraFront;
+		postition += speed * cameraFrontTemp;
 	}
 	if (keyInput->GetKeyDown("S"))
 	{
-		postition -= speed * *cameraFront;
+		postition -= speed * cameraFrontTemp;
 	}
 	if (keyInput->GetKeyDown("A"))
 	{
-		postition -= glm::normalize(glm::cross(*cameraFront, glm::vec3(0, 1, 0))) * speed;
+		postition -= glm::normalize(glm::cross(cameraFrontTemp, glm::vec3(0, 1, 0))) * speed;
 	}
 	if (keyInput->GetKeyDown("D"))
 	{
-		postition += glm::normalize(glm::cross(*cameraFront, glm::vec3(0, 1, 0))) * speed;
+		postition += glm::normalize(glm::cross(cameraFrontTemp, glm::vec3(0, 1, 0))) * speed;
 	}
-	//postition.y = 0;
-	//CheckCollision(lastPosition, postition);
-	transform->SetPosition(postition);
+	CheckCollision(lastPosition, postition);
 }
 
 void CameraHandler::Direction()
@@ -114,4 +114,8 @@ void CameraHandler::CheckCollision(glm::vec3 lastPosition, glm::vec3 newPosition
 	newPosition = newPosition + glm::vec3(0, 1, 0);
 	transform->SetPosition(newPosition);
 
+}
+
+void CameraHandler::Gravity()
+{
 }

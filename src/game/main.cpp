@@ -23,7 +23,7 @@ int main()
 	std::shared_ptr<StaticMeshCollider> meshCollider = level->AddComponent<StaticMeshCollider>();
 	std::shared_ptr<Texture> levelTexture = level->AddComponent<Texture>();
 	levelTexture->AddTexture("../resources/textures/MapTexture.png");
-	level->GetComponent<Transform>()->SetTransform(glm::vec3(-100, -10, -50), 0.0f, glm::vec3(1.0f, 1.0f, 1.0f));
+	level->GetComponent<Transform>()->SetTransform(glm::vec3(0, 0, 0), 0.0f, glm::vec3(1.0f, 1.0f, 1.0f));
 
 	// Camera
 	std::shared_ptr<Entity> camera = core->AddEntity();
