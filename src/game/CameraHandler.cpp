@@ -10,6 +10,12 @@ void CameraHandler::Awake()
 	mouseSensitivity = 0.5f;
 	cameraFront = GetEntity()->GetComponent<Camera>()->GetCameraFront();
 	transform->SetPosition(glm::vec3(80, 10, 45));
+	startPosition = transform->GetPosition();
+	gravityStrength = 0.5f;
+	groundPosition = 9;
+	jumping = false;
+	jumpPeak = false;
+	grounded = false;
 }
 
 void CameraHandler::Start()
@@ -48,6 +54,14 @@ void CameraHandler::Movement()
 	if (keyInput->GetKeyDown("D"))
 	{
 		postition += glm::normalize(glm::cross(cameraFrontTemp, glm::vec3(0, 1, 0))) * speed;
+	}
+	if (keyInput->GetKeyDown("Space") 
+		&& !jumping)
+	{
+		jumping = true;
+		jumpPeak = false;
+		maxJumpHeight = postition.y + 25;
+		gravityStrength = 0.5f;
 	}
 	CheckCollision(lastPosition, postition);
 }
@@ -92,18 +106,23 @@ void CameraHandler::Direction()
 
 void CameraHandler::CheckCollision(glm::vec3 lastPosition, glm::vec3 newPosition)
 {
-	static int i = 0;
-
 	newPosition = newPosition + glm::vec3 (0, -1, 0);
 
 	bool solved = false;
-
-	glm::vec3 solvedPosition = staticMeshCollider->CollisionAdjustment(newPosition, glm::vec3(1, 1, 1), solved, lastPosition);
+	glm::vec3 solvedPosition = staticMeshCollider->CollisionAdjustment(newPosition, transform->GetSize(), solved, lastPosition);
 
 	if (solved)
 	{
-		std::cout << solved << " " << i << std::endl;
-		i++;
+		// Check if collided with ground
+		if (staticMeshCollider->GetCollidingY())
+		{
+			groundPosition = staticMeshCollider->GetUncollideY();
+			grounded = true;
+		}
+		else
+		{
+  			grounded = false;
+		}
 		newPosition = solvedPosition;
 	}
 	else
@@ -113,9 +132,52 @@ void CameraHandler::CheckCollision(glm::vec3 lastPosition, glm::vec3 newPosition
 	
 	newPosition = newPosition + glm::vec3(0, 1, 0);
 	transform->SetPosition(newPosition);
-
 }
 
 void CameraHandler::Gravity()
 {
+	// Gravity - Brings player down
+	if ((transform->GetPosition().y + transform->GetSize().y > groundPosition && !jumping)
+		|| (jumping && !grounded && jumpPeak))
+	{
+		MovePlayerDown();
+	}
+	else if (!jumping && !grounded && !staticMeshCollider->GetCollidingY())
+	{
+		MovePlayerDown();
+	}
+
+	// If jumping move player up
+	if (jumping 
+		&& transform->GetPosition().y < maxJumpHeight
+		&& !jumpPeak)
+	{
+		grounded = false;
+		MovePlayerUp();
+		if (transform->GetPosition().y > maxJumpHeight - 1.0f)
+		{
+			jumpPeak = true;
+		}
+	}
+
+	if (jumpPeak 
+		&& grounded)
+	{
+		jumping = false;
+	}
+	
+}
+
+void CameraHandler::MovePlayerUp()
+{
+	glm::vec3 position = transform->GetPosition();
+	position.y += gravityStrength;
+	transform->SetPosition(position);
+}
+
+void CameraHandler::MovePlayerDown()
+{
+	glm::vec3 position = transform->GetPosition();
+	position.y -= gravityStrength;
+	transform->SetPosition(position);
 }

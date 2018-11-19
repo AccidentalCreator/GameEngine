@@ -404,6 +404,7 @@ glm::vec3 StaticMeshCollider::CollisionAdjustment(glm::vec3 _position, glm::vec3
 
 	if (!Colliding(solve, _size))
 	{
+		collidingY = false;
 		return solve;
 	}
 
@@ -429,6 +430,8 @@ glm::vec3 StaticMeshCollider::CollisionAdjustment(glm::vec3 _position, glm::vec3
 
 	if (_solved)
 	{
+		uncollideY = solve.y;
+		collidingY = true;
 		return solve;
 	}
 

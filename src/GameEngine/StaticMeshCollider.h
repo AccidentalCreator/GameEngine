@@ -33,6 +33,8 @@ public:
 	SizeData GetData();
 	bool Colliding(glm::vec3 _position, glm::vec3 _size);
 	glm::vec3 CollisionAdjustment(glm::vec3 _position, glm::vec3 _size, bool& _solved, glm::vec3 _lastPosition);
+	float GetUncollideY() { return uncollideY; }
+	bool GetCollidingY() { return collidingY; }
 
 private:
 	std::vector<std::shared_ptr<PartitioningColumn> > columns;
@@ -45,6 +47,9 @@ private:
 	
 	void AddFace(Face _face);
 	void FindSizeOfModel();
+
+	float uncollideY;
+	bool collidingY;
 };
 
 #endif // !STATICMESHCOLLIDER_H

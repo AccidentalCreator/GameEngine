@@ -38,9 +38,19 @@ private:
 	float yaw;
 	float pitch;
 	float groundPosition;
+	float gravityStrength;
+	glm::vec3 startPosition;
 	glm::vec3 newCameraFront;
 
+	bool jumping;
+	bool jumpPeak;
+	bool grounded;
+	float maxJumpHeight;
+
 	bool runOnce;
+
+	void MovePlayerUp();
+	void MovePlayerDown();
 
 };
 

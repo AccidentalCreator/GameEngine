@@ -13,8 +13,8 @@ int main()
 	std::shared_ptr<Core> core = Core::Initialize();
 
 	// Main Menu
-	std::shared_ptr<Entity> menu = core->AddEntity();
-	std::shared_ptr<MainMenu> mainMenu = menu->AddComponent<MainMenu>();
+	//std::shared_ptr<Entity> menu = core->AddEntity();
+	//std::shared_ptr<MainMenu> mainMenu = menu->AddComponent<MainMenu>();
    
 	// Map 
 	std::shared_ptr<Entity> level = core->AddEntity();
@@ -28,8 +28,8 @@ int main()
 	// Camera
 	std::shared_ptr<Entity> camera = core->AddEntity();
 	camera->SetTag("Player");
-	camera->GetComponent<Transform>()->SetPosition(glm::vec3 (0, 0, -1));
-	camera->GetComponent<Transform>()->SetSize(glm::vec3(1, 1, 1));
+	camera->GetComponent<Transform>()->SetPosition(glm::vec3 (0, 0, 1));
+	camera->GetComponent<Transform>()->SetSize(glm::vec3(6, 15, 6));
 	std::shared_ptr<Camera> cam = camera->AddComponent<Camera>();
 	std::shared_ptr<CameraHandler> cameraHandler = camera->AddComponent<CameraHandler>();
 	camera->GetComponent<CameraHandler>()->staticMeshCollider = meshCollider;
