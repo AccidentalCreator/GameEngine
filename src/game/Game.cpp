@@ -22,10 +22,6 @@ void Game::Start()
 	}
 }
 
-void Game::Update()
-{
-}
-
 void Game::StartGame()
 {
 	startGame = true;
@@ -52,7 +48,10 @@ void Game::LoadObjects()
 	std::shared_ptr<PlayerHandler> cameraHandler = camera->AddComponent<PlayerHandler>();
 	camera->GetComponent<PlayerHandler>()->staticMeshCollider = meshCollider;
 
+
 	// Stars
+	std::vector<std::shared_ptr<Entity>> stars;
+	std::vector<glm::vec3> starPositions = SetStarPositions();
 	for (int i = 0; i < starPositions.size(); i++)
 	{
 		std::shared_ptr<Entity> newStar = GetCore()->AddEntity();
@@ -66,13 +65,15 @@ void Game::LoadObjects()
 	}
 }
 
-void Game::SetStarPositions()
+std::vector<glm::vec3> Game::SetStarPositions()
 {
+	std::vector<glm::vec3> starPositions;
 	starPositions.push_back(glm::vec3(67, 6, -36));
 	starPositions.push_back(glm::vec3(0, 40, 0));
 	starPositions.push_back(glm::vec3(-50, 6, 42));
 	starPositions.push_back(glm::vec3(-25, 6, -37));
 	starPositions.push_back(glm::vec3(20, 25, -46));
+	return starPositions;
 }
 
 
@@ -101,5 +102,13 @@ void Game::CreateUIStar()
 
 void Game::CallWinScreen()
 {
-	std::cout << "Winner" << std::endl;
+	glm::vec2 screenSize = GetCore()->GetScreen()->GetSize();
+
+	std::shared_ptr<Entity> winText = GetCore()->AddEntity();
+	std::shared_ptr<Orthagraphic> winButtonRenderer = winText->AddComponent<Orthagraphic>();
+	winButtonRenderer->AddOrtho("../resources/models/WinText.obj", "../resources/shaders/Ortho.vert", "../resources/shaders/Ortho.frag");
+	std::shared_ptr<Texture> winTextTexture = winText->AddComponent<Texture>();
+	winTextTexture->AddTexture("../resources/textures/MissingTexture.png");
+	winText->GetComponent<Transform>()->SetTransform(glm::vec3(screenSize.x / 2, screenSize.y / 2, 0), 0.0f, glm::vec3(100, 100, 0));
 }
+

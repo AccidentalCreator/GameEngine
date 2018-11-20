@@ -10,25 +10,22 @@ class Game : public Component
 {
 public:
 	void StartGame();
-	void SetStarPositions();
-	void CreateUIStar();
-	void CallWinScreen();
 
 	void Awake();
 	void Start();
-	void Update();
 	
 	void IncrementScore();
 
 private:
 	void LoadObjects();
+	std::vector<glm::vec3> SetStarPositions();
+	void CreateUIStar();
+	void CallWinScreen();
+
 	bool startGame;
 
-	std::vector<std::shared_ptr<Entity>> stars;
 	std::vector<std::shared_ptr<Entity>> uiStars;
-	std::vector<glm::vec3> starPositions;
-	std::vector<glm::vec3> uiStarPositions;
-
+	
 	int score;
 	int xOffset;
 };
