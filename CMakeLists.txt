@@ -33,13 +33,13 @@ endif()
 
 add_executable(game
 	src/game/MainMenu.h
-	src/game/CameraHandler.h
+	src/game/Game.h
 	src/game/PlayerHandler.h
 	src/game/PickUpHandler.h
 
 	src/game/main.cpp
 	src/game/MainMenu.cpp
-	src/game/CameraHandler.cpp
+	src/game/Game.cpp
 	src/game/PlayerHandler.cpp
 	src/game/PickUpHandler.cpp
 )

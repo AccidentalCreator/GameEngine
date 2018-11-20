@@ -41,6 +41,7 @@ void MeshRenderer::AddModel(std::string _modelPath, std::string _vertexPath, std
 
 void MeshRenderer::Display()
 {
+	glEnable(GL_DEPTH_TEST);
 	if (!runOnce)
 	{
 		transform = GetEntity()->GetComponent<Transform>();

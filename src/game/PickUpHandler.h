@@ -14,10 +14,12 @@ public:
 
 private:
 	void CheckCollided();
-
+	void Rotate();
 
 	std::weak_ptr<Entity> player;
+	std::weak_ptr<Entity> game;
 	BoxCollision boxCollision;
+	float angle;
 };
 
 

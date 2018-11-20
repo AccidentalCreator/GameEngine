@@ -4,6 +4,8 @@
 
 #include <GameEngine\GameEngine.h>
 
+class Game;
+
 class MainMenu : public Component
 {
 public:
@@ -15,6 +17,8 @@ private:
 	std::shared_ptr<Entity> startButton;
 
 	glm::vec2 screenSize;
+
+	std::shared_ptr<Entity> game;
 };
 
 #endif // !MAINMENU_H

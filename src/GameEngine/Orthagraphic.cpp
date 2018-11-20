@@ -23,6 +23,7 @@ void Orthagraphic::AddOrtho(std::string _modelPath, std::string _vertexPath, std
 
 void Orthagraphic::Display()
 {
+	glDisable(GL_DEPTH_TEST);
 	shaders->SetUniform("in_Model", GetEntity()->GetComponent<Transform>()->GetModelMatrix());
 	shaders->SetUniform("in_Projection", orthoMatrix);
 	shaders->Draw(*GetMeshData());

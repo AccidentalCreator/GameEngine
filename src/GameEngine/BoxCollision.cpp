@@ -1,6 +1,7 @@
 #include "BoxCollision.h"
 #include "Entity.h"
 #include "Transform.h"
+#include <iostream>
 
 bool BoxCollision::CheckCollision(std::weak_ptr<Entity> _a, std::weak_ptr<Entity> _b)
 {
@@ -42,16 +43,17 @@ bool BoxCollision::CheckCollision(std::weak_ptr<Entity> _a, std::weak_ptr<Entity
 	//	}
 	//}
 
-	if (_a.lock()->GetComponent<Transform>()->GetPosition().x <= _b.lock()->GetComponent<Transform>()->GetPosition().x + _b.lock()->GetComponent<Transform>()->GetSize().x / 2
-		&& _a.lock()->GetComponent<Transform>()->GetPosition().x >= _b.lock()->GetComponent<Transform>()->GetPosition().x - _b.lock()->GetComponent<Transform>()->GetSize().x / 2)
+
+	if (_a.lock()->GetComponent<Transform>()->GetPosition().x <= _b.lock()->GetComponent<Transform>()->GetPosition().x + _b.lock()->GetComponent<Transform>()->GetInWorldSize().x / 2
+		&& _a.lock()->GetComponent<Transform>()->GetPosition().x >= _b.lock()->GetComponent<Transform>()->GetPosition().x - _b.lock()->GetComponent<Transform>()->GetInWorldSize().x / 2)
 	{
 		xTrue = true;
-		if (_a.lock()->GetComponent<Transform>()->GetPosition().z <= _b.lock()->GetComponent<Transform>()->GetPosition().z + _b.lock()->GetComponent<Transform>()->GetSize().x / 2
-			&& _a.lock()->GetComponent<Transform>()->GetPosition().z >= _b.lock()->GetComponent<Transform>()->GetPosition().z - _b.lock()->GetComponent<Transform>()->GetSize().x / 2)
+		if (_a.lock()->GetComponent<Transform>()->GetPosition().z <= _b.lock()->GetComponent<Transform>()->GetPosition().z + _b.lock()->GetComponent<Transform>()->GetInWorldSize().z / 2
+			&& _a.lock()->GetComponent<Transform>()->GetPosition().z >= _b.lock()->GetComponent<Transform>()->GetPosition().z - _b.lock()->GetComponent<Transform>()->GetInWorldSize().z / 2)
 		{
 			zTrue = true;
-			if (_a.lock()->GetComponent<Transform>()->GetPosition().y <= _b.lock()->GetComponent<Transform>()->GetPosition().y + _b.lock()->GetComponent<Transform>()->GetSize().y / 2
-				&& _a.lock()->GetComponent<Transform>()->GetPosition().y >= _b.lock()->GetComponent<Transform>()->GetPosition().y - _b.lock()->GetComponent<Transform>()->GetSize().y / 2)
+			if (_a.lock()->GetComponent<Transform>()->GetPosition().y <= _b.lock()->GetComponent<Transform>()->GetPosition().y + _b.lock()->GetComponent<Transform>()->GetInWorldSize().y / 2
+				&& _a.lock()->GetComponent<Transform>()->GetPosition().y >= _b.lock()->GetComponent<Transform>()->GetPosition().y - _b.lock()->GetComponent<Transform>()->GetInWorldSize().y / 2)
 			{
 				yTrue = true;
 			}

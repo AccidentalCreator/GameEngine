@@ -20,14 +20,13 @@ void Button::Start()
 
 bool Button::CheckClicked()
 {
-	static int i = 0;
 	if (mouseInput->GetMouseButtonDown(0))
 	{
-		if (mouseInput->GetMousePosition().x >= position.x
-			&& mouseInput->GetMousePosition().x <= position.x + size.x)
+		if (mouseInput->GetMousePosition().x >= position.x - (size.x / 2)
+			&& mouseInput->GetMousePosition().x <= position.x + (size.x / 2))
 		{
-			if (mouseInput->GetMousePosition().y >= position.y
-				&& mouseInput->GetMousePosition().y <= position.y + size.y)
+			if (mouseInput->GetMousePosition().y >= position.y - (size.y / 2)
+				&& mouseInput->GetMousePosition().y <= position.y + (size.y / 2))
 			{
 				return true;
 			}

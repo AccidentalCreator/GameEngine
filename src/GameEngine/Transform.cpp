@@ -16,15 +16,16 @@ void Transform::SetTransform(glm::vec3 _position, float _rotation, glm::vec3 _sc
 }
 
 
-void Transform::CalcModelMatrix()
+glm::vec3 Transform::GetInWorldSize()
 {
-	//modelMatrix = glm::mat4(1.0f);
-	//modelMatrix = glm::translate(modelMatrix, position);
-	//modelMatrix = glm::rotate(modelMatrix, glm::radians(rotation), glm::vec3(0, 1, 0));
-	//modelMatrix = glm::scale(modelMatrix, scale);
+	glm::vec3 inWorldSize;
+	inWorldSize.x = GetScale().x * GetSize().x;
+	inWorldSize.y = GetScale().y * GetSize().y;
+	inWorldSize.z = GetScale().z * GetSize().z;
+	return inWorldSize;
 }
 
-glm::mat4 Transform::GetModelMatrix() 
+glm::mat4 Transform::GetModelMatrix()
 {
 	//CalcModelMatrix();
 	glm::mat4 modelMatrix;

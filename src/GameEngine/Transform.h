@@ -22,6 +22,7 @@ public:
 	float GetRotation() { return rotation; };
 	glm::vec3 GetSize() { return renderSize; };
 	glm::vec3 GetScale() { return scale; };
+	glm::vec3 GetInWorldSize();
 
 	glm::mat4 GetModelMatrix();
 
@@ -34,9 +35,7 @@ private:
 	glm::mat4 positionMatrix;
 	glm::mat4 rotationMatrix;
 	glm::mat4 scaleMatrix;
-	//glm::mat4 modelMatrix;
 
-	void CalcModelMatrix();
 };
 
 #endif // !TRANSFORM_H

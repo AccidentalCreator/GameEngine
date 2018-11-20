@@ -93,9 +93,9 @@ void Core::Start()
 			
 		}
 
-		for (auto it = entities.begin(); it != entities.end(); it++)
+		for (int i = 0; i < entities.size(); i++)
 		{
-			(*it)->Update();
+			entities.at(i)->Update();
 		}
 
 		for (auto it = entities.begin(); it != entities.end(); it++)
