@@ -17,7 +17,7 @@ void PlayerHandler::Start()
 	transform = GetEntity()->GetComponent<Transform>();
 	transform->SetPosition(glm::vec3(80, 10, 45)); 
 	groundPosition = 9;
-	speed = 7.0f;
+	speed = 1.0f;
 	jumping = false;
 	jumpPeak = false;
 	grounded = false;
@@ -42,19 +42,19 @@ void PlayerHandler::Movement()
 
 	if (keyInput->GetKeyDown("W"))
 	{
-		postition += speed * cameraFrontTemp * GetEnvironment()->GetDeltaTime();;
+		postition += speed * cameraFrontTemp * GetEnvironment()->GetDeltaTime();
 	}
 	if (keyInput->GetKeyDown("S"))
 	{
-		postition -= speed * cameraFrontTemp * GetEnvironment()->GetDeltaTime();;
+		postition -= speed * cameraFrontTemp * GetEnvironment()->GetDeltaTime();
 	}
 	if (keyInput->GetKeyDown("A"))
 	{
-		postition -= glm::normalize(glm::cross(cameraFrontTemp, glm::vec3(0, 1, 0))) * speed * GetEnvironment()->GetDeltaTime();;
+		postition -= glm::normalize(glm::cross(cameraFrontTemp, glm::vec3(0, 1, 0))) * speed * GetEnvironment()->GetDeltaTime();
 	}
 	if (keyInput->GetKeyDown("D"))
 	{
-		postition += glm::normalize(glm::cross(cameraFrontTemp, glm::vec3(0, 1, 0))) * speed * GetEnvironment()->GetDeltaTime();;
+		postition += glm::normalize(glm::cross(cameraFrontTemp, glm::vec3(0, 1, 0))) * speed * GetEnvironment()->GetDeltaTime();
 	}
 	if (keyInput->GetKeyDown("Left Shift")
 		&& !sprinting)
@@ -119,8 +119,6 @@ void PlayerHandler::Direction()
 	newCameraFront.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
 	newCameraFront = glm::normalize(newCameraFront);
 	GetEntity()->GetComponent<Camera>()->SetCameraFront(newCameraFront);
-
-	
 }
 
 void PlayerHandler::CheckCollision(glm::vec3 lastPosition, glm::vec3 newPosition)
@@ -148,7 +146,6 @@ void PlayerHandler::CheckCollision(glm::vec3 lastPosition, glm::vec3 newPosition
 	{
 		newPosition = lastPosition;
 	}
-	
 	newPosition = newPosition + glm::vec3(0, 1, 0);
 	transform->SetPosition(newPosition);
 }

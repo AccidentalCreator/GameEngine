@@ -391,12 +391,6 @@ bool PartitioningColumn::Colliding(glm::vec3 _position, glm::vec3 _size)
 
 glm::vec3 StaticMeshCollider::CollisionAdjustment(glm::vec3 _position, glm::vec3 _size, bool & _solved, glm::vec3 _lastPosition)
 {
-	//glm::vec3 difference = _position - _lastPosition;
-	// Make sure positve numbers
-	//float length = fabs(difference.x) + fabs(difference.y) + fabs(difference.z); 
-
-	//std::cout << _position.x << " " << _position.y << " " << _position.z << std::endl;
-
 	glm::vec3 solve = _position;
 	float amount = tryStep;
 
@@ -437,6 +431,8 @@ glm::vec3 StaticMeshCollider::CollisionAdjustment(glm::vec3 _position, glm::vec3
 
 	_solved = true;
 	amount = increment;
+
+	solve = _position; // Setting solve back to position Why does it still increase;
 
 	// Uncollide in x/z
 	while (true)
@@ -538,7 +534,6 @@ glm::vec3 StaticMeshCollider::CollisionAdjustment(glm::vec3 _position, glm::vec3
 			_solved = false;
 			break;
 		}
-
 	}
 
 	return solve;

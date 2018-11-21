@@ -12,4 +12,10 @@ void Environment::CalculateDeltaTime()
 
 	deltaTime *= 1000;
 
+	//newTime = SDL_GetTicks();
+	//deltaTime = newTime - lastTime;
+	//lastTime = newTime;
+	//std::cout << deltaTime << std::endl;
+	
+
 }
