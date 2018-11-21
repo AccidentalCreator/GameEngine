@@ -60,13 +60,13 @@ void PlayerHandler::Movement()
 		&& !sprinting)
 	{
 		std::cout << "SPRINTING" << std::endl;
-		speed *= 2.0f;
+		speed *= 2.5f;
 		sprinting = true;
 	}
 	if (keyInput->GetKeyUp("Left Shift")
 		&& sprinting)
 	{
-		speed /= 2.0f;
+		speed /= 2.5f;
 		sprinting = false;
 	}
 	if (keyInput->GetKeyDown("Space") 
