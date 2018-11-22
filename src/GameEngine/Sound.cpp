@@ -82,18 +82,31 @@ void Sound::Start(std::string _path)
 
 void Sound::Load(std::string _path)
 {
+	std::shared_ptr<Resources> resources = GetCore()->GetResources();
+
 	soundInit = std::make_shared<SoundInit>();
 
-	ALenum format = 0;
-	ALsizei freq = 0;
-	std::vector<char> bufferData;
+	if (resources->CheckSoundUsed(_path))
+	{
+		soundInit->id = resources->GetSoundId(_path);
+	}
+	else
+	{
+		ALenum format = 0;
+		ALsizei freq = 0;
+		std::vector<char> bufferData;
 
-	alGenBuffers(1, &soundInit->id);
+		alGenBuffers(1, &soundInit->id);
 
-	soundInit->load_ogg(_path.c_str(), bufferData, format, freq);
+		soundInit->load_ogg(_path.c_str(), bufferData, format, freq);
 
-	alBufferData(soundInit->id, format, &bufferData[0],
-		static_cast<ALsizei>(bufferData.size()), freq);
+		alBufferData(soundInit->id, format, &bufferData[0],
+			static_cast<ALsizei>(bufferData.size()), freq);
+
+		resources->AddSoundData(_path, soundInit->id);
+	}
+
+
 }
 
 void Sound::Play()
