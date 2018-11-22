@@ -7,6 +7,7 @@
 #include "Environment.h"
 #include "KeyboardHandler.h"
 #include "MouseHandler.h"
+#include "Exception.h"
 
 #include <iostream>
 
@@ -26,8 +27,6 @@ namespace GameEngine
 		rtn->resources = std::make_shared<Resources>();
 		rtn->keyboard = std::make_shared<KeyboardHandler>();
 		rtn->mouse = std::make_shared<MouseHandler>();
-
-
 
 		rtn->device = alcOpenDevice(NULL);
 

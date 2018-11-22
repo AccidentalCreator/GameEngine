@@ -1,5 +1,4 @@
 #pragma once
-
 #ifndef EXCEPTION_H
 #define EXCEPTION_H
 
@@ -12,10 +11,20 @@ namespace GameEngine
 	class Exception : public std::exception
 	{
 	public:
-		Exception(std::string _message);
-		~Exception() throw();
+		Exception(std::string _message)
+		{
+			this->message = _message;
+		}
 
-		const char *What();
+		virtual ~Exception() throw()
+		{
+
+		}
+
+		virtual const char* What() const throw()
+		{
+			return message.c_str();
+		}
 
 
 
