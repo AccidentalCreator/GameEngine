@@ -8,48 +8,54 @@
 
 #include "Component.h"
 
-class Mesh;
-class Face;
-
-struct SizeData
+namespace GameEngine
 {
-	glm::vec3 maxCoord;
-	glm::vec3 minCoord;
-};
 
-struct PartitioningColumn
-{
-	glm::vec3 position;
-	glm::vec3 size;
-	std::vector<Face> faces;
+	class Mesh;
+	class Face;
 
-	bool Colliding(glm::vec3 _position, glm::vec3 _size);
-};
+	struct SizeData
+	{
+		glm::vec3 maxCoord;
+		glm::vec3 minCoord;
+	};
 
-class StaticMeshCollider : public Component
-{
-public:
-	void Start();
-	SizeData GetData();
-	bool Colliding(glm::vec3 _position, glm::vec3 _size);
-	glm::vec3 CollisionAdjustment(glm::vec3 _position, glm::vec3 _size, bool& _solved, glm::vec3 _lastPosition);
-	float GetUncollideY() { return uncollideY; }
-	bool GetCollidingY() { return collidingY; }
+	struct PartitioningColumn
+	{
+		glm::vec3 position;
+		glm::vec3 size;
+		std::vector<Face> faces;
 
-private:
-	std::vector<std::shared_ptr<PartitioningColumn> > columns;
-	SizeData size;
-	float noOfColumns;
-	float tryStep;
-	float maxStep;
-	float increment;
-	float maxIncrement;
+		bool Colliding(glm::vec3 _position, glm::vec3 _size);
+	};
+
+	class StaticMeshCollider : public Component
+	{
+	public:
+		void Start();
+		SizeData GetData();
+		bool Colliding(glm::vec3 _position, glm::vec3 _size);
+		glm::vec3 CollisionAdjustment(glm::vec3 _position, glm::vec3 _size, bool& _solved, glm::vec3 _lastPosition);
+		float GetUncollideY() { return uncollideY; }
+		bool GetCollidingY() { return collidingY; }
+
+	private:
+		std::vector<std::shared_ptr<PartitioningColumn> > columns;
+		SizeData size;
+		float noOfColumns;
+		float tryStep;
+		float maxStep;
+		float increment;
+		float maxIncrement;
 	
-	void AddFace(Face _face);
-	void FindSizeOfModel();
+		void AddFace(Face _face);
+		void FindSizeOfModel();
 
-	float uncollideY;
-	bool collidingY;
-};
+		float uncollideY;
+		bool collidingY;
+	};
+
+}
+
 
 #endif // !STATICMESHCOLLIDER_H

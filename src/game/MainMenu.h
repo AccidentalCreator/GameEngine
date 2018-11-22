@@ -4,6 +4,8 @@
 
 #include <GameEngine\GameEngine.h>
 
+using namespace GameEngine;
+
 class Game;
 
 class MainMenu : public Component

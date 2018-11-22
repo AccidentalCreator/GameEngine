@@ -5,6 +5,8 @@
 #include "glm.hpp"
 #include <memory>
 
+using namespace GameEngine;
+
 class PlayerHandler : public Component
 {
 public:	

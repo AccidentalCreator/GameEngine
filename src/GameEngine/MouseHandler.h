@@ -6,23 +6,29 @@
 #include <SDL2\SDL.h>
 #include <glm.hpp>
 
-class MouseHandler
+namespace GameEngine
 {
-public:
 
-	bool GetMouseButtonDown(int _button);
-	void SetMouseButtonPressed(SDL_MouseButtonEvent _event);
-	void SetMouseButtonReleased(SDL_MouseButtonEvent _event);
-	void SetMousePosition(int _x, int _y);
+	class MouseHandler
+	{
+	public:
 
-	glm::vec2 GetMousePosition() { return mousePosition; }
+		bool GetMouseButtonDown(int _button);
+		void SetMouseButtonPressed(SDL_MouseButtonEvent _event);
+		void SetMouseButtonReleased(SDL_MouseButtonEvent _event);
+		void SetMousePosition(int _x, int _y);
+
+		glm::vec2 GetMousePosition() { return mousePosition; }
 
 
-private:
+	private:
 
-	glm::vec2 mousePosition;
+		glm::vec2 mousePosition;
 
-	std::vector<int> mouseButtonDown;
-};
+		std::vector<int> mouseButtonDown;
+	};
+
+}
+
 
 #endif // !MOUSEHANDLER_H

@@ -3,6 +3,9 @@
 #include "Core.h"
 #include "KeyboardHandler.h"
 
+namespace GameEngine
+{
+
 std::shared_ptr<Entity> Component::GetEntity()
 {
 	return entity.lock();
@@ -55,5 +58,8 @@ void Component::Display()
 
 Component::~Component()
 {
+
+}
+
 
 }

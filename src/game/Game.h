@@ -6,6 +6,8 @@
 #include <vector>
 #include <memory>
 
+using namespace GameEngine;
+
 class Game : public Component
 {
 public:

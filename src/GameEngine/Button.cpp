@@ -5,32 +5,37 @@
 
 #include <iostream>
 
-void Button::Start()
+namespace GameEngine
 {
-	runOnce = true;
-	size.x = GetEntity()->GetComponent<Transform>()->GetSize().x * GetEntity()->GetComponent<Transform>()->GetScale().x;
-	size.y = GetEntity()->GetComponent<Transform>()->GetSize().y * GetEntity()->GetComponent<Transform>()->GetScale().y;
-	position.x = GetEntity()->GetComponent<Transform>()->GetPosition().x;
-	position.y = GetEntity()->GetComponent<Transform>()->GetPosition().y;
 
-	std::cout << size.x << " " << size.y << std::endl;
-
-	mouseInput = GetMouse();
-}
-
-bool Button::CheckClicked()
-{
-	if (mouseInput->GetMouseButtonDown(0))
+	void Button::Start()
 	{
-		if (mouseInput->GetMousePosition().x >= position.x - (size.x / 2)
-			&& mouseInput->GetMousePosition().x <= position.x + (size.x / 2))
+		runOnce = true;
+		size.x = GetEntity()->GetComponent<Transform>()->GetSize().x * GetEntity()->GetComponent<Transform>()->GetScale().x;
+		size.y = GetEntity()->GetComponent<Transform>()->GetSize().y * GetEntity()->GetComponent<Transform>()->GetScale().y;
+		position.x = GetEntity()->GetComponent<Transform>()->GetPosition().x;
+		position.y = GetEntity()->GetComponent<Transform>()->GetPosition().y;
+
+		std::cout << size.x << " " << size.y << std::endl;
+
+		mouseInput = GetMouse();
+	}
+
+	bool Button::CheckClicked()
+	{
+		if (mouseInput->GetMouseButtonDown(0))
 		{
-			if (mouseInput->GetMousePosition().y >= position.y - (size.y / 2)
-				&& mouseInput->GetMousePosition().y <= position.y + (size.y / 2))
+			if (mouseInput->GetMousePosition().x >= position.x - (size.x / 2)
+				&& mouseInput->GetMousePosition().x <= position.x + (size.x / 2))
 			{
-				return true;
+				if (mouseInput->GetMousePosition().y >= position.y - (size.y / 2)
+					&& mouseInput->GetMousePosition().y <= position.y + (size.y / 2))
+				{
+					return true;
+				}
 			}
 		}
+		return false;
 	}
-	return false;
+
 }

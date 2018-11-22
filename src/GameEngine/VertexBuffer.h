@@ -7,24 +7,30 @@
 #include <glm.hpp>
 #include <vector>
 
-class VertexBuffer
+namespace GameEngine
 {
-public:
-	VertexBuffer();
-	~VertexBuffer();
 
-	void Add(glm::vec2 _value);
-	void Add(glm::vec3 _value);
-	void Add(glm::vec4 _value);
-	int GetComponents();
-	int GetDataSize();
-	GLuint GetID();
+	class VertexBuffer
+	{
+	public:
+		VertexBuffer();
+		~VertexBuffer();
 
-private:
-	GLuint id;
-	int components;
-	std::vector<GLfloat> data;
-	bool dirty;
-};
+		void Add(glm::vec2 _value);
+		void Add(glm::vec3 _value);
+		void Add(glm::vec4 _value);
+		int GetComponents();
+		int GetDataSize();
+		GLuint GetID();
+
+	private:
+		GLuint id;
+		int components;
+		std::vector<GLfloat> data;
+		bool dirty;
+	};
+
+}
+
 
 #endif // !VERTEXBUFFER_H

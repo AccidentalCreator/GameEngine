@@ -8,27 +8,33 @@
 #include <SDL2\SDL.h>
 #include <exception>
 
-class Screen
+namespace GameEngine
 {
-public:
-	Screen();
-	~Screen();
 
-	void Init();
-	void Clear();
-	void Update();
-	void End();
+	class Screen
+	{
+	public:
+		Screen();
+		~Screen();
 
-	glm::vec2 GetSize() { return size; };
+		void Init();
+		void Clear();
+		void Update();
+		void End();
 
-	glm::mat4 GetProjectionMatrix() { return projection; }
+		glm::vec2 GetSize() { return size; };
+
+		glm::mat4 GetProjectionMatrix() { return projection; }
 	
-private:
-	glm::vec2 size;
+	private:
+		glm::vec2 size;
 
-	SDL_Window *window;
+		SDL_Window *window;
 
-	glm::mat4 projection;
-};
+		glm::mat4 projection;
+	};
+
+}
+
 
 #endif // !SCREEN_H

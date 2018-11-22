@@ -5,18 +5,24 @@
 //#include <SDL_ttf.h>
 #include <SDL2\SDL.h>
 
-class Text
+namespace GameEngine
 {
-public:
-	Text();
-	~Text();
 
-	void DrawText(char* myMessage, SDL_Rect& rect);
+	class Text
+	{
+	public:
+		Text();
+		~Text();
 
-	void DrawText(const char* myMessage, SDL_Rect& rect);
+		void DrawText(char* myMessage, SDL_Rect& rect);
 
-private:
+		void DrawText(const char* myMessage, SDL_Rect& rect);
 
-	//TTF_Font* font; // Creates a font
-};
+	private:
+
+		//TTF_Font* font; // Creates a font
+
+	};
+
+}
 #endif // !TEXT_H

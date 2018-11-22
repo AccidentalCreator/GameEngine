@@ -10,30 +10,35 @@
 
 #include <gtc\matrix_transform.hpp>
 
-void Orthagraphic::Awake()
+namespace GameEngine
 {
-	runOnce = true;
-	glm::vec2 screenSize = GetCore()->GetScreen()->GetSize();
-	orthoMatrix = glm::ortho(0.0f, screenSize.x, screenSize.y, 0.0f);
-	shaders = GetShaders();
-}
 
-void Orthagraphic::Start(std::string _modelPath, std::string _vertexPath, std::string _fragPath)
-{
-	AddModel(_modelPath, _vertexPath, _fragPath);
-}
-
-void Orthagraphic::Display()
-{
-	if (runOnce)
+	void Orthagraphic::Awake()
 	{
-		texture = GetEntity()->GetComponent<Texture>();
-		runOnce = false;
+		runOnce = true;
+		glm::vec2 screenSize = GetCore()->GetScreen()->GetSize();
+		orthoMatrix = glm::ortho(0.0f, screenSize.x, screenSize.y, 0.0f);
+		shaders = GetShaders();
 	}
 
-	glDisable(GL_DEPTH_TEST);
-	shaders->SetUniform("in_Model", GetEntity()->GetComponent<Transform>()->GetModelMatrix());
-	shaders->SetUniform("in_Projection", orthoMatrix);
-	shaders->SetUniform("in_Texture", GetEntity()->GetComponent<Texture>());
-	shaders->Draw(*GetMeshData());
+	void Orthagraphic::Start(std::string _modelPath, std::string _vertexPath, std::string _fragPath)
+	{
+		AddModel(_modelPath, _vertexPath, _fragPath);
+	}
+
+	void Orthagraphic::Display()
+	{
+		if (runOnce)
+		{
+			texture = GetEntity()->GetComponent<Texture>();
+			runOnce = false;
+		}
+
+		glDisable(GL_DEPTH_TEST);
+		shaders->SetUniform("in_Model", GetEntity()->GetComponent<Transform>()->GetModelMatrix());
+		shaders->SetUniform("in_Projection", orthoMatrix);
+		shaders->SetUniform("in_Texture", GetEntity()->GetComponent<Texture>());
+		shaders->Draw(*GetMeshData());
+	}
+
 }

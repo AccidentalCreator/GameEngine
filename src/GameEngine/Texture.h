@@ -9,17 +9,23 @@
 
 #include "Component.h"
 
-class Texture : public Component
+namespace GameEngine
 {
-public:
-	void Start(std::string _texPath);
-	glm::vec2 GetSize();
-	GLuint GetId();
 
-private:
-	GLuint id;
-	glm::vec2 size;
+	class Texture : public Component
+	{
+	public:
+		void Start(std::string _texPath);
+		glm::vec2 GetSize();
+		GLuint GetId();
 
-};
+	private:
+		GLuint id;
+		glm::vec2 size;
+
+	};
+
+}
+
 
 #endif // !TEXTURE_H

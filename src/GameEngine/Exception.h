@@ -6,19 +6,25 @@
 #include <exception>
 #include <string>
 
-class Exception : public std::exception
+namespace GameEngine
 {
-public:
-	Exception(std::string _message);
-	~Exception() throw();
 
-	const char *What();
+	class Exception : public std::exception
+	{
+	public:
+		Exception(std::string _message);
+		~Exception() throw();
+
+		const char *What();
 
 
 
-private:
-	std::string message;
-};
+	private:
+		std::string message;
+	};
+
+}
+
 
 
 #endif

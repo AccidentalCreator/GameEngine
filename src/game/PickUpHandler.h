@@ -5,6 +5,8 @@
 #include <GameEngine\GameEngine.h>
 #include <memory>
 
+using namespace GameEngine;
+
 class PickUpHandler : public Component
 {
 public:

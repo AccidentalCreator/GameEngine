@@ -4,333 +4,338 @@
 #include <fstream>
 #include <iostream>
 
-VertexArray::VertexArray() : dirty(false)
+namespace GameEngine
 {
-	// Create new VAO
-	glGenVertexArrays(1, &id);
 
-	if (!id)
+	VertexArray::VertexArray() : dirty(false)
 	{
-		throw std::exception();
+		// Create new VAO
+		glGenVertexArrays(1, &id);
+
+		if (!id)
+		{
+			throw std::exception();
+		}
+
+		buffers.resize(10);
 	}
 
-	buffers.resize(10);
-}
-
-VertexArray::VertexArray(std::string _modelPath) : dirty(false)
-{
-	glGenVertexArrays(1, &id);
-
-	if (!id)
+	VertexArray::VertexArray(std::string _modelPath) : dirty(false)
 	{
-		throw std::exception();
-	}
+		glGenVertexArrays(1, &id);
 
-	buffers.resize(10);
-	std::ifstream file(_modelPath.c_str());
-
-	if (!file.is_open())
-	{
-		throw std::exception();
-	}
-
-	std::string line;
-	std::vector<std::string> splitLine;
-	std::vector<glm::vec3> positions;
-	std::vector<glm::vec2> texCoords;
-	std::vector<glm::vec3> normals;
-
-	std::shared_ptr<VertexBuffer> positionBuffer = NULL;
-	std::shared_ptr<VertexBuffer> texCoordBuffer = NULL;
-	std::shared_ptr<VertexBuffer> normalBuffer = NULL;
-
-	while (!file.eof())
-	{
-		std::getline(file, line);
-		if (line.length() < 1) continue;
-		removeWhitespace(line, splitLine);
-		if (splitLine.size() < 1) continue;
-
-		if (splitLine.at(0) == "v")
+		if (!id)
 		{
-			if (!positionBuffer) positionBuffer = std::make_shared<VertexBuffer>();
-			positions.push_back(glm::vec3(
-				atof(splitLine.at(1).c_str()),
-				atof(splitLine.at(2).c_str()),
-				atof(splitLine.at(3).c_str())));
+			throw std::exception();
 		}
-		else if (splitLine.at(0) == "vt")
-		{
-			if (!texCoordBuffer) texCoordBuffer = std::make_shared<VertexBuffer>();
 
-			texCoords.push_back(glm::vec2(
-				atof(splitLine.at(1).c_str()),
-				1.0f - atof(splitLine.at(2).c_str())));
+		buffers.resize(10);
+		std::ifstream file(_modelPath.c_str());
+
+		if (!file.is_open())
+		{
+			throw std::exception();
 		}
-		else if (splitLine.at(0) == "vn")
+
+		std::string line;
+		std::vector<std::string> splitLine;
+		std::vector<glm::vec3> positions;
+		std::vector<glm::vec2> texCoords;
+		std::vector<glm::vec3> normals;
+
+		std::shared_ptr<VertexBuffer> positionBuffer = NULL;
+		std::shared_ptr<VertexBuffer> texCoordBuffer = NULL;
+		std::shared_ptr<VertexBuffer> normalBuffer = NULL;
+
+		while (!file.eof())
 		{
-			if (!normalBuffer) normalBuffer = std::make_shared<VertexBuffer>();
+			std::getline(file, line);
+			if (line.length() < 1) continue;
+			removeWhitespace(line, splitLine);
+			if (splitLine.size() < 1) continue;
 
-			normals.push_back(glm::vec3(
-				atof(splitLine.at(1).c_str()),
-				atof(splitLine.at(2).c_str()),
-				atof(splitLine.at(3).c_str())));
-		}
-		else if (splitLine.at(0) == "f")
-		{
-			Face face;
+			if (splitLine.at(0) == "v")
+			{
+				if (!positionBuffer) positionBuffer = std::make_shared<VertexBuffer>();
+				positions.push_back(glm::vec3(
+					atof(splitLine.at(1).c_str()),
+					atof(splitLine.at(2).c_str()),
+					atof(splitLine.at(3).c_str())));
+			}
+			else if (splitLine.at(0) == "vt")
+			{
+				if (!texCoordBuffer) texCoordBuffer = std::make_shared<VertexBuffer>();
 
-			std::vector<std::string> subsplit;
+				texCoords.push_back(glm::vec2(
+					atof(splitLine.at(1).c_str()),
+					1.0f - atof(splitLine.at(2).c_str())));
+			}
+			else if (splitLine.at(0) == "vn")
+			{
+				if (!normalBuffer) normalBuffer = std::make_shared<VertexBuffer>();
 
-			// Face V1
-			splitString(splitLine.at(1), '/', subsplit);
+				normals.push_back(glm::vec3(
+					atof(splitLine.at(1).c_str()),
+					atof(splitLine.at(2).c_str()),
+					atof(splitLine.at(3).c_str())));
+			}
+			else if (splitLine.at(0) == "f")
+			{
+				Face face;
+
+				std::vector<std::string> subsplit;
+
+				// Face V1
+				splitString(splitLine.at(1), '/', subsplit);
 			
-			face.a.position = positions.at(atoi(subsplit.at(0).c_str()) - 1);
-			//face.a.texCoord = texCoords.at(atoi(subsplit.at(1).c_str()) - 1);
+				face.a.position = positions.at(atoi(subsplit.at(0).c_str()) - 1);
+				//face.a.texCoord = texCoords.at(atoi(subsplit.at(1).c_str()) - 1);
 
-			positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));
-			if (texCoordBuffer) texCoordBuffer->Add(texCoords.at(atoi(subsplit.at(1).c_str()) - 1));
-			if (normalBuffer) normalBuffer->Add(normals.at(atoi(subsplit.at(2).c_str()) - 1));
+				positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));
+				if (texCoordBuffer) texCoordBuffer->Add(texCoords.at(atoi(subsplit.at(1).c_str()) - 1));
+				if (normalBuffer) normalBuffer->Add(normals.at(atoi(subsplit.at(2).c_str()) - 1));
 			
-			// Face V2
-			splitString(splitLine.at(2), '/', subsplit);
+				// Face V2
+				splitString(splitLine.at(2), '/', subsplit);
 
-			face.b.position = positions.at(atoi(subsplit.at(0).c_str()) - 1);
-			//face.b.texCoord = texCoords.at(atoi(subsplit.at(1).c_str()) - 1);
+				face.b.position = positions.at(atoi(subsplit.at(0).c_str()) - 1);
+				//face.b.texCoord = texCoords.at(atoi(subsplit.at(1).c_str()) - 1);
 
-			positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));
-			if (texCoordBuffer) texCoordBuffer->Add(texCoords.at(atoi(subsplit.at(1).c_str()) - 1));
-			if (normalBuffer) normalBuffer->Add(normals.at(atoi(subsplit.at(2).c_str()) - 1));
+				positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));
+				if (texCoordBuffer) texCoordBuffer->Add(texCoords.at(atoi(subsplit.at(1).c_str()) - 1));
+				if (normalBuffer) normalBuffer->Add(normals.at(atoi(subsplit.at(2).c_str()) - 1));
 			
-			// Face V3
-			splitString(splitLine.at(3), '/', subsplit);
+				// Face V3
+				splitString(splitLine.at(3), '/', subsplit);
 
-			face.c.position = positions.at(atoi(subsplit.at(0).c_str()) - 1);
-			//face.c.texCoord = texCoords.at(atoi(subsplit.at(1).c_str()) - 1);
+				face.c.position = positions.at(atoi(subsplit.at(0).c_str()) - 1);
+				//face.c.texCoord = texCoords.at(atoi(subsplit.at(1).c_str()) - 1);
 
-			positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));
-			if (texCoordBuffer) texCoordBuffer->Add(texCoords.at(atoi(subsplit.at(1).c_str()) - 1));
-			if (normalBuffer) normalBuffer->Add(normals.at(atoi(subsplit.at(2).c_str()) - 1));
+				positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));
+				if (texCoordBuffer) texCoordBuffer->Add(texCoords.at(atoi(subsplit.at(1).c_str()) - 1));
+				if (normalBuffer) normalBuffer->Add(normals.at(atoi(subsplit.at(2).c_str()) - 1));
 
-			faces.push_back(face); // Add face to vector
+				faces.push_back(face); // Add face to vector
 
-			if (splitLine.size() < 5) continue;
+				if (splitLine.size() < 5) continue;
 			
-			face = Face(); // New face
+				face = Face(); // New face
 
-			// Face V1
-			splitString(splitLine.at(3), '/', subsplit);
+				// Face V1
+				splitString(splitLine.at(3), '/', subsplit);
 
-			face.a.position = positions.at(atoi(subsplit.at(0).c_str()) - 1);
-			//face.a.texCoord = texCoords.at(atoi(subsplit.at(1).c_str()) - 1);
+				face.a.position = positions.at(atoi(subsplit.at(0).c_str()) - 1);
+				//face.a.texCoord = texCoords.at(atoi(subsplit.at(1).c_str()) - 1);
 
-			positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));
-			if (texCoordBuffer) texCoordBuffer->Add(texCoords.at(atoi(subsplit.at(1).c_str()) - 1));
-			if (normalBuffer) normalBuffer->Add(normals.at(atoi(subsplit.at(2).c_str()) - 1));
+				positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));
+				if (texCoordBuffer) texCoordBuffer->Add(texCoords.at(atoi(subsplit.at(1).c_str()) - 1));
+				if (normalBuffer) normalBuffer->Add(normals.at(atoi(subsplit.at(2).c_str()) - 1));
 			
-			// Face V2
-			splitString(splitLine.at(4), '/', subsplit);
+				// Face V2
+				splitString(splitLine.at(4), '/', subsplit);
 
-			face.b.position = positions.at(atoi(subsplit.at(0).c_str()) - 1);
-			//face.b.texCoord = texCoords.at(atoi(subsplit.at(1).c_str()) - 1);
+				face.b.position = positions.at(atoi(subsplit.at(0).c_str()) - 1);
+				//face.b.texCoord = texCoords.at(atoi(subsplit.at(1).c_str()) - 1);
 
-			positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));
-			if (texCoordBuffer) texCoordBuffer->Add(texCoords.at(atoi(subsplit.at(1).c_str()) - 1));
-			if (normalBuffer) normalBuffer->Add(normals.at(atoi(subsplit.at(2).c_str()) - 1));
+				positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));
+				if (texCoordBuffer) texCoordBuffer->Add(texCoords.at(atoi(subsplit.at(1).c_str()) - 1));
+				if (normalBuffer) normalBuffer->Add(normals.at(atoi(subsplit.at(2).c_str()) - 1));
 			
-			// Face V3
-			splitString(splitLine.at(1), '/', subsplit);
+				// Face V3
+				splitString(splitLine.at(1), '/', subsplit);
 
-			face.c.position = positions.at(atoi(subsplit.at(0).c_str()) - 1);
-			//face.c.texCoord = texCoords.at(atoi(subsplit.at(1).c_str()) - 1);
+				face.c.position = positions.at(atoi(subsplit.at(0).c_str()) - 1);
+				//face.c.texCoord = texCoords.at(atoi(subsplit.at(1).c_str()) - 1);
 
-			positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));
-			if (texCoordBuffer) texCoordBuffer->Add(texCoords.at(atoi(subsplit.at(1).c_str()) - 1));
-			if (normalBuffer) normalBuffer->Add(normals.at(atoi(subsplit.at(2).c_str()) - 1));
+				positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));
+				if (texCoordBuffer) texCoordBuffer->Add(texCoords.at(atoi(subsplit.at(1).c_str()) - 1));
+				if (normalBuffer) normalBuffer->Add(normals.at(atoi(subsplit.at(2).c_str()) - 1));
 		
-			faces.push_back(face); // Add face to vector
+				faces.push_back(face); // Add face to vector
+			}
 		}
-	}
 	
-	SetBuffer("in_Position", positionBuffer);
-	if (texCoordBuffer) SetBuffer("in_TexCoord", texCoordBuffer);
-	if (normalBuffer) SetBuffer("in_Normal", normalBuffer);
-}
-
-void VertexArray::splitString(std::string& _input, char _splitter, std::vector<std::string>& _output)
-{
-	std::string curr;
-
-	_output.clear();
-
-	for (size_t i = 0; i < _input.length(); i++)
-	{
-		if (_input.at(i) == _splitter)
-		{
-			_output.push_back(curr);
-			curr = "";
-		}
-		else
-		{
-			curr += _input.at(i);
-		}
+		SetBuffer("in_Position", positionBuffer);
+		if (texCoordBuffer) SetBuffer("in_TexCoord", texCoordBuffer);
+		if (normalBuffer) SetBuffer("in_Normal", normalBuffer);
 	}
 
-	if (curr.length() > 0)
+	void VertexArray::splitString(std::string& _input, char _splitter, std::vector<std::string>& _output)
 	{
-		_output.push_back(curr);
-	}
-}
+		std::string curr;
 
-void VertexArray::removeWhitespace(std::string& _input, std::vector<std::string>& _output)
-{
-	std::string curr;
+		_output.clear();
 
-	_output.clear();
-
-	for (size_t i = 0; i < _input.length(); i++)
-	{
-		if (_input.at(i) == ' ' ||
-			_input.at(i) == '\r' ||
-			_input.at(i) == '\n' ||
-			_input.at(i) == '\t')
+		for (size_t i = 0; i < _input.length(); i++)
 		{
-			if (curr.length() > 0)
+			if (_input.at(i) == _splitter)
 			{
 				_output.push_back(curr);
 				curr = "";
 			}
-		}
-		else
-		{
-			curr += _input.at(i);
-		}
-	}
-
-	if (curr.length() > 0)
-	{
-		_output.push_back(curr);
-	}
-}
-
-void VertexArray::SetBuffer(std::string _attribute, std::weak_ptr<VertexBuffer> _buffer)
-{
-	if (_attribute == "in_Position")
-	{
-		buffers.at(0) = _buffer.lock();
-	}
-	else if (_attribute == "in_Color")
-	{
-		buffers.at(1) = _buffer.lock();
-	}
-	else if (_attribute == "in_TexCoord")
-	{
-		buffers.at(2) = _buffer.lock();
-	}
-	else if (_attribute == "in_Normal")
-	{
-		buffers.at(3) = _buffer.lock();
-	}
-	else
-	{
-		throw std::exception();
-	}
-
-	dirty = true;
-}
-
-int VertexArray::GetVertexCount()
-{
-	if (!buffers.at(0))
-	{
-		throw std::exception();
-	}
-	return buffers.at(0)->GetDataSize() / buffers.at(0)->GetComponents();
-}
-
-GLuint VertexArray::GetID()
-{
-	if (dirty)
-	{
-		// Bind to GPU
-		glBindVertexArray(id);
-
-		for (size_t i = 0; i < buffers.size(); i++)
-		{
-			if (buffers.at(i))
+			else
 			{
-				glBindBuffer(GL_ARRAY_BUFFER, buffers.at(i)->GetID());
+				curr += _input.at(i);
+			}
+		}
 
-				glVertexAttribPointer(i, buffers.at(i)->GetComponents(), GL_FLOAT, GL_FALSE,
-					buffers.at(i)->GetComponents() * sizeof(GLfloat), (void *)0);
+		if (curr.length() > 0)
+		{
+			_output.push_back(curr);
+		}
+	}
 
-				glEnableVertexAttribArray(i);
+	void VertexArray::removeWhitespace(std::string& _input, std::vector<std::string>& _output)
+	{
+		std::string curr;
+
+		_output.clear();
+
+		for (size_t i = 0; i < _input.length(); i++)
+		{
+			if (_input.at(i) == ' ' ||
+				_input.at(i) == '\r' ||
+				_input.at(i) == '\n' ||
+				_input.at(i) == '\t')
+			{
+				if (curr.length() > 0)
+				{
+					_output.push_back(curr);
+					curr = "";
+				}
 			}
 			else
 			{
-				glDisableVertexAttribArray(i);
+				curr += _input.at(i);
 			}
 		}
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
-		glBindVertexArray(0);
-		dirty = false;
+
+		if (curr.length() > 0)
+		{
+			_output.push_back(curr);
+		}
 	}
-	return id;
-}
 
-VertexArray::~VertexArray()
-{
-
-}
-
-glm::vec3 VertexArray::FindRenderSize()
-{
-	std::vector<glm::vec3> positions;
-	for (size_t i = 0; i < faces.size(); i++)
+	void VertexArray::SetBuffer(std::string _attribute, std::weak_ptr<VertexBuffer> _buffer)
 	{
-		positions.push_back(faces.at(i).a.position);
-		positions.push_back(faces.at(i).b.position);
-		positions.push_back(faces.at(i).c.position);
+		if (_attribute == "in_Position")
+		{
+			buffers.at(0) = _buffer.lock();
+		}
+		else if (_attribute == "in_Color")
+		{
+			buffers.at(1) = _buffer.lock();
+		}
+		else if (_attribute == "in_TexCoord")
+		{
+			buffers.at(2) = _buffer.lock();
+		}
+		else if (_attribute == "in_Normal")
+		{
+			buffers.at(3) = _buffer.lock();
+		}
+		else
+		{
+			throw std::exception();
+		}
+
+		dirty = true;
 	}
 
-	glm::vec3 maxPosition = positions.at(0);
-	glm::vec3 minPosition = positions.at(0);
-
-	for (size_t i = 1; i < positions.size(); i++)
+	int VertexArray::GetVertexCount()
 	{
-		// Check max position
-		if (positions.at(i).x > maxPosition.x)
+		if (!buffers.at(0))
 		{
-			maxPosition.x = positions.at(i).x;
+			throw std::exception();
 		}
-		if (positions.at(i).y > maxPosition.y)
-		{
-			maxPosition.y = positions.at(i).y;
-		}
-		if (positions.at(i).z > maxPosition.z)
-		{
-			maxPosition.z = positions.at(i).z;
-		}
-
-		// Check min position
-		if (positions.at(i).x < minPosition.x)
-		{
-			minPosition.x = positions.at(i).x;
-		}
-		if (positions.at(i).y < minPosition.y)
-		{
-			minPosition.y = positions.at(i).y;
-		}
-		if (positions.at(i).z < minPosition.z)
-		{
-			minPosition.z = positions.at(i).z;
-		}
+		return buffers.at(0)->GetDataSize() / buffers.at(0)->GetComponents();
 	}
 
-	glm::vec3 renderSize;
-	renderSize.x = maxPosition.x - minPosition.x;
-	renderSize.y = maxPosition.y - minPosition.y;
-	renderSize.z = maxPosition.z - minPosition.z;
+	GLuint VertexArray::GetID()
+	{
+		if (dirty)
+		{
+			// Bind to GPU
+			glBindVertexArray(id);
 
-	return renderSize;
+			for (size_t i = 0; i < buffers.size(); i++)
+			{
+				if (buffers.at(i))
+				{
+					glBindBuffer(GL_ARRAY_BUFFER, buffers.at(i)->GetID());
+
+					glVertexAttribPointer(i, buffers.at(i)->GetComponents(), GL_FLOAT, GL_FALSE,
+						buffers.at(i)->GetComponents() * sizeof(GLfloat), (void *)0);
+
+					glEnableVertexAttribArray(i);
+				}
+				else
+				{
+					glDisableVertexAttribArray(i);
+				}
+			}
+			glBindBuffer(GL_ARRAY_BUFFER, 0);
+			glBindVertexArray(0);
+			dirty = false;
+		}
+		return id;
+	}
+
+	VertexArray::~VertexArray()
+	{
+
+	}
+
+	glm::vec3 VertexArray::FindRenderSize()
+	{
+		std::vector<glm::vec3> positions;
+		for (size_t i = 0; i < faces.size(); i++)
+		{
+			positions.push_back(faces.at(i).a.position);
+			positions.push_back(faces.at(i).b.position);
+			positions.push_back(faces.at(i).c.position);
+		}
+
+		glm::vec3 maxPosition = positions.at(0);
+		glm::vec3 minPosition = positions.at(0);
+
+		for (size_t i = 1; i < positions.size(); i++)
+		{
+			// Check max position
+			if (positions.at(i).x > maxPosition.x)
+			{
+				maxPosition.x = positions.at(i).x;
+			}
+			if (positions.at(i).y > maxPosition.y)
+			{
+				maxPosition.y = positions.at(i).y;
+			}
+			if (positions.at(i).z > maxPosition.z)
+			{
+				maxPosition.z = positions.at(i).z;
+			}
+
+			// Check min position
+			if (positions.at(i).x < minPosition.x)
+			{
+				minPosition.x = positions.at(i).x;
+			}
+			if (positions.at(i).y < minPosition.y)
+			{
+				minPosition.y = positions.at(i).y;
+			}
+			if (positions.at(i).z < minPosition.z)
+			{
+				minPosition.z = positions.at(i).z;
+			}
+		}
+
+		glm::vec3 renderSize;
+		renderSize.x = maxPosition.x - minPosition.x;
+		renderSize.y = maxPosition.y - minPosition.y;
+		renderSize.z = maxPosition.z - minPosition.z;
+
+		return renderSize;
+	}
+
 }

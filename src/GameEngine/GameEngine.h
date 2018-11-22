@@ -24,9 +24,15 @@
 #include "StaticMeshCollider.h"
 #include "Button.h"
 
-class GameObject
+namespace GameEngine
 {
 
-};
+	class GameObject
+	{
+
+	};
+
+}
+
 
 #endif // !GAMEENGINE_H

@@ -4,16 +4,20 @@
 
 #include <memory>
 
-class Entity;
-
-class BoxCollision
+namespace GameEngine
 {
-public:
-	bool CheckCollision(std::weak_ptr<Entity> _a, std::weak_ptr<Entity> _b);
+	class Entity;
 
-private:
+	class BoxCollision
+	{
+	public:
+		bool CheckCollision(std::weak_ptr<Entity> _a, std::weak_ptr<Entity> _b);
 
-};
+	private:
+
+	};
+}
+
 
 #endif // !BOXCOLLISION_H
 

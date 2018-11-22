@@ -7,90 +7,96 @@
 #include <memory>
 #include <string>
 
-#define ADDCOMPONENT \
-	std::shared_ptr<T> rtn = std::make_shared<T>();\
-	rtn->entity = self; \
-	rtn->ranOnce = false; \
-	components.push_back(rtn);
-
-class Core;
-class Transform;
-
-class Entity
+namespace GameEngine
 {
-	// Friend class can access private and protected members from other class
-	friend class Core;
-public:
-	std::shared_ptr<Core> GetCore();
-	void Destroy();
 
-	template <typename T>
-	std::shared_ptr<T> GetComponent()
+	#define ADDCOMPONENT \
+		std::shared_ptr<T> rtn = std::make_shared<T>();\
+		rtn->entity = self; \
+		rtn->ranOnce = false; \
+		components.push_back(rtn);
+
+	class Core;
+	class Transform;
+
+	class Entity
 	{
-		for (size_t i = 0; i < components.size(); i++)
-		{
-			std::shared_ptr<T> tst = std::dynamic_pointer_cast<T>(components.at(i));
+		// Friend class can access private and protected members from other class
+		friend class Core;
+	public:
+		std::shared_ptr<Core> GetCore();
+		void Destroy();
 
-			if (tst)
+		template <typename T>
+		std::shared_ptr<T> GetComponent()
+		{
+			for (size_t i = 0; i < components.size(); i++)
 			{
-				return tst;
+				std::shared_ptr<T> tst = std::dynamic_pointer_cast<T>(components.at(i));
+
+				if (tst)
+				{
+					return tst;
+				}
 			}
+
+			throw std::exception();
 		}
 
-		throw std::exception();
-	}
+		template <typename T>
+		std::shared_ptr<T> AddComponent()
+		{
+			ADDCOMPONENT
+				rtn->Start();
 
-	template <typename T>
-	std::shared_ptr<T> AddComponent()
-	{
-		ADDCOMPONENT
-			rtn->Start();
+			return rtn;
+		}
 
-		return rtn;
-	}
+		template <typename T, typename A>
+		std::shared_ptr<T> AddComponent(A a)
+		{
+			ADDCOMPONENT
+				rtn->Start(a);
 
-	template <typename T, typename A>
-	std::shared_ptr<T> AddComponent(A a)
-	{
-		ADDCOMPONENT
-			rtn->Start(a);
+			return rtn;
+		}
 
-		return rtn;
-	}
+		template <typename T, typename A, typename B>
+		std::shared_ptr<T> AddComponent(A a, B b)
+		{
+			ADDCOMPONENT
+				rtn->Start(a, b);
 
-	template <typename T, typename A, typename B>
-	std::shared_ptr<T> AddComponent(A a, B b)
-	{
-		ADDCOMPONENT
-			rtn->Start(a, b);
+			return rtn;
+		}
 
-		return rtn;
-	}
+		template <typename T, typename A, typename B, typename C>
+		std::shared_ptr<T> AddComponent(A a, B b, C c)
+		{
+			ADDCOMPONENT
+				rtn->Start(a, b, c);
 
-	template <typename T, typename A, typename B, typename C>
-	std::shared_ptr<T> AddComponent(A a, B b, C c)
-	{
-		ADDCOMPONENT
-			rtn->Start(a, b, c);
+			return rtn;
+		}
 
-		return rtn;
-	}
+		std::string GetTag() { return tag; }
+		void SetTag(std::string _tag) { tag = _tag; }
 
-	std::string GetTag() { return tag; }
-	void SetTag(std::string _tag) { tag = _tag; }
+	private:
+		std::vector<std::shared_ptr<Component>> components;
+		std::weak_ptr<Core> core;
+		std::weak_ptr<Entity> self;
 
-private:
-	std::vector<std::shared_ptr<Component>> components;
-	std::weak_ptr<Core> core;
-	std::weak_ptr<Entity> self;
+		void Update();
+		void LateUpdate();
+		void Display();
 
-	void Update();
-	void LateUpdate();
-	void Display();
+		bool isAlive;
 
-	bool isAlive;
+		std::string tag;
+	};
 
-	std::string tag;
-};
+}
+
 
 #endif

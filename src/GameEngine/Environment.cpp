@@ -3,31 +3,33 @@
 #include <SDL2\SDL.h>
 #include <iostream>
 
-
-
-Environment::Environment()
+namespace GameEngine
 {
-	deltaTime = 0;
-	lastTime = SDL_GetTicks();
-}
 
-Environment::~Environment()
-{
-}
+	Environment::Environment()
+	{
+		deltaTime = 0;
+		lastTime = SDL_GetTicks();
+	}
 
-void Environment::CalculateDeltaTime()
-{
-	//lastTime = newTime;
-	//newTime = SDL_GetPerformanceCounter();
+	Environment::~Environment()
+	{
+	}
 
-	//deltaTime = (double)((newTime - lastTime) * 1000 / (double)SDL_GetPerformanceCounter());
+	void Environment::CalculateDeltaTime()
+	{
+		//lastTime = newTime;
+		//newTime = SDL_GetPerformanceCounter();
 
-	//deltaTime *= 1000;
+		//deltaTime = (double)((newTime - lastTime) * 1000 / (double)SDL_GetPerformanceCounter());
 
-	lastTime = newTime;
-	newTime = SDL_GetTicks();
-	deltaTime = (newTime - lastTime) / 1000;
-	//std::cout << deltaTime << std::endl;
-	
+		//deltaTime *= 1000;
+
+		lastTime = newTime;
+		newTime = SDL_GetTicks();
+		deltaTime = (newTime - lastTime) / 1000;
+		//std::cout << deltaTime << std::endl;
+
+	}
 
 }

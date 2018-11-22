@@ -6,19 +6,25 @@
 #include <vector>
 #include <glm.hpp>
 
-struct MeshSpace;
-struct Face;
-
-class Mesh
+namespace GameEngine
 {
-public:
-	Mesh();
 
-	std::vector<Face>& GetFaces();
-	void AddFace(Face& _face);
+	struct MeshSpace;
+	struct Face;
 
-private:
-	std::shared_ptr<MeshSpace> meshSpace;
-};
+	class Mesh
+	{
+	public:
+		Mesh();
+
+		std::vector<Face>& GetFaces();
+		void AddFace(Face& _face);
+
+	private:
+		std::shared_ptr<MeshSpace> meshSpace;
+	};
+
+}
+
 
 #endif // !MESH_H

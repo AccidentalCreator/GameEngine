@@ -6,22 +6,28 @@
 
 #include "Component.h"
 
-class MouseHandler;
-
-class Button : public Component
+namespace GameEngine
 {
-public:
-	void Start();
-	bool CheckClicked();
 
-private:
+	class MouseHandler;
 
-	std::shared_ptr<MouseHandler> mouseInput;
+	class Button : public Component
+	{
+	public:
+		void Start();
+		bool CheckClicked();
 
-	glm::vec2 size;
-	glm::vec2 position;
+	private:
 
-	bool runOnce;
-};
+		std::shared_ptr<MouseHandler> mouseInput;
+
+		glm::vec2 size;
+		glm::vec2 position;
+
+		bool runOnce;
+	};
+
+}
+
 
 #endif // !BUTTON_H

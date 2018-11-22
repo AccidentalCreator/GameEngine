@@ -8,22 +8,27 @@
 
 #include "Component.h"
 
-struct SoundInit;
-
-class Sound : public Component
+namespace GameEngine
 {
-	std::shared_ptr<SoundInit> soundInit;
 
-public:
-	void Start(std::string _filePath);
+	struct SoundInit;
+
+	class Sound : public Component
+	{
+		std::shared_ptr<SoundInit> soundInit;
+
+	public:
+		void Start(std::string _filePath);
 
 
-	void Load(std::string _filePath);
-	void Play(float _volume, float _varMin, float _varMax);
-	void Play();
+		void Load(std::string _filePath);
+		void Play(float _volume, float _varMin, float _varMax);
+		void Play();
 
-private:
-	bool dirty;
-};
+	private:
+		bool dirty;
+	};
+
+}
 
 #endif // !SOUND_H

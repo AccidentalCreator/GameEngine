@@ -5,6 +5,8 @@
 #include <iostream>
 #include <memory>
 
+using namespace GameEngine;
+
 int main()
 {
 	std::shared_ptr<Core> core = Core::Initialize();

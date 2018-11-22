@@ -11,33 +11,39 @@
 #include <vector>
 #include <memory>
 
-class VertexArray;
-class Texture;
-
-struct Sampler
+namespace GameEngine
 {
-	GLint id;
-	std::shared_ptr<Texture> texture;
-};
 
-class ShaderProgram
-{
-public:
-	ShaderProgram(std::string _vert, std::string _frag);
-	~ShaderProgram();
+	class VertexArray;
+	class Texture;
 
-	void Draw(VertexArray& _vertexArray);
-	void SetUniform(std::string _uniform, glm::vec4 _value);
-	void SetUniform(std::string _uniform, float _value);
-	void SetUniform(std::string _uniform, glm::mat4 _value);
-	void SetUniform(std::string _uniform, std::shared_ptr<Texture> _texture);
+	struct Sampler
+	{
+		GLint id;
+		std::shared_ptr<Texture> texture;
+	};
 
-	GLuint GetId() { return id; };
+	class ShaderProgram
+	{
+	public:
+		ShaderProgram(std::string _vert, std::string _frag);
+		~ShaderProgram();
 
-private:
+		void Draw(VertexArray& _vertexArray);
+		void SetUniform(std::string _uniform, glm::vec4 _value);
+		void SetUniform(std::string _uniform, float _value);
+		void SetUniform(std::string _uniform, glm::mat4 _value);
+		void SetUniform(std::string _uniform, std::shared_ptr<Texture> _texture);
 
-	GLuint id;
-	std::vector<Sampler> samplers;
-};
+		GLuint GetId() { return id; };
+
+	private:
+
+		GLuint id;
+		std::vector<Sampler> samplers;
+	};
+
+}
+
 
 #endif // !SHADERPROGRAM
