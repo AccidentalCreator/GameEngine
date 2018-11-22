@@ -22,6 +22,7 @@ void PickUpHandler::CheckCollided()
 {
 	if (boxCollision.CheckCollision(player, GetEntity()))
 	{
+		GetEntity()->GetComponent<Sound>()->Play();
 		game.lock()->GetComponent<Game>()->IncrementScore();
 		GetEntity()->Destroy();
 	}

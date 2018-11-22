@@ -16,9 +16,8 @@ int main()
 	std::shared_ptr<Entity> game = core->AddEntity();
 	game->SetTag("Game");
 	std::shared_ptr<Game> gameHandler = game->AddComponent<Game>();
-
-	//std::shared_ptr<Sound> sound = std::make_shared<Sound>("../resources/sounds/dixie_horn.ogg");
-	//sound->Play();
+	std::shared_ptr<Sound> backgroundSound = game->AddComponent<Sound>("../resources/sounds/BackgroundMusic.ogg");
+	backgroundSound->Play();
 
 	core->Start();
 

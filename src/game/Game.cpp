@@ -56,6 +56,7 @@ void Game::LoadObjects()
 		newStar->GetComponent<Transform>()->SetTransform(starPositions.at(i), 0.0f, glm::vec3(3.0f, 3.0f, 3.0f));
 		std::shared_ptr<MeshRenderer> starRenderer = newStar->AddComponent<MeshRenderer>("../resources/models/star.obj", "../resources/shaders/simple.vert", "../resources/shaders/simple.frag");
 		std::shared_ptr<Texture> starTexture = newStar->AddComponent<Texture>("../resources/textures/Yellow.png");
+		std::shared_ptr<Sound> starSound = newStar->AddComponent<Sound>("../resources/sounds/Ding.ogg");
 		std::shared_ptr<PickUpHandler> pickUpHandler = newStar->AddComponent<PickUpHandler>();
 		stars.push_back(newStar);
 	}
@@ -100,7 +101,7 @@ void Game::CallWinScreen()
 
 	std::shared_ptr<Entity> winText = GetCore()->AddEntity();
 	std::shared_ptr<Orthagraphic> winButtonRenderer = winText->AddComponent<Orthagraphic>("../resources/models/WinText.obj", "../resources/shaders/Ortho.vert", "../resources/shaders/Ortho.frag");
-	std::shared_ptr<Texture> winTextTexture = winText->AddComponent<Texture>("../resources/textures/MissingTexture.png");
+	std::shared_ptr<Texture> winTextTexture = winText->AddComponent<Texture>("../resources/textures/Black.png");
 	winText->GetComponent<Transform>()->SetTransform(glm::vec3(screenSize.x / 2, screenSize.y / 2, 0), 0.0f, glm::vec3(100, 100, 0));
 }
 
