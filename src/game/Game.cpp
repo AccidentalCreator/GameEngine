@@ -33,7 +33,6 @@ void Game::LoadObjects()
 	// Map 
 	std::shared_ptr<Entity> level = GetCore()->AddEntity();
 	std::shared_ptr<MeshRenderer> levelRenderer = level->AddComponent<MeshRenderer>("../resources/models/Map3.obj", "../resources/shaders/simple.vert", "../resources/shaders/simple.frag");
-//	levelRenderer->AddModel("../resources/models/Map3.obj", "../resources/shaders/simple.vert", "../resources/shaders/simple.frag");
 	std::shared_ptr<StaticMeshCollider> meshCollider = level->AddComponent<StaticMeshCollider>();
 	std::shared_ptr<Texture> levelTexture = level->AddComponent<Texture>("../resources/textures/MapTexture.png");
 	level->GetComponent<Transform>()->SetTransform(glm::vec3(0, 0, 0), 0.0f, glm::vec3(1.0f, 1.0f, 1.0f));
@@ -56,7 +55,6 @@ void Game::LoadObjects()
 		std::shared_ptr<Entity> newStar = GetCore()->AddEntity();
 		newStar->GetComponent<Transform>()->SetTransform(starPositions.at(i), 0.0f, glm::vec3(3.0f, 3.0f, 3.0f));
 		std::shared_ptr<MeshRenderer> starRenderer = newStar->AddComponent<MeshRenderer>("../resources/models/star.obj", "../resources/shaders/simple.vert", "../resources/shaders/simple.frag");
-		//starRenderer->AddModel("../resources/models/star.obj", "../resources/shaders/simple.vert", "../resources/shaders/simple.frag");
 		std::shared_ptr<Texture> starTexture = newStar->AddComponent<Texture>("../resources/textures/Yellow.png");
 		std::shared_ptr<PickUpHandler> pickUpHandler = newStar->AddComponent<PickUpHandler>();
 		stars.push_back(newStar);
@@ -91,7 +89,6 @@ void Game::CreateUIStar()
 	std::shared_ptr<Entity> newStar = GetCore()->AddEntity();
 	newStar->GetComponent<Transform>()->SetTransform(glm::vec3(20 + xOffset, screenSize.y - 70, 0), 0.0f, glm::vec3(30.0f, 30.0f, 0.0f));
 	std::shared_ptr<Orthagraphic> starRenderer = newStar->AddComponent<Orthagraphic>("../resources/models/star.obj", "../resources/shaders/Ortho.vert", "../resources/shaders/Ortho.frag");
-	//starRenderer->AddModel("../resources/models/star.obj", "../resources/shaders/Ortho.vert", "../resources/shaders/Ortho.frag");
 	std::shared_ptr<Texture> starTexture = newStar->AddComponent<Texture>("../resources/textures/Yellow.png");
 	uiStars.push_back(newStar);
 	xOffset += 80;
@@ -103,7 +100,6 @@ void Game::CallWinScreen()
 
 	std::shared_ptr<Entity> winText = GetCore()->AddEntity();
 	std::shared_ptr<Orthagraphic> winButtonRenderer = winText->AddComponent<Orthagraphic>("../resources/models/WinText.obj", "../resources/shaders/Ortho.vert", "../resources/shaders/Ortho.frag");
-	//winButtonRenderer->AddOrtho("../resources/models/WinText.obj", "../resources/shaders/Ortho.vert", "../resources/shaders/Ortho.frag");
 	std::shared_ptr<Texture> winTextTexture = winText->AddComponent<Texture>("../resources/textures/MissingTexture.png");
 	winText->GetComponent<Transform>()->SetTransform(glm::vec3(screenSize.x / 2, screenSize.y / 2, 0), 0.0f, glm::vec3(100, 100, 0));
 }
