@@ -18,7 +18,7 @@ void Orthagraphic::Awake()
 	shaders = GetShaders();
 }
 
-void Orthagraphic::AddOrtho(std::string _modelPath, std::string _vertexPath, std::string _fragPath)
+void Orthagraphic::Start(std::string _modelPath, std::string _vertexPath, std::string _fragPath)
 {
 	AddModel(_modelPath, _vertexPath, _fragPath);
 }

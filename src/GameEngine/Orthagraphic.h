@@ -12,7 +12,7 @@ class Orthagraphic : public MeshRenderer
 {
 public:
 	virtual void Awake();
-	void AddOrtho(std::string _modelPath, std::string _vertexPath, std::string _fragPath);
+	void Start(std::string _modelPath, std::string _vertexPath, std::string _fragPath);
 private:
 	virtual void Display();
 	glm::mat4 orthoMatrix;

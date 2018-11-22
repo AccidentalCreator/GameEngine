@@ -6,15 +6,16 @@
 #include <memory>
 #include <string>
 
+#include "Component.h"
+
 struct SoundInit;
 
-class Sound
+class Sound : public Component
 {
 	std::shared_ptr<SoundInit> soundInit;
 
 public:
-	Sound();
-	Sound(std::string _filePath);
+	void Start(std::string _filePath);
 
 
 	void Load(std::string _filePath);

@@ -3,7 +3,7 @@
 #include "Core.h"
 #include "stb_image.h"
 
-void Texture::AddTexture(std::string _texPath)
+void Texture::Start(std::string _texPath)
 {
 	std::shared_ptr<Resources> resources = GetCore()->GetResources();
 
@@ -44,7 +44,6 @@ void Texture::AddTexture(std::string _texPath)
 
 		resources->AddMatData(_texPath, id);
 	}
-
 
 }
 

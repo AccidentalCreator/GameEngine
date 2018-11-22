@@ -18,7 +18,7 @@ void MeshRenderer::Awake()
 	runOnce = false;
 }
 
-void MeshRenderer::AddModel(std::string _modelPath, std::string _vertexPath, std::string _fragPath)
+void MeshRenderer::Start(std::string _modelPath, std::string _vertexPath, std::string _fragPath)
 {
 	std::shared_ptr<Resources> resources = GetCore()->GetResources();
 
@@ -37,6 +37,11 @@ void MeshRenderer::AddModel(std::string _modelPath, std::string _vertexPath, std
 
 	GetEntity()->GetComponent<Transform>()->SetSize(meshData->FindRenderSize());
 	//texture = std::make_shared<Texture>("../resources/textures/MissingTexture.png");
+}
+
+void MeshRenderer::AddModel(std::string _modelPath, std::string _vertexPath, std::string _fragPath)
+{
+	Start(_modelPath, _vertexPath, _fragPath);
 }
 
 void MeshRenderer::Display()

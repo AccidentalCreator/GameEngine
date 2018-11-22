@@ -35,15 +35,16 @@ bool Resources::CheckMaterialUsed(std::string _path)
 
 bool Resources::CheckSoundUsed(std::string _path)
 {
-	for (size_t i = 0; i < soundPaths.size(); i++)
+	for (size_t i = 0; i < soundsUsed.size(); i++)
 	{
-		if (soundPaths.at(i) == _path)
+		if (soundsUsed.at(i).path == _path)
 		{
 			return true;
 		}
 	}
-
-	soundPaths.push_back(_path);
+	SoundResource s;
+	s.path = _path;
+	soundsUsed.push_back(s);
 	return false;
 }
 
@@ -69,9 +70,15 @@ GLuint Resources::GetMatId(std::string _path)
 	}
 }
 
-std::shared_ptr<VertexArray> Resources::GetSoundData()
+ALuint Resources::GetSoundId(std::string _path)
 {
-	return soundResources.at(0);
+	for (size_t i = 0; i < soundsUsed.size(); i++)
+	{
+		if (soundsUsed.at(i).path == _path)
+		{
+			return soundsUsed.at(i).id;
+		}
+	}
 }
 
 void Resources::AddMeshData(std::shared_ptr<VertexArray> _data, std::string _path)
@@ -96,7 +103,13 @@ void Resources::AddMatData(std::string _path, GLuint _id)
 	}
 }
 
-void Resources::AddSoundData(std::shared_ptr<VertexArray> _data, std::string _path)
+void Resources::AddSoundData(std::string _path, ALuint _id)
 {
-	soundResources.push_back(_data);
+	for (size_t i = 0; i < soundsUsed.size(); i++)
+	{
+		if (soundsUsed.at(i).path == _path)
+		{
+			soundsUsed.at(i).id = _id;
+		}
+	}
 }

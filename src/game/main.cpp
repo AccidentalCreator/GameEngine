@@ -17,7 +17,7 @@ int main()
 	game->SetTag("Game");
 	std::shared_ptr<Game> gameHandler = game->AddComponent<Game>();
 
-	std::shared_ptr<Sound> sound = std::make_shared<Sound>("../resources/sounds/dixie_horn.ogg");
+	//std::shared_ptr<Sound> sound = std::make_shared<Sound>("../resources/sounds/dixie_horn.ogg");
 	//sound->Play();
 
 	core->Start();

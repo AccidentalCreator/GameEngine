@@ -75,9 +75,7 @@ struct SoundInit
 	}
 };
 
-Sound::Sound() { }
-
-Sound::Sound(std::string _path)
+void Sound::Start(std::string _path)
 {
 	Load(_path);
 }

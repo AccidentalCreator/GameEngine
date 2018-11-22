@@ -12,8 +12,7 @@
 class Texture : public Component
 {
 public:
-	//void Start(std::string _texPath);
-	void AddTexture(std::string _texPath);
+	void Start(std::string _texPath);
 	glm::vec2 GetSize();
 	GLuint GetId();
 

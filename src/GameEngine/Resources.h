@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 #include <memory>
+#include <AL\al.h>
 
 #include "VertexArray.h"
 
@@ -24,6 +25,12 @@ struct MeshResource
 	VertexArray data;
 };
 
+struct SoundResource
+{
+	std::string path;
+	ALuint id;
+};
+
 class Resources
 {
 public:
@@ -33,26 +40,23 @@ public:
 
 	std::shared_ptr<VertexArray> GetMeshData(std::string _path);
 	GLuint GetMatId(std::string _path);
+	ALuint GetSoundId(std::string _path);
 
 	void AddMeshData(std::shared_ptr<VertexArray> _data, std::string _path);
 	void AddMatData(std::string _path, GLuint _id);
-	
-	std::shared_ptr<VertexArray> GetSoundData();
-	void AddSoundData(std::shared_ptr<VertexArray> _data, std::string _path);
+	void AddSoundData(std::string _path, ALuint _id);
 
 
 private:
 	std::vector<std::shared_ptr<VertexArray>> meshResources;
 	std::vector<std::string> meshPaths;
 	
-	std::vector<unsigned char*> materialResources;
 	std::vector<std::string> materialPaths;
-
-	std::vector<std::shared_ptr<VertexArray>> soundResources;
 	std::vector<std::string> soundPaths;
 
 	std::vector<MatResource> materialsUsed;
 	std::vector<MeshResource> meshsUsed;
+	std::vector<SoundResource> soundsUsed;
 
 	
 };
