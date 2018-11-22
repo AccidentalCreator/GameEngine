@@ -21,7 +21,6 @@ void PlayerHandler::Start()
 	jumping = false;
 	jumpPeak = false;
 	grounded = false;
-	sprinting = false;
 }
 
 void PlayerHandler::Update()
@@ -55,19 +54,6 @@ void PlayerHandler::Movement()
 	if (keyInput->GetKeyDown("D"))
 	{
 		postition += glm::normalize(glm::cross(cameraFrontTemp, glm::vec3(0, 1, 0))) * speed * GetEnvironment()->GetDeltaTime();
-	}
-	if (keyInput->GetKeyDown("Left Shift")
-		&& !sprinting)
-	{
-		std::cout << "SPRINTING" << std::endl;
-		//speed *= 2.5f;
-		sprinting = true;
-	}
-	if (keyInput->GetKeyUp("Left Shift")
-		&& sprinting)
-	{
-		//speed /= 2.5f;
-		sprinting = false;
 	}
 	if (keyInput->GetKeyDown("Space") 
 		&& !jumping 

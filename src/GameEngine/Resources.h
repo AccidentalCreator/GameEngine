@@ -12,10 +12,6 @@ class MeshRenderer;
 class Material;
 class Sound;
 
-// Need to:
-// Store the resources - add to vector
-// Check resources
-
 struct MatResource
 {
 	std::string path;

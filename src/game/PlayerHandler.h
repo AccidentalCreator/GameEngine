@@ -52,8 +52,6 @@ private:
 	void MovePlayerUp();
 	void MovePlayerDown();
 
-	bool sprinting;
-
 };
 
 #endif // !PLAYERHANDLER_H
