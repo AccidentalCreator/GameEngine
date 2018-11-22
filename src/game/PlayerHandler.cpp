@@ -17,7 +17,7 @@ void PlayerHandler::Start()
 	transform = GetEntity()->GetComponent<Transform>();
 	transform->SetPosition(glm::vec3(80, 10, 45)); 
 	groundPosition = 9;
-	speed = 1.0f;
+	speed = 20.0f;
 	jumping = false;
 	jumpPeak = false;
 	grounded = false;
@@ -60,13 +60,13 @@ void PlayerHandler::Movement()
 		&& !sprinting)
 	{
 		std::cout << "SPRINTING" << std::endl;
-		speed *= 2.5f;
+		//speed *= 2.5f;
 		sprinting = true;
 	}
 	if (keyInput->GetKeyUp("Left Shift")
 		&& sprinting)
 	{
-		speed /= 2.5f;
+		//speed /= 2.5f;
 		sprinting = false;
 	}
 	if (keyInput->GetKeyDown("Space") 

@@ -5,6 +5,8 @@
 class Environment
 {
 public:
+	Environment();
+	~Environment();
 	float GetDeltaTime() { return deltaTime; }
 	void CalculateDeltaTime();
 

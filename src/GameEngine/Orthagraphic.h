@@ -6,6 +6,8 @@
 
 #include "MeshRenderer.h"
 
+class Texture;
+
 class Orthagraphic : public MeshRenderer
 {
 public:
@@ -15,8 +17,9 @@ private:
 	virtual void Display();
 	glm::mat4 orthoMatrix;
 	std::shared_ptr<ShaderProgram> shaders;
-
+	std::shared_ptr<Texture> texture;
 	
+	bool runOnce;
 };
 
 #endif // !ORTHAGRAPHIC_H
