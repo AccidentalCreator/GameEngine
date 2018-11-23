@@ -24,7 +24,7 @@ namespace GameEngine
 
 			if (!data)
 			{
-				throw std::exception();
+				throw ("Failed to load data from texture file");
 			}
 
 			size.x = w;
@@ -34,7 +34,7 @@ namespace GameEngine
 
 			if (!id)
 			{
-				throw std::exception();
+				throw ("Failed to generate texture id");
 			}
 
 			glBindTexture(GL_TEXTURE_2D, id);
@@ -48,6 +48,19 @@ namespace GameEngine
 			resources->AddMatData(_texPath, id);
 		}
 
+	}
+
+	Texture::Texture()
+	{
+		id = 0;
+	}
+
+	Texture::~Texture()
+	{
+		if (id == 0)
+		{
+			glDeleteTextures(1, &id);
+		}
 	}
 
 	glm::vec2 Texture::GetSize()

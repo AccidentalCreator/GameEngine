@@ -14,6 +14,10 @@ namespace GameEngine
 
 	}
 
+	Mesh::~Mesh()
+	{
+	}
+
 	std::vector<Face>& Mesh::GetFaces()
 	{
 		return meshSpace->faces;

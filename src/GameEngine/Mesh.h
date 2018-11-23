@@ -16,6 +16,7 @@ namespace GameEngine
 	{
 	public:
 		Mesh();
+		~Mesh();
 
 		std::vector<Face>& GetFaces();
 		void AddFace(Face& _face);

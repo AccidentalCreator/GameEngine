@@ -16,6 +16,10 @@ namespace GameEngine
 	{
 	public:
 		void Start(std::string _texPath);
+
+		Texture();
+		~Texture();
+
 		glm::vec2 GetSize();
 		GLuint GetId();
 

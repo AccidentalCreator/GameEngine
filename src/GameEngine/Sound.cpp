@@ -33,7 +33,7 @@ namespace GameEngine
 			if (ov_fopen(_filePath.c_str(), &oggFile) != 0)
 			{
 				std::cout << "Failed to open file '" << _filePath << std::endl;
-				throw std::exception();
+				throw ("Failed to open file path");
 			}
 
 			// Extract information from  file header
@@ -62,7 +62,7 @@ namespace GameEngine
 				{
 					ov_clear(&oggFile);
 					std::cout << "Failed to decode file '" << _filePath << std::endl;
-					throw std::exception();
+					throw ("Failed to decode file");
 				}
 				else if (bytes == 0)
 				{

@@ -10,7 +10,7 @@ namespace GameEngine
 
 		if (!id)
 		{
-			throw std::exception();
+			throw ("Failed to create vertex buffer");
 		}
 
 	}
@@ -29,7 +29,7 @@ namespace GameEngine
 
 		if (components != 2)
 		{
-			throw std::exception();
+			throw ("Failed to add vertex position to buffer");
 		}
 
 		data.push_back(_value.x);
@@ -46,7 +46,7 @@ namespace GameEngine
 
 		if (components != 3)
 		{
-			throw std::exception();
+			throw ("Failed to add vertex position to buffer");
 		}
 
 		data.push_back(_value.x);
@@ -64,7 +64,7 @@ namespace GameEngine
 
 		if (components != 4)
 		{
-			throw std::exception();
+			throw ("Failed to add vertex position to buffer");
 		}
 
 		data.push_back(_value.x);
@@ -83,7 +83,7 @@ namespace GameEngine
 	{
 		if (!components)
 		{
-			throw std::exception();
+			throw ("Failed to get vertex buffer component");
 		}
 		return components;
 	}

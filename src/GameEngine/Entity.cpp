@@ -1,4 +1,5 @@
 #include "Entity.h"
+#include "Exception.h"
 
 #include <iostream>
 
@@ -25,8 +26,10 @@ namespace GameEngine
 			{
 				(*it)->Update();
 			}
-			catch (...) {}
-
+			catch (Exception& e)
+			{
+				std::cout << "Game Engine Exception: " << e.What() << std::endl;
+			}
 		}
 	}
 
@@ -39,8 +42,10 @@ namespace GameEngine
 			{
 				(*it)->LateUpdate();
 			}
-			catch (...) {}
-
+			catch (Exception& e)
+			{
+				std::cout << "Game Engine Exception: " << e.What() << std::endl;
+			}
 		}
 	}
 
@@ -49,14 +54,20 @@ namespace GameEngine
 		for (std::vector<std::shared_ptr<Component> >::iterator it = components.begin();
 			it != components.end(); it++)
 		{
-			(*it)->Display();
+			try
+			{
+				(*it)->Display();
+			}
+			catch (Exception& e)
+			{
+				std::cout << "Game Engine Exception: " << e.What() << std::endl;
+			}
 		}
 	}
 
 
 	void Entity::Destroy()
 	{
-		std::cout << "Destroy called" << std::endl;
 		isAlive = false;
 	}
 

@@ -16,8 +16,6 @@ namespace GameEngine
 		position.x = GetEntity()->GetComponent<Transform>()->GetPosition().x;
 		position.y = GetEntity()->GetComponent<Transform>()->GetPosition().y;
 
-		std::cout << size.x << " " << size.y << std::endl;
-
 		mouseInput = GetMouse();
 	}
 

@@ -32,7 +32,7 @@ namespace GameEngine
 
 		if (!rtn->device)
 		{
-			throw std::exception();
+			throw Exception("Open AL Device not found");
 		}
 
 		rtn->context = alcCreateContext(rtn->device, NULL);
@@ -40,14 +40,14 @@ namespace GameEngine
 		if (!rtn->context)
 		{
 			alcCloseDevice(rtn->device);
-			throw std::exception();
+			throw Exception("Open AL Device closed");
 		}
 
 		if (!alcMakeContextCurrent(rtn->context))
 		{
 			alcDestroyContext(rtn->context);
 			alcCloseDevice(rtn->device);
-			throw std::exception();
+			throw Exception("Open AL Device Problem");
 		}
 
 		return rtn;
@@ -97,24 +97,44 @@ namespace GameEngine
 
 			for (int i = 0; i < entities.size(); i++)
 			{
-				entities.at(i)->Update();
+				try
+				{
+					entities.at(i)->Update();
+				}
+				catch (Exception& e)
+				{
+					std::cout << "Game Engine Exception: " << e.What() << std::endl;
+				}
 			}
 
 			for (auto it = entities.begin(); it != entities.end(); it++)
 			{
-				(*it)->LateUpdate();
+				try 
+				{
+					(*it)->LateUpdate();
+				}
+				catch (Exception& e)
+				{
+					std::cout << "Game Engine Exception: " << e.What() << std::endl;
+				}
 			}
 
 			for (auto it = entities.begin(); it != entities.end(); )
 			{
-				if (!(*it)->isAlive)
+				try
 				{
-					std::cout << "Destroyed" << std::endl;
-					it = entities.erase(it);
+					if (!(*it)->isAlive)
+					{
+						it = entities.erase(it);
+					}
+					else
+					{
+						it++;
+					}
 				}
-				else
+				catch (Exception& e)
 				{
-					it++;
+					std::cout << "Game Engine Exception: " << e.What() << std::endl;
 				}
 			}
 
@@ -123,7 +143,14 @@ namespace GameEngine
 			for (std::vector<std::shared_ptr<Entity> >::iterator it = entities.begin();
 				it != entities.end(); it++)
 			{
-				(*it)->Display();
+				try
+				{
+					(*it)->Display();
+				}
+				catch (Exception& e)
+				{
+					std::cout << "Game Engine Exception: " << e.What() << std::endl;
+				}
 			}
 
 			environment->CalculateDeltaTime();
@@ -156,6 +183,8 @@ namespace GameEngine
 				return (*it);
 			}
 		}
+		throw ("Entity with tag not found");
+
 		// Otherwise return null
 		return std::shared_ptr<Entity>();
 

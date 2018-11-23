@@ -30,12 +30,12 @@ namespace GameEngine
 
 		if (!SDL_GL_CreateContext(window))
 		{
-			throw std::exception();
+			throw ("Could not create SDL Window");
 		}
 
 		if (glewInit() != GLEW_OK)
 		{
-			throw std::exception();
+			throw ("Glew Init failed");
 		}
 
 		// OpenGL windoow settings

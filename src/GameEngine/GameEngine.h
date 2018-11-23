@@ -23,6 +23,7 @@
 #include "Texture.h"
 #include "StaticMeshCollider.h"
 #include "Button.h"
+#include "Exception.h"
 
 namespace GameEngine
 {

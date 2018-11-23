@@ -12,7 +12,7 @@ namespace GameEngine
 
 		if (!file.is_open())
 		{
-			throw std::exception();
+			throw ("Could not open file");
 		}
 
 		while (!file.eof())
@@ -28,7 +28,7 @@ namespace GameEngine
 
 		if (!file.is_open())
 		{
-			throw std::exception();
+			throw ("Could not open file");
 		}
 
 		while (!file.eof())
@@ -47,7 +47,7 @@ namespace GameEngine
 
 		if (!success)
 		{
-			throw std::exception();
+			throw ("Vertex Shader failed to load");
 		}
 
 		const GLchar *fs = fragSrc.c_str();
@@ -58,7 +58,7 @@ namespace GameEngine
 
 		if (!success)
 		{
-			throw std::exception();
+			throw ("Frag Shader failed to load");
 		}
 
 		id = glCreateProgram();
@@ -71,7 +71,7 @@ namespace GameEngine
 
 		if (glGetError() != GL_NO_ERROR)
 		{
-			throw std::exception();
+			throw ("Error passing data to shader");
 		}
 
 		glLinkProgram(id);
@@ -79,7 +79,7 @@ namespace GameEngine
 
 		if (!success)
 		{
-			throw std::exception();
+			throw ("Shader failed to link");
 		}
 
 		glDetachShader(id, vertexShaderId);
@@ -131,7 +131,7 @@ namespace GameEngine
 
 		if (uniformID == -1)
 		{
-			throw std::exception();
+			throw ("Couldn't locate uniform location");
 		}
 
 		glUseProgram(id);
@@ -145,7 +145,7 @@ namespace GameEngine
 
 		if (uniformID == -1)
 		{
-			throw std::exception();
+			throw ("Couldn't locate uniform location");
 		}
 
 		glUseProgram(id);
@@ -159,7 +159,7 @@ namespace GameEngine
 
 		if (uniformID == -1)
 		{
-			throw std::exception();
+			throw ("Couldn't locate uniform location");
 		}
 	
 		glUseProgram(id);
@@ -173,7 +173,7 @@ namespace GameEngine
 
 		if (uniformId == -1)
 		{
-			throw std::exception();
+			throw ("Couldn't locate uniform location");
 		}
 
 		for (size_t i = 0; i < samplers.size(); i++)

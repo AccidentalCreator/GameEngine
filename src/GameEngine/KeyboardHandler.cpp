@@ -20,7 +20,6 @@ namespace GameEngine
 	bool KeyboardHandler::GetKeyDown(std::string _key)
 	{
 		// Iterates through all the keys that are not pressed
-			//std::cout << downKeys.size() << std::endl;
 		for (int i = 0; i < downKeys.size(); i++)
 		{
 			// If key is vector return true

@@ -161,7 +161,7 @@ namespace GameEngine
 
 		if (!faceFound)
 		{
-			throw std::exception();
+			throw("Face not Found");
 		}
 	}
 

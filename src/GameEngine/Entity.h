@@ -40,7 +40,7 @@ namespace GameEngine
 				}
 			}
 
-			throw std::exception();
+			throw ("Component not found");
 		}
 
 		template <typename T>

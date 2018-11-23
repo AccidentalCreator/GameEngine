@@ -14,7 +14,7 @@ namespace GameEngine
 
 		if (!id)
 		{
-			throw std::exception();
+			throw ("Failed to generate vertex array");
 		}
 
 		buffers.resize(10);
@@ -26,7 +26,7 @@ namespace GameEngine
 
 		if (!id)
 		{
-			throw std::exception();
+			throw ("Failed to generate Vertex id");
 		}
 
 		buffers.resize(10);
@@ -34,7 +34,7 @@ namespace GameEngine
 
 		if (!file.is_open())
 		{
-			throw std::exception();
+			throw ("Failed to get open model file");
 		}
 
 		std::string line;
@@ -236,7 +236,7 @@ namespace GameEngine
 		}
 		else
 		{
-			throw std::exception();
+			throw ("Failed to set buffer");
 		}
 
 		dirty = true;
@@ -246,7 +246,7 @@ namespace GameEngine
 	{
 		if (!buffers.at(0))
 		{
-			throw std::exception();
+			throw ("Failed to get vertex count - buffer empty");
 		}
 		return buffers.at(0)->GetDataSize() / buffers.at(0)->GetComponents();
 	}
@@ -283,7 +283,10 @@ namespace GameEngine
 
 	VertexArray::~VertexArray()
 	{
-
+		if (id == 0)
+		{
+			glDeleteBuffers(1, &id);
+		}
 	}
 
 	glm::vec3 VertexArray::FindRenderSize()
