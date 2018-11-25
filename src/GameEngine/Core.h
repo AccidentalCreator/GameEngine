@@ -1,5 +1,4 @@
 #pragma once
-
 #ifndef CORE_H
 #define CORE_H
 
@@ -23,21 +22,36 @@ namespace GameEngine
 	class KeyboardHandler;
 	class MouseHandler;
 
+	/**
+	* Monitors and handles all entites created
+	*/
+
 	class Core
 	{
 
 	public:
+		/// Initiaises the core system
 		static std::shared_ptr<Core> Initialize();
+		/// Runs the program
 		void Start();
+		/// Stops the program
 		void Stop();
+		/// Adds an entity to core
 		std::shared_ptr<Entity> AddEntity();
+		/// Retrieves screen handler
 		std::shared_ptr<Screen> GetScreen() { return screen; }
+		/// Retrieves resource handler
 		std::shared_ptr<Resources> GetResources() { return resources; }
+		/// Retrieves environment handler
 		std::shared_ptr<Environment> GetEnvironment() { return environment; }
+		/// Retrieves keyboard handler
 		std::shared_ptr<KeyboardHandler> GetKeyboard() { return keyboard; }
+		/// Retireves mouse handler
 		std::shared_ptr<MouseHandler> GetMouse() { return mouse; }
+		/// Finds and returns entity with searched tag
 		std::shared_ptr<Entity> FindEntityWithTag(std::string _tag);
 
+		/// Finds and returns entity with attatched component
 		template <typename T>
 		std::shared_ptr<Entity> FindEntityWithComponent()
 		{

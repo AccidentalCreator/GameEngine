@@ -27,7 +27,9 @@
 
 namespace GameEngine
 {
-
+	/**
+	* Includes all the relevant headers for ease of use
+	*/
 	class GameObject
 	{
 

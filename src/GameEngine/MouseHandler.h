@@ -8,16 +8,22 @@
 
 namespace GameEngine
 {
-
+	/**
+	* Handles mouse movement and input
+	*/
 	class MouseHandler
 	{
 	public:
-
+		/// Checks if a mouse button is being clicked
 		bool GetMouseButtonDown(int _button);
+		/// Sets a mouse butotn to clicked
 		void SetMouseButtonPressed(SDL_MouseButtonEvent _event);
+		/// Sets a mouse button to released
 		void SetMouseButtonReleased(SDL_MouseButtonEvent _event);
+		/// Sets the mouse position
 		void SetMousePosition(int _x, int _y);
 
+		/// Retrieves the mouse position
 		glm::vec2 GetMousePosition() { return mousePosition; }
 
 

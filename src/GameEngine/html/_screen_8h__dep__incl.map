@@ -1,7 +1,0 @@
-<map id="Screen.h" name="Screen.h">
-<area shape="rect" id="node2" href="$_core_8cpp.html" title="Core.cpp" alt="" coords="5,80,80,107"/>
-<area shape="rect" id="node3" href="$_game_engine_8h.html" title="GameEngine.h" alt="" coords="105,80,213,107"/>
-<area shape="rect" id="node4" href="$_mesh_renderer_8cpp.html" title="MeshRenderer.cpp" alt="" coords="237,80,368,107"/>
-<area shape="rect" id="node5" href="$_orthagraphic_8cpp.html" title="Orthagraphic.cpp" alt="" coords="393,80,514,107"/>
-<area shape="rect" id="node6" href="$_screen_8cpp.html" title="Screen.cpp" alt="" coords="539,80,627,107"/>
-</map>

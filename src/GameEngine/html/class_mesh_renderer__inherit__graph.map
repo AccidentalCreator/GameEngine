@@ -1,4 +1,0 @@
-<map id="MeshRenderer" name="MeshRenderer">
-<area shape="rect" id="node3" href="$class_orthagraphic.html" title="{Orthagraphic\n||+ Awake()\l+ AddOrtho()\l}" alt="" coords="24,373,121,465"/>
-<area shape="rect" id="node2" href="$class_component.html" title="{Component\n||+ ~Component()\l+ GetEntity()\l+ GetCore()\l+ GetKeyboard()\l+ GetEnvironment()\l}" alt="" coords="5,5,140,141"/>
-</map>

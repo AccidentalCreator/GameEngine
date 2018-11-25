@@ -5,14 +5,19 @@
 
 namespace GameEngine
 {
-
+	/**
+	* Allows a countdown timer to be added
+	*/
 	class Timer
 	{
 	public:
+		/// Constructor
 		Timer();
+		/// Destructor
 		~Timer();
-
+		/// Initialisation and set end time also starts timer
 		void Start(float _endTime);
+		/// Checks if the timer has finished or is still running
 		bool Running();
 	private:
 		bool running;

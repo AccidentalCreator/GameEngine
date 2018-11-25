@@ -11,16 +11,23 @@
 
 namespace GameEngine
 {
-
+	/**
+	* Adds a texture to the entities mesh
+	*/
 	class Texture : public Component
 	{
 	public:
+		/// Loads in the texture from the given texture path
 		void Start(std::string _texPath);
 
+		/// Constructor
 		Texture();
+		/// Destructor 
 		~Texture();
 
+		/// Gets the size of the texture
 		glm::vec2 GetSize();
+		/// Returns the texture buffers id
 		GLuint GetId();
 
 	private:

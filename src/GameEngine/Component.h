@@ -13,16 +13,25 @@ namespace GameEngine
 	class KeyboardHandler;
 	class MouseHandler;
 
+	/**
+	* Components can be assigned to enities, handle all the data and behaviours of the entities
+	*/
+
 	class Component
 	{ 
-		// Friend class can access private and protected members from other class
+		/// Friend class can access private and protected members from other class
 		friend class Entity;
 	public:
 		virtual ~Component();
+		/// Returns the entity the component is attatched to 
 		std::shared_ptr<Entity> GetEntity();
+		/// Returns the core of the game
 		std::shared_ptr<Core> GetCore();
+		/// Retrieves the keyboard handler
 		std::shared_ptr<KeyboardHandler> GetKeyboard();
+		/// Retrieves the mouse handler
 		std::shared_ptr<MouseHandler> GetMouse();
+		/// Retrieves the environment
 		std::shared_ptr<Environment> GetEnvironment();
 
 

@@ -107,12 +107,12 @@ void PlayerHandler::Direction()
 	GetEntity()->GetComponent<Camera>()->SetCameraFront(newCameraFront);
 }
 
-void PlayerHandler::CheckCollision(glm::vec3 lastPosition, glm::vec3 newPosition)
+void PlayerHandler::CheckCollision(glm::vec3 _lastPosition, glm::vec3 _newPosition)
 {
-	newPosition = newPosition + glm::vec3 (0, -1, 0);
+	_newPosition = _newPosition + glm::vec3 (0, -1, 0);
 
 	bool solved = false;
-	glm::vec3 solvedPosition = staticMeshCollider->CollisionAdjustment(newPosition, transform->GetSize(), solved, lastPosition);
+	glm::vec3 solvedPosition = staticMeshCollider->CollisionAdjustment(_newPosition, transform->GetSize(), solved, _lastPosition);
 
 	if (solved)
 	{
@@ -126,14 +126,14 @@ void PlayerHandler::CheckCollision(glm::vec3 lastPosition, glm::vec3 newPosition
 		{
   			grounded = false;
 		}
-		newPosition = solvedPosition;
+		_newPosition = solvedPosition;
 	}
 	else
 	{
-		newPosition = lastPosition;
+		_newPosition = _lastPosition;
 	}
-	newPosition = newPosition + glm::vec3(0, 1, 0);
-	transform->SetPosition(newPosition);
+	_newPosition = _newPosition + glm::vec3(0, 1, 0);
+	transform->SetPosition(_newPosition);
 }
 
 void PlayerHandler::Gravity()

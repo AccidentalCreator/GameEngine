@@ -98,7 +98,6 @@ add_library(GameEngine
 	src/GameEngine/StaticMeshCollider.h
 	src/GameEngine/Mesh.h
 	src/GameEngine/Face.h
-	src/GameEngine/Text.h
 
 	src/GameEngine/VertexBuffer.h
 	src/GameEngine/VertexArray.h
@@ -129,7 +128,6 @@ add_library(GameEngine
 	src/GameEngine/Mesh.cpp
 	src/GameEngine/Face.cpp
 	src/GameEngine/tribox.cpp
-	src/GameEngine/Text.cpp
 
 	src/GameEngine/VertexBuffer.cpp
 	src/GameEngine/VertexArray.cpp

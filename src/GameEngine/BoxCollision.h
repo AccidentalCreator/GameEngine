@@ -8,6 +8,10 @@ namespace GameEngine
 {
 	class Entity;
 
+	/**
+	* Checks box collision between two entiies
+	*/
+
 	class BoxCollision
 	{
 	public:

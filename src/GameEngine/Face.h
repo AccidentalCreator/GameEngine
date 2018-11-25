@@ -4,13 +4,18 @@
 
 namespace GameEngine
 {
-
+	/**
+	* Stores the vertex positon and its texture coordinate
+	*/
 	struct Vertex
 	{
 		glm::vec3 position;
 		glm::vec2 texCoord;
 	};
 
+	/**
+	* Stores the position of each trianglulated faces vertex
+	*/
 	class Face
 	{
 	public:

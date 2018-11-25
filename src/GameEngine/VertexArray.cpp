@@ -51,7 +51,7 @@ namespace GameEngine
 		{
 			std::getline(file, line);
 			if (line.length() < 1) continue;
-			removeWhitespace(line, splitLine);
+			RemoveWhitespace(line, splitLine);
 			if (splitLine.size() < 1) continue;
 
 			if (splitLine.at(0) == "v")
@@ -86,7 +86,7 @@ namespace GameEngine
 				std::vector<std::string> subsplit;
 
 				// Face V1
-				splitString(splitLine.at(1), '/', subsplit);
+				SplitString(splitLine.at(1), '/', subsplit);
 			
 				face.a.position = positions.at(atoi(subsplit.at(0).c_str()) - 1);
 				//face.a.texCoord = texCoords.at(atoi(subsplit.at(1).c_str()) - 1);
@@ -96,7 +96,7 @@ namespace GameEngine
 				if (normalBuffer) normalBuffer->Add(normals.at(atoi(subsplit.at(2).c_str()) - 1));
 			
 				// Face V2
-				splitString(splitLine.at(2), '/', subsplit);
+				SplitString(splitLine.at(2), '/', subsplit);
 
 				face.b.position = positions.at(atoi(subsplit.at(0).c_str()) - 1);
 				//face.b.texCoord = texCoords.at(atoi(subsplit.at(1).c_str()) - 1);
@@ -106,7 +106,7 @@ namespace GameEngine
 				if (normalBuffer) normalBuffer->Add(normals.at(atoi(subsplit.at(2).c_str()) - 1));
 			
 				// Face V3
-				splitString(splitLine.at(3), '/', subsplit);
+				SplitString(splitLine.at(3), '/', subsplit);
 
 				face.c.position = positions.at(atoi(subsplit.at(0).c_str()) - 1);
 				//face.c.texCoord = texCoords.at(atoi(subsplit.at(1).c_str()) - 1);
@@ -122,7 +122,7 @@ namespace GameEngine
 				face = Face(); // New face
 
 				// Face V1
-				splitString(splitLine.at(3), '/', subsplit);
+				SplitString(splitLine.at(3), '/', subsplit);
 
 				face.a.position = positions.at(atoi(subsplit.at(0).c_str()) - 1);
 				//face.a.texCoord = texCoords.at(atoi(subsplit.at(1).c_str()) - 1);
@@ -132,7 +132,7 @@ namespace GameEngine
 				if (normalBuffer) normalBuffer->Add(normals.at(atoi(subsplit.at(2).c_str()) - 1));
 			
 				// Face V2
-				splitString(splitLine.at(4), '/', subsplit);
+				SplitString(splitLine.at(4), '/', subsplit);
 
 				face.b.position = positions.at(atoi(subsplit.at(0).c_str()) - 1);
 				//face.b.texCoord = texCoords.at(atoi(subsplit.at(1).c_str()) - 1);
@@ -142,7 +142,7 @@ namespace GameEngine
 				if (normalBuffer) normalBuffer->Add(normals.at(atoi(subsplit.at(2).c_str()) - 1));
 			
 				// Face V3
-				splitString(splitLine.at(1), '/', subsplit);
+				SplitString(splitLine.at(1), '/', subsplit);
 
 				face.c.position = positions.at(atoi(subsplit.at(0).c_str()) - 1);
 				//face.c.texCoord = texCoords.at(atoi(subsplit.at(1).c_str()) - 1);
@@ -160,7 +160,7 @@ namespace GameEngine
 		if (normalBuffer) SetBuffer("in_Normal", normalBuffer);
 	}
 
-	void VertexArray::splitString(std::string& _input, char _splitter, std::vector<std::string>& _output)
+	void VertexArray::SplitString(std::string& _input, char _splitter, std::vector<std::string>& _output)
 	{
 		std::string curr;
 
@@ -185,7 +185,7 @@ namespace GameEngine
 		}
 	}
 
-	void VertexArray::removeWhitespace(std::string& _input, std::vector<std::string>& _output)
+	void VertexArray::RemoveWhitespace(std::string& _input, std::vector<std::string>& _output)
 	{
 		std::string curr;
 

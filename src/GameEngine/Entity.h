@@ -19,14 +19,21 @@ namespace GameEngine
 	class Core;
 	class Transform;
 
+	/**
+	* Acts as a repository for components
+	*/
+
 	class Entity
 	{
 		// Friend class can access private and protected members from other class
 		friend class Core;
 	public:
+		/// Retrieves core
 		std::shared_ptr<Core> GetCore();
+		/// Destroys the entity safely
 		void Destroy();
 
+		/// Returns a component attatched to the entity
 		template <typename T>
 		std::shared_ptr<T> GetComponent()
 		{
@@ -43,6 +50,7 @@ namespace GameEngine
 			throw ("Component not found");
 		}
 
+		/// Adds a component to the entity
 		template <typename T>
 		std::shared_ptr<T> AddComponent()
 		{
@@ -52,6 +60,7 @@ namespace GameEngine
 			return rtn;
 		}
 
+		/// Adds a component to the entity
 		template <typename T, typename A>
 		std::shared_ptr<T> AddComponent(A a)
 		{
@@ -61,6 +70,7 @@ namespace GameEngine
 			return rtn;
 		}
 
+		/// Adds a component to the entity
 		template <typename T, typename A, typename B>
 		std::shared_ptr<T> AddComponent(A a, B b)
 		{
@@ -70,6 +80,7 @@ namespace GameEngine
 			return rtn;
 		}
 
+		/// Adds a component to the entity
 		template <typename T, typename A, typename B, typename C>
 		std::shared_ptr<T> AddComponent(A a, B b, C c)
 		{
@@ -79,7 +90,9 @@ namespace GameEngine
 			return rtn;
 		}
 
+		/// Retrieves the tag given to the entity
 		std::string GetTag() { return tag; }
+		/// Sets a tag to the entity
 		void SetTag(std::string _tag) { tag = _tag; }
 
 	private:

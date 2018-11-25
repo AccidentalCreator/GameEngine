@@ -1,8 +1,0 @@
-<map id="Component::GetCore" name="Component::GetCore">
-<area shape="rect" id="node2" href="$class_component.html#a1639a645d23caae1be3b952b850a65c4" title="Component::GetKeyboard" alt="" coords="205,5,377,32"/>
-<area shape="rect" id="node3" href="$class_component.html#acc728e71f991a200996b9215b4b4739a" title="Component::GetEnvironment" alt="" coords="197,56,385,83"/>
-<area shape="rect" id="node4" href="$class_material.html#a8fcc1a8e83981ddd45c746c7ca98e46c" title="Material::Start" alt="" coords="239,131,343,157"/>
-<area shape="rect" id="node5" href="$class_mesh_renderer.html#a90798e723067ca8c721f0c96c1609972" title="MeshRenderer::AddModel" alt="" coords="205,181,377,208"/>
-<area shape="rect" id="node7" href="$class_orthagraphic.html#a62f9d1b5d54623252bc3d15eba1e7181" title="Orthagraphic::Awake" alt="" coords="220,232,363,259"/>
-<area shape="rect" id="node6" href="$class_orthagraphic.html#a7566bfec317c25a115d4d0b7debfb36c" title="Orthagraphic::AddOrtho" alt="" coords="433,181,592,208"/>
-</map>

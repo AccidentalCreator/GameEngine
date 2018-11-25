@@ -7,15 +7,20 @@
 
 namespace GameEngine
 {
-
+	/**
+	* Handles keyboard input
+	*/
 	class KeyboardHandler
 	{
 	public:
+		/// Returns if a questioned key is pressed
 		bool GetKeyDown(std::string _key);
+		/// Returns if a questioned key is not pressed
 		bool GetKeyUp(std::string _key);
 
-
+		/// Sets a key as pressed
 		void SetKeyPressed(SDL_Keycode _key);
+		/// Sets a key as released
 		void SetKeyReleased(SDL_Keycode _key);
 
 	private:
