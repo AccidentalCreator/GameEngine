@@ -15,6 +15,7 @@ namespace GameEngine
 	class BoxCollision
 	{
 	public:
+		/// Checks AABB Collision between two entities
 		bool CheckCollision(std::weak_ptr<Entity> _a, std::weak_ptr<Entity> _b);
 
 	private:

@@ -2,9 +2,6 @@
 #include "PickUpHandler.h"
 #include "PlayerHandler.h"
 
-#include <iostream>
-
-
 void Game::Awake()
 {
 	startGame = false;
@@ -12,6 +9,7 @@ void Game::Awake()
 
 void Game::Start()
 {
+	// Initialises game variables
 	if (startGame)
 	{
 		score = 0;
@@ -64,6 +62,7 @@ void Game::LoadObjects()
 
 std::vector<glm::vec3> Game::SetStarPositions()
 {
+	// Sets positions then places them into a vecotr
 	std::vector<glm::vec3> starPositions;
 	starPositions.push_back(glm::vec3(67, 6, -36));
 	starPositions.push_back(glm::vec3(0, 40, 0));
@@ -76,8 +75,11 @@ std::vector<glm::vec3> Game::SetStarPositions()
 
 void Game::IncrementScore()
 {
+	// Increases score
 	score++;
+	// Outputs UI
 	CreateUIStar();
+	// Checks if all stars have been collected
 	if (score == 5)
 	{
 		CallWinScreen();
@@ -86,6 +88,7 @@ void Game::IncrementScore()
 
 void Game::CreateUIStar()
 {
+	// Create orthographic star
 	glm::vec2 screenSize = GetCore()->GetScreen()->GetSize();
 	std::shared_ptr<Entity> newStar = GetCore()->AddEntity();
 	newStar->GetComponent<Transform>()->SetTransform(glm::vec3(20 + xOffset, screenSize.y - 70, 0), 0.0f, glm::vec3(30.0f, 30.0f, 0.0f));
@@ -97,6 +100,7 @@ void Game::CreateUIStar()
 
 void Game::CallWinScreen()
 {
+	// Creates win screen
 	glm::vec2 screenSize = GetCore()->GetScreen()->GetSize();
 
 	std::shared_ptr<Entity> winText = GetCore()->AddEntity();

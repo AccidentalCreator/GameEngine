@@ -1,7 +1,7 @@
+#include <gtx/transform.hpp>
+
 #include "Screen.h"
 
-#include <iostream>
-#include <gtx/transform.hpp>
 
 namespace GameEngine
 {

@@ -1,0 +1,5 @@
+<map id="GameEngine::Texture::Start" name="GameEngine::Texture::Start">
+<area shape="rect" id="node2" href="$class_game_engine_1_1_component.html#a601ec93559ca1dd75c2c1ea13510594d" title="Returns the core of the game. " alt="" coords="201,5,372,47"/>
+<area shape="rect" id="node4" href="$stb__image_8h.html#aefdc7387857a14894bbf321e9ea4f048" title="stbi_load" alt="" coords="249,71,324,98"/>
+<area shape="rect" id="node3" href="$class_game_engine_1_1_component.html#a746298ddfd39da5b191926aa8d8f6d95" title="Returns the entity the component is attatched to. " alt="" coords="420,5,591,47"/>
+</map>

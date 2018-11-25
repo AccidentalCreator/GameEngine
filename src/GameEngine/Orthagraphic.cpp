@@ -1,3 +1,5 @@
+#include <gtc\matrix_transform.hpp>
+
 #include "Orthagraphic.h"
 #include "Core.h"
 #include "Screen.h"
@@ -8,7 +10,6 @@
 #include "Transform.h"
 #include "Texture.h"
 
-#include <gtc\matrix_transform.hpp>
 
 namespace GameEngine
 {

@@ -1,7 +1,8 @@
+#include <gtc\matrix_transform.hpp>
+
 #include "Camera.h"
 #include "Entity.h"
 #include "Transform.h"
-#include <gtc\matrix_transform.hpp>
 
 namespace GameEngine
 {

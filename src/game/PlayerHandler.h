@@ -1,9 +1,10 @@
 #ifndef PLAYERHANDLER_H
 #define PLAYERHANDLER_H
 
+#include <memory>
+
 #include "GameEngine\GameEngine.h"
 #include "glm.hpp"
-#include <memory>
 
 using namespace GameEngine;
 

@@ -1,0 +1,3 @@
+<map id="GameEngine::StaticMeshCollider::CollisionAdjustment" name="GameEngine::StaticMeshCollider::CollisionAdjustment">
+<area shape="rect" id="node2" href="$class_game_engine_1_1_static_mesh_collider.html#afbf7f0cc65f98c6312ad29534ed751a1" title="Calculates which column the object is colliding with. " alt="" coords="268,5,483,47"/>
+</map>

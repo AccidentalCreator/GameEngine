@@ -1,8 +1,6 @@
 #include "Resources.h"
 #include "VertexArray.h"
 
-#include <iostream>
-
 namespace GameEngine
 {
 

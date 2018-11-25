@@ -1,0 +1,4 @@
+<map id="GameEngine::Transform::GetInWorldSize" name="GameEngine::Transform::GetInWorldSize">
+<area shape="rect" id="node2" href="$class_game_engine_1_1_transform.html#a7a91d0839984b2afd4b70b019d5a540c" title="Returns the scale of the object. " alt="" coords="216,5,379,47"/>
+<area shape="rect" id="node3" href="$class_game_engine_1_1_transform.html#a76668c9f106fdf1e38fe4bc383b342cd" title="Returns the size of the object. " alt="" coords="216,71,379,112"/>
+</map>

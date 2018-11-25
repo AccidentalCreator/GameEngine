@@ -1,0 +1,5 @@
+<map id="GameEngine::Sound::Start" name="GameEngine::Sound::Start">
+<area shape="rect" id="node2" href="$class_game_engine_1_1_sound.html#a52f71621da4ade470bca2a1d6c848a8f" title="Loads the data from the given file path. " alt="" coords="204,13,383,39"/>
+<area shape="rect" id="node3" href="$class_game_engine_1_1_component.html#a601ec93559ca1dd75c2c1ea13510594d" title="Returns the core of the game. " alt="" coords="431,5,601,47"/>
+<area shape="rect" id="node4" href="$class_game_engine_1_1_component.html#a746298ddfd39da5b191926aa8d8f6d95" title="Returns the entity the component is attatched to. " alt="" coords="649,5,820,47"/>
+</map>

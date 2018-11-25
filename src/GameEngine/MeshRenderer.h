@@ -2,11 +2,11 @@
 #ifndef MESHRENDERER_H
 #define MESHRENDERER_H
 
-#include "Component.h"
-#include "Texture.h"
-
 #include <memory>
 #include <string>
+
+#include "Component.h"
+#include "Texture.h"
 
 namespace GameEngine
 {

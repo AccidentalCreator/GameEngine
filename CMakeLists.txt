@@ -108,14 +108,13 @@ add_library(GameEngine
 	src/GameEngine/Core.cpp
 	src/GameEngine/Environment.cpp
 	src/GameEngine/Entity.cpp
+	src/GameEngine/GameEngine.cpp
 	src/GameEngine/KeyboardHandler.cpp
 	src/GameEngine/MouseHandler.cpp
 	src/GameEngine/Component.cpp
-	src/GameEngine/GameEngine.cpp
 	src/GameEngine/Screen.cpp
 	src/GameEngine/stb_image.cpp
 	src/GameEngine/Sound.cpp
-	src/GameEngine/Exception.cpp
 	src/GameEngine/Transform.cpp
 	src/GameEngine/Camera.cpp
 	src/GameEngine/Resources.cpp
@@ -126,7 +125,6 @@ add_library(GameEngine
 	src/GameEngine/Texture.cpp
 	src/GameEngine/StaticMeshCollider.cpp
 	src/GameEngine/Mesh.cpp
-	src/GameEngine/Face.cpp
 	src/GameEngine/tribox.cpp
 
 	src/GameEngine/VertexBuffer.cpp

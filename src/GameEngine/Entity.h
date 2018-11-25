@@ -1,11 +1,13 @@
+#pragma once
 #ifndef ENTITY_H
 #define ENTITY_H
 
-#include "Component.h"
 
 #include <vector>
 #include <memory>
 #include <string>
+
+#include "Component.h"
 
 namespace GameEngine
 {

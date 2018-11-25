@@ -9,8 +9,6 @@
 #include "MouseHandler.h"
 #include "Exception.h"
 
-#include <iostream>
-
 namespace GameEngine
 {
 

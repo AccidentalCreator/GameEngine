@@ -1,0 +1,4 @@
+<map id="GameEngine::planeBoxOverlap" name="GameEngine::planeBoxOverlap">
+<area shape="rect" id="node2" href="$namespace_game_engine.html#a9add118a91fdcd122629b0e3a4362b7d" title="GameEngine::triBoxOverlap" alt="" coords="256,13,439,39"/>
+<area shape="rect" id="node3" href="$struct_game_engine_1_1_partitioning_column.html#a31269b7b9a2c3e9ab37d4883b3d771ff" title="Checks if an object is colliding with the faces inside its self. " alt="" coords="487,5,657,47"/>
+</map>

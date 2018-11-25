@@ -1,7 +1,6 @@
 #include "BoxCollision.h"
 #include "Entity.h"
 #include "Transform.h"
-#include <iostream>
 
 namespace GameEngine
 {

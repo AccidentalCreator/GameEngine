@@ -1,10 +1,10 @@
+#include <math.h>
+#include <stdio.h>
+
 #include "StaticMeshCollider.h"
 #include "VertexArray.h"
 #include "Entity.h"
 #include "MeshRenderer.h"
-#include <math.h>
-#include <stdio.h>
-#include <iostream>
 
 namespace GameEngine
 {

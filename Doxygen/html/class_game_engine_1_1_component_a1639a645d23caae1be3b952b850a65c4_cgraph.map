@@ -1,0 +1,4 @@
+<map id="GameEngine::Component::GetKeyboard" name="GameEngine::Component::GetKeyboard">
+<area shape="rect" id="node2" href="$class_game_engine_1_1_component.html#a601ec93559ca1dd75c2c1ea13510594d" title="Returns the core of the game. " alt="" coords="224,5,395,47"/>
+<area shape="rect" id="node3" href="$class_game_engine_1_1_component.html#a746298ddfd39da5b191926aa8d8f6d95" title="Returns the entity the component is attatched to. " alt="" coords="443,5,613,47"/>
+</map>

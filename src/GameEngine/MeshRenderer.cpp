@@ -1,3 +1,5 @@
+#include <gtc\matrix_transform.hpp>
+
 #include "MeshRenderer.h"
 #include "VertexArray.h"
 #include "VertexBuffer.h"
@@ -8,10 +10,6 @@
 #include "Entity.h"
 #include "Camera.h"
 #include "Resources.h"
-
-
-#include <gtc\matrix_transform.hpp>
-#include <iostream>
 
 namespace GameEngine
 {

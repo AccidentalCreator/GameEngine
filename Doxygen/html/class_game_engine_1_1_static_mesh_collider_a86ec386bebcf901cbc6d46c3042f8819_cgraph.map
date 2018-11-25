@@ -1,0 +1,4 @@
+<map id="GameEngine::StaticMeshCollider::Start" name="GameEngine::StaticMeshCollider::Start">
+<area shape="rect" id="node2" href="$class_game_engine_1_1_component.html#a746298ddfd39da5b191926aa8d8f6d95" title="Returns the entity the component is attatched to. " alt="" coords="277,5,448,47"/>
+<area shape="rect" id="node3" href="$class_game_engine_1_1_mesh_renderer.html#aaba4ad35563496d4e831cc2d70e3cea5" title="Retrieves the mesh data. " alt="" coords="268,71,457,112"/>
+</map>

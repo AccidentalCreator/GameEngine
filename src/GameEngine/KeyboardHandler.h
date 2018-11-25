@@ -1,3 +1,4 @@
+#pragma once
 #ifndef KEYBOARDHANDLER_H
 #define KEYBOARDHANDLER_H
 

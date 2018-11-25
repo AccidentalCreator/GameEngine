@@ -1,7 +1,7 @@
+#include <iostream>
+
 #include "Entity.h"
 #include "Exception.h"
-
-#include <iostream>
 
 namespace GameEngine
 {

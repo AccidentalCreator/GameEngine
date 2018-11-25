@@ -1,7 +1,6 @@
-#include "Transform.h"
-
 #include <gtx/transform.hpp>
-#include <iostream>
+
+#include "Transform.h"
 
 namespace GameEngine
 {

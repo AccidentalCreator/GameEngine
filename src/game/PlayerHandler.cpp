@@ -1,7 +1,5 @@
 #include "PlayerHandler.h"
 
-#include <iostream>
-
 void PlayerHandler::Awake()
 {
 	keyInput = GetKeyboard();
@@ -32,6 +30,7 @@ void PlayerHandler::Update()
 
 void PlayerHandler::Movement()
 {
+	// Checks if WASD pressed or space for player movement
 	postition = transform->GetPosition();
 
 	glm::vec3 lastPosition = transform->GetPosition();
@@ -64,7 +63,9 @@ void PlayerHandler::Movement()
 		maxJumpHeight = postition.y + 20;
 		gravityStrength = 0.5f;
 	}
+	// Checks static mesh collider
 	CheckCollision(lastPosition, postition);
+	// If player falls off map move that back onto map
 	if (postition.y < -20)
 	{
 		transform->SetPosition(glm::vec3(80, 10, 45));
@@ -73,6 +74,7 @@ void PlayerHandler::Movement()
 
 void PlayerHandler::Direction()
 {
+	// Checks and handles the mouse movement. Allows player to look around
 	if (runOnce)
 	{
 		lastMouseX = mouseInput->GetMousePosition().x;
@@ -109,6 +111,7 @@ void PlayerHandler::Direction()
 
 void PlayerHandler::CheckCollision(glm::vec3 _lastPosition, glm::vec3 _newPosition)
 {
+	// Checks collison with level mesh
 	_newPosition = _newPosition + glm::vec3 (0, -1, 0);
 
 	bool solved = false;
@@ -162,6 +165,7 @@ void PlayerHandler::Gravity()
 		}
 	}
 
+	// If reached max jump height
 	if (jumpPeak 
 		&& grounded)
 	{
@@ -172,6 +176,7 @@ void PlayerHandler::Gravity()
 
 void PlayerHandler::MovePlayerUp()
 {
+	// Moves the player up when jumping
 	glm::vec3 position = transform->GetPosition();
 	position.y += gravityStrength;
 	transform->SetPosition(position);
@@ -179,6 +184,7 @@ void PlayerHandler::MovePlayerUp()
 
 void PlayerHandler::MovePlayerDown()
 {
+	// Moves the player down when landing
 	glm::vec3 position = transform->GetPosition();
 	position.y -= gravityStrength;
 	transform->SetPosition(position);

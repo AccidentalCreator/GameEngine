@@ -1,5 +1,4 @@
 #pragma once
-
 #ifndef SHADERPROGRAM
 #define SHADERPROGRAM
 

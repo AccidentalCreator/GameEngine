@@ -20,6 +20,7 @@ void PickUpHandler::Update()
 
 void PickUpHandler::CheckCollided()
 {
+	// Checks for collision with player
 	if (boxCollision.CheckCollision(player, GetEntity()))
 	{
 		GetEntity()->GetComponent<Sound>()->Play();
@@ -30,6 +31,7 @@ void PickUpHandler::CheckCollided()
 
 void PickUpHandler::Rotate()
 {
+	// Rotates star because why not
 	angle += 40.0f * GetEnvironment()->GetDeltaTime();
 	GetEntity()->GetComponent<Transform>()->SetRotation(angle);
 }

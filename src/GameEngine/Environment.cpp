@@ -1,7 +1,8 @@
-#include "Environment.h"
-
 #include <SDL2\SDL.h>
 #include <iostream>
+
+#include "Environment.h"
+
 
 namespace GameEngine
 {

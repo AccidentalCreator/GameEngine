@@ -1,8 +1,8 @@
+#include <fstream>
+
 #include "VertexArray.h"
 #include "VertexBuffer.h"
 
-#include <fstream>
-#include <iostream>
 
 namespace GameEngine
 {

@@ -1,0 +1,4 @@
+<map id="GameEngine::Camera::SetTarget" name="GameEngine::Camera::SetTarget">
+<area shape="rect" id="node2" href="$class_game_engine_1_1_camera.html#afbf0632c33d506aac3aac85e70f0fdca" title="GameEngine::Camera\l::Start" alt="" coords="204,5,355,47"/>
+<area shape="rect" id="node3" href="$class_game_engine_1_1_component.html#a746298ddfd39da5b191926aa8d8f6d95" title="Returns the entity the component is attatched to. " alt="" coords="403,5,573,47"/>
+</map>

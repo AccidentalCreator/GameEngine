@@ -1,0 +1,5 @@
+<map id="GameEngine::Orthagraphic::Awake" name="GameEngine::Orthagraphic::Awake">
+<area shape="rect" id="node2" href="$class_game_engine_1_1_component.html#a601ec93559ca1dd75c2c1ea13510594d" title="Returns the core of the game. " alt="" coords="241,5,412,47"/>
+<area shape="rect" id="node4" href="$class_game_engine_1_1_mesh_renderer.html#a85596b4a2805fdbf33383f0dafae3c47" title="Retrieves the shaders assigned. " alt="" coords="232,71,421,112"/>
+<area shape="rect" id="node3" href="$class_game_engine_1_1_component.html#a746298ddfd39da5b191926aa8d8f6d95" title="Returns the entity the component is attatched to. " alt="" coords="469,5,640,47"/>
+</map>

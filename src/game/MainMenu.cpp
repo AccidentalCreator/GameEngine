@@ -1,18 +1,17 @@
 #include "MainMenu.h"
 #include "Game.h"
 
-#include <iostream>
-
-
 void MainMenu::Start()
 {
 	screenSize = GetCore()->GetScreen()->GetSize();
 
+	// Instructions
 	instuctions = GetCore()->AddEntity();
 	std::shared_ptr<Orthagraphic> instructionRenderer = instuctions->AddComponent<Orthagraphic>("../resources/models/Instructions.obj", "../resources/shaders/Ortho.vert", "../resources/shaders/Ortho.frag");
 	std::shared_ptr<Texture> instructionsTexture = instuctions->AddComponent<Texture>("../resources/textures/Black.png");
 	instuctions->GetComponent<Transform>()->SetTransform(glm::vec3(screenSize.x / 2, 100, 0), 0.0f, glm::vec3(50, 50, 0));
 
+	// Start Button
 	startButton = GetCore()->AddEntity();
 	std::shared_ptr<Orthagraphic> startButtonRenderer = startButton->AddComponent<Orthagraphic>("../resources/models/PlayText.obj", "../resources/shaders/Ortho.vert", "../resources/shaders/Ortho.frag");
 	std::shared_ptr<Texture> startButtonTexture = startButton->AddComponent<Texture>("../resources/textures/Black.png");
